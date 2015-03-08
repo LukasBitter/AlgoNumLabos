@@ -175,7 +175,7 @@ void FloatEncode::calcE()
         bitset_e = bitset<BITS_E>(0);
     else
         bitset_e = bitset<BITS_E>(exp+CONST_D);
-    bitset_m = bitset<BITS_M>(M*pow(2, BITS_M));
+    bitset_m = bitset<BITS_M>(M*pow(2, BITS_M+1));
     bitset_m<<=1;
 }
 
