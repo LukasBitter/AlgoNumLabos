@@ -189,11 +189,13 @@ void FloatEncode::calcS()
 
 bool FloatEncode::checkSpecial(double value)
 {
-    double minvalue = 0/pow(2, BITS_M) * pow(2, 0-CONST_D);
+    double minprecision = pow(2, -1*BITS_M) * pow(2, 0-CONST_D);
     //bigger value for "E" = 30 (5bits) : pow(2, BITS_E)-2
     double maxvalue =  (pow(2, BITS_M)-1) / pow(2, BITS_M) * pow(2, (pow(2, BITS_E)-2) - CONST_D);
 
-    if (value == 0)
+    cout << "-----"<<maxvalue;
+
+    if (value == 0 || (value < minprecision && value > (-1*minprecision)) )
     {
         bitset_s[0] = 0;
         bitset_e = bitset<BITS_E>(0);
@@ -214,7 +216,7 @@ bool FloatEncode::checkSpecial(double value)
 
         return true;
     }
-    else if(value<minvalue)
+    else if(value < (-1*maxvalue))
     {
         //- infinite
         bitset_s[0] = 1;
