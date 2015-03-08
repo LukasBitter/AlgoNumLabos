@@ -17,7 +17,6 @@ class Affichage
         static void encode();
         static void decode();
         static void addition();
-        static void info();
         static void readme();
     protected:
     private:

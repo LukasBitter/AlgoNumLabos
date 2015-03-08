@@ -29,19 +29,16 @@ int main()
             rep = Affichage::menuBegin();
             break;
         case 4:
-            Affichage::info();
+            Affichage::readme();
             rep = Affichage::menuBegin();
             break;
         case 5:
-            Affichage::readme();
-            rep = Affichage::menuBegin();
             break;
         default:
             rep = Affichage::menuNotValid();
             break;
         }
-
-    }while(rep != 9);
+    }while(rep != 5);
 
     return 0;
 }

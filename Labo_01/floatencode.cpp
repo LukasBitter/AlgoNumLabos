@@ -171,11 +171,17 @@ void FloatEncode::calcE()
             exp++;
         M = fabs(value)/pow(2, exp);
     }
+
     if(exp<-15)
+    {
         bitset_e = bitset<BITS_E>(0);
+    }
     else
+    {
         bitset_e = bitset<BITS_E>(exp+CONST_D);
-bitset_m = bitset<BITS_M>(M*pow(2, BITS_M+1));    bitset_m<<=1;
+        bitset_m = bitset<BITS_M>(M*pow(2, BITS_M));
+        bitset_m<<=1;
+    }
 }
 
 void FloatEncode::calcS()
@@ -234,9 +240,6 @@ FloatEncode FloatEncode::calculate(FloatEncode value1, FloatEncode value2)
 {
     FloatEncode result(0);
 
-    cout<<"  Le nombre 1 : "<< value1.get_s() << "|" << value1.get_e() << "|1" << value1.get_m() <<endl;
-    cout<<"  Le nombre 2 : "<< value2.get_s() << "|" << value2.get_e() << "|1" << value2.get_m() <<endl;
-
     //Bitset with the hidded bit.
     bitset<BITS_M+1> bitset_mcache1;
     bitset<BITS_M+1> bitset_mcache2;
@@ -281,8 +284,6 @@ FloatEncode FloatEncode::calculate(FloatEncode value1, FloatEncode value2)
     cout<<"  Le nombre 1 : "<< value1.get_s() << "|" << value1.get_e() << "|" << bitset_mcache1 <<endl;
     cout<<"  Le nombre 2 : "<< value2.get_s() << "|" << value2.get_e() << "|" << bitset_mcache2 <<endl;
 
-
-
 //    Right now, the subtraction is not working. But most is already implemented.
 //    if(value1.get_s() == 1 || value2.get_s() == 1)
 //    {
@@ -292,8 +293,6 @@ FloatEncode FloatEncode::calculate(FloatEncode value1, FloatEncode value2)
 //    {
         //Call the addition function.
         result.add(bitset_mcache1, bitset_mcache2);
-
-
 
         //Set the "s" bit
 //        if(value1.get_s()==1 && value2.get_s()==1)

@@ -27,8 +27,8 @@ void Affichage::menu()
     cout<<"  1. Encodage d'un nombre"<<endl;
     cout<<"  2. Decodage d'un nombre"<<endl;
     cout<<"  3. Additionner deux nombres positifs"<<endl;
-    cout<<"  4. Informations"<<endl;
-    cout<<"  5. Readme"<<endl;    cout<<"  9. Fin"<<endl;
+    cout<<"  4. Readme"<<endl;
+    cout<<"  5. Fin"<<endl;
     cout<<endl;
 }
 
@@ -38,7 +38,7 @@ int Affichage::menuBegin()
 
     header();
     menu();
-    cout<<"  Saisissez un choix du menu (1 a 9): ";
+    cout<<"  Saisissez un choix du menu (1 a 5): ";
     cin>>rep;
     return rep;
 }
@@ -50,17 +50,9 @@ int Affichage::menuNotValid()
     header();
     menu();
     cout<<"  Commande non valide. Recommencez. "<<endl;
-    cout<<"  Saisissez un choix du menu (1 a 9): ";
+    cout<<"  Saisissez un choix du menu (1 a 5): ";
     cin>>rep;
     return rep;
-}
-
-void Affichage::info()
-{
-    header();
-    cout<<"  info"<<endl;
-    cout<<endl;
-    system("pause");
 }
 
 void Affichage::encode()
@@ -68,7 +60,7 @@ void Affichage::encode()
     double num = 0;
 
     header();
-    cout<<"  Saisissez un nombre a encoder: " << endl;
+    cout<<"  Saisissez un nombre a encoder: " ;
 
     cin>>num;
 
@@ -108,9 +100,7 @@ void Affichage::decode()
     cout<<"  Saisissez un nombre a decoder: ";
     cin>>num;
 
-    // ici faire un test si num est bien un nombre
     FloatEncode userFloat(num);
-    cout<<"  Le nombre encode vaut: "<<userFloat.getBitset()<<endl<<endl;
     cout<<"  s = "<<userFloat.get_s()<<endl;
     cout<<"  e = "<<userFloat.get_e()<<endl;
     cout<<"  m = "<<userFloat.get_m()<<endl<<endl;
