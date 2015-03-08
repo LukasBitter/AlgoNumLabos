@@ -68,6 +68,8 @@ void Affichage::encode()
     double num = 0;
 
     header();
+    cout<<"                                 *****************" << endl;
+    cout<<"  Saisissez un nombre a decoder: ";
     cin>>num;
 
     FloatEncode userFloat(num);
@@ -113,8 +115,6 @@ void Affichage::addition()
     FloatEncode userFloat2(num2);
     FloatEncode result(0);
     result = FloatEncode::add(userFloat1, userFloat2);
-
-
 
     cout<< "  " << num1 << " + " << num2 << " = " <<result.getDouble()<<endl<<endl;
     system("pause");
