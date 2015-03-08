@@ -1,5 +1,5 @@
 #include "floatencode.h"
-
+#include <windows.h> //temporaire
 
 /*------------------------------------------------------------------*\
 |*	            Constructors / Destructors							*|
@@ -39,14 +39,6 @@ bitset<BITS_M> FloatEncode::get_m()
     return bitset_m;
 }
 
-
-/*------------------------------------------------------------------*\
-|*							Public methods			    			*|
-\*------------------------------------------------------------------*/
-
-//
-//convert the number to double
-//
 double FloatEncode::getDouble()
 {
     //calcul e
@@ -84,13 +76,16 @@ double FloatEncode::getDouble()
     return x;
 }
 
+/*------------------------------------------------------------------*\
+|*							Public methods			    			*|
+\*------------------------------------------------------------------*/
 
 bitset<BITS_TOTAL> FloatEncode::getBitset()
 {
+    // Declaration du nombre encodé
     bitset<BITS_TOTAL> x;
 
-
-    // shift and copy bitset_e
+    // Décalage et copie de bitset_e
     for(int i = BITS_M; i<BITS_E+BITS_M; i++)
     {
         x[i] = bitset_e[i-BITS_M];
@@ -109,9 +104,6 @@ bitset<BITS_TOTAL> FloatEncode::getBitset()
 |*							Private methods			    			*|
 \*------------------------------------------------------------------*/
 
-//
-//calculate "E"
-//
 void FloatEncode::calcE()
 {
     int exp=0;
@@ -132,9 +124,6 @@ void FloatEncode::calcE()
     bitset_m<<=1;
 }
 
-//
-//calculate "S"
-//
 void FloatEncode::calcS()
 {
     if(value<0)
@@ -143,10 +132,6 @@ void FloatEncode::calcS()
         bitset_s[0] = 0;
 }
 
-//
-//Determine if the number enter to "special category"
-// -> 0
-//
 bool FloatEncode::checkSpecial(double value)
 {
     if (value == 0)
@@ -159,11 +144,8 @@ bool FloatEncode::checkSpecial(double value)
     return false;
 }
 
-
-
 FloatEncode FloatEncode::add(FloatEncode value1, FloatEncode value2)
 {
-
     FloatEncode result(0);
 
     cout << "value1.bitset_m" << value1.bitset_m << endl;
@@ -174,15 +156,11 @@ FloatEncode FloatEncode::add(FloatEncode value1, FloatEncode value2)
 
     for(int i = 0; i<BITS_M; i++)
     {
-
-
         bitset_mcache1[i] = value1.bitset_m[i];
         bitset_mcache2[i] = value2.bitset_m[i];
     }
-
     bitset_mcache1[BITS_M] = 1;
     bitset_mcache2[BITS_M] = 1;
-
 
     while(value1.bitset_e != value2.bitset_e)
     {
@@ -206,56 +184,6 @@ FloatEncode FloatEncode::add(FloatEncode value1, FloatEncode value2)
     cout << "result.bitset_e" << result.bitset_e << endl;
 
     int retenue = 0;
-    for(int i = 0; i<BITS_M; i++)
-    {
-        if(bitset_mcache1[i] == 0 && bitset_mcache2[i] == 0)
-        {
-            result.bitset_m[i] = 0 + retenue;
-            retenue = 0;
-        }
-        else if(bitset_mcache1[i] == 1 && bitset_mcache2[i] == 1)
-        {
-            result.bitset_m[i] = 0 + retenue;
-            retenue = 1;
-        }
-        else
-        {
-            if(retenue == 1)
-            {
-                result.bitset_m[i] = 0;
-                retenue = 1;
-            }
-            else
-            {
-                result.bitset_m[i] = 1;
-                retenue = 0;
-            }
-        }
-    }
-
-    if(bitset_mcache1[BITS_M] == 1 && bitset_mcache2[BITS_M] == 1)
-    {
-        result.bitset_m>>=1;
-        result.bitset_m[BITS_M]= retenue;
-    }
-    else if(bitset_mcache1[BITS_M] == 0 && bitset_mcache2[BITS_M] == 0 && retenue == 0)
-    {
-        while(result.bitset_m[BITS_M-1]!=1)
-        {
-            result.bitset_m<<=1;
-        }
-    }
-    else if((bitset_mcache1[BITS_M] == 1 || bitset_mcache2[BITS_M] == 1) && retenue == 1)
-    {
-        result.bitset_m>>=1;
-        result.bitset_m[BITS_M]= retenue;
-    }
-
-    cout << "result.bitset_m" << result.bitset_m << endl;
-
-    return result;
-}
-
     for(int i = 0; i<BITS_M; i++)
     {
         if(bitset_mcache1[i] == 0 && bitset_mcache2[i] == 0)
