@@ -1,0 +1,38 @@
+    //    int j = 1;
+    //    for(int i = BITS_E; i>0; i--)
+    //    {
+    //        if(exp - pow(2, (i-1))>=0)
+    //        {
+    //            x[BITS_TOTAL-1-j] = 1;
+    //            exp -= pow(2, (i-1));
+    //        }
+    //        else
+    //        {
+    //            x[BITS_TOTAL-1-j] = 0;
+    //        }
+    //        j++;
+    //    }
+
+
+    //Construction de m
+
+    //    double M = num/pow(2, exp);
+    //    cout <<"\n m: "<<calcul_m(M, exp)<<endl;
+    //    int m = calcul_m(M, exp);
+    //
+    //    int k = 1;
+    //    int bits_m = BITS_TOTAL - BITS_S - BITS_E; //11
+    //
+    //    for(int i = bits_m; i>0; i--)
+    //    {
+    //        if(m - pow(2, (i-1))>=0)
+    //        {
+    //            x[BITS_TOTAL-1-j] = 1;
+    //            exp -= pow(2, (i-1));
+    //        }
+    //        else
+    //        {
+    //            x[BITS_TOTAL-1-j] = 0;
+    //        }
+    //        j++;
+    //    }
