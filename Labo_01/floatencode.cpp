@@ -116,7 +116,7 @@ void FloatEncode::calcE()
             exp++;
         M = fabs(value)/pow(2, exp);
     }
-    if(exp<0)
+    if(exp<-15)
         bitset_e = bitset<BITS_E>(0);
     else
         bitset_e = bitset<BITS_E>(exp+CONST_D);
