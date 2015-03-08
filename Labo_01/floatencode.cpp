@@ -39,6 +39,14 @@ bitset<BITS_M> FloatEncode::get_m()
     return bitset_m;
 }
 
+
+/*------------------------------------------------------------------*\
+|*							Public methods			    			*|
+\*------------------------------------------------------------------*/
+
+//
+//convert the number to double
+//
 double FloatEncode::getDouble()
 {
     //calcul e
@@ -78,16 +86,12 @@ double FloatEncode::getDouble()
     return x;
 }
 
-/*------------------------------------------------------------------*\
-|*							Public methods			    			*|
-\*------------------------------------------------------------------*/
 
 bitset<BITS_TOTAL> FloatEncode::getBitset()
 {
-    // Declaration du nombre encodé
     bitset<BITS_TOTAL> x;
 
-    // Décalage et copie de bitset_e
+    // shift and copy bitset_e
     for(int i = BITS_M; i<BITS_E+BITS_M; i++)
     {
         x[i] = bitset_e[i-BITS_M];
@@ -106,6 +110,9 @@ bitset<BITS_TOTAL> FloatEncode::getBitset()
 |*							Private methods			    			*|
 \*------------------------------------------------------------------*/
 
+//
+//calculate "E"
+//
 void FloatEncode::calcE()
 {
     int exp=0;
@@ -121,9 +128,11 @@ void FloatEncode::calcE()
     bitset_e = bitset<BITS_E>(exp+CONST_D);
     bitset_m = bitset<BITS_M>(M*pow(2, BITS_M));
     bitset_m<<=1;
-    // test commit 2
 }
 
+//
+//calculate "S"
+//
 void FloatEncode::calcS()
 {
     if(value<0)
@@ -132,6 +141,10 @@ void FloatEncode::calcS()
         bitset_s[0] = 0;
 }
 
+//
+//Determine if the number enter to "special category"
+// -> 0
+//
 bool FloatEncode::checkSpecial(double value)
 {
     if (value == 0)
