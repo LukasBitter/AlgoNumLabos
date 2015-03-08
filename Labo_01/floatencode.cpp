@@ -11,7 +11,7 @@ FloatEncode::FloatEncode(double _value) : value(_value)
         calcE();
         calcS();
         //calcDouble();
-        //test channelGit
+        //test
     }
 }
 
