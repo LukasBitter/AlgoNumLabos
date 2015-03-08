@@ -145,7 +145,6 @@ void Affichage::readme()
  ifstream in("./readme.txt");
 
   if(!in) {
-    header();
     cout << "Cannot open input file.\n";
   }
   else {
