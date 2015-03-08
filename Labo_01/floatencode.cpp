@@ -42,38 +42,38 @@ double FloatEncode::getDouble()
 {
     //calcul e
     int e = (int)(bitset_e.to_ulong());
-    
+
     //calcul M
     //take the hidden bit
     bitset<BITS_M+1> bitset_mcache;
-    
+
     for(int i = 0; i<BITS_M; i++)
     {
         bitset_mcache[i] = bitset_m[i];
     }
-    
+
     if(e==0){
         bitset_mcache[BITS_M] = 0;
     }
     else{
         bitset_mcache[BITS_M] = 1;
     }
-    
+
     //calcul m
     int m = (int)(bitset_mcache.to_ulong());
     double M = m / pow(2, bitset_mcache.size());
-    
+
     //determinate x
     double x;
     x = M*pow(2, e - CONST_D);
-    
-    
+
+
     //sign of the value (S)
     if(bitset_s[0]==1)
     {
         x = x*(-1);
     }
-    
+
     return x;
 }
 

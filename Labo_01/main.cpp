@@ -23,6 +23,7 @@ int main()
         case 2:
             Affichage::addition();
             rep = Affichage::menuBegin();
+            break;
         case 3:
             Affichage::info();
             rep = Affichage::menuBegin();
