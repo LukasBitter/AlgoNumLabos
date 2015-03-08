@@ -120,13 +120,11 @@ double FloatEncode::getDouble()
     double x;
     x = M*pow(2, e - CONST_D);
 
-
     //sign of the value (S)
     if(bitset_s[0]==1)
     {
         x = x*(-1);
     }
-
 
     return x;
 }

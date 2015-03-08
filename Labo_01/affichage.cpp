@@ -131,22 +131,24 @@ void Affichage::addition()
 
 void Affichage::readme()
 {
+    system("cls");
+    ifstream in("./readme.txt");
 
- ifstream in("./readme.txt");
+    if(!in)
+    {
+        cout << "Cannot open input file.\n";
+    }
+    else
+    {
+        char str[255];
 
-  if(!in) {
-    cout << "Cannot open input file.\n";
-  }
-  else {
-
-      char str[255];
-
-      while(in) {
-        in.getline(str, 255);  // delim defaults to '\n'
-        if(in) cout << str << endl;
-      }
-      in.close();
-  }
-  system("pause");
+        while(in)
+        {
+            in.getline(str, 255);  // delim defaults to '\n'
+            if(in) cout << str << endl;
+        }
+        in.close();
+    }
+    system("pause");
 }
 
