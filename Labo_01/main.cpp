@@ -21,10 +21,13 @@ int main()
             rep = Affichage::menuBegin();
             break;
         case 2:
+            Affichage::addition();
+            rep = Affichage::menuBegin();
+        case 3:
             Affichage::info();
             rep = Affichage::menuBegin();
             break;
-        case 3:
+        case 4:
             Affichage::readme();
             rep = Affichage::menuBegin();
             break;

@@ -117,3 +117,25 @@ bool FloatEncode::checkSpecial(double value)
     }
     return false;
 }
+
+FloatEncode FloatEncode::add(FloatEncode value)
+{
+    cout << "This.bitset_e : " << this->bitset_e << endl;
+    cout << "value.bitset_e : " << value.bitset_e << endl;
+
+    while(this->bitset_e != value.bitset_e)
+    {
+//        if(this->bitset_e < value.bitset_e)
+//        {
+//            this.>bitset_e++;
+//        }
+//        else
+//        {
+//            value.bitset_e++;
+//        }
+    }
+    cout << "This.bitset_e : " << this->bitset_e << endl;
+    cout << "value.bitset_e : " << value.bitset_e << endl;
+
+    return value;
+}

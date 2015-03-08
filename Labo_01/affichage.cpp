@@ -25,8 +25,9 @@ void Affichage::header()
 void Affichage::menu()
 {
     cout<<"  1. Encodage d'un nombre"<<endl;
-    cout<<"  2. Informations"<<endl;
-    cout<<"  3. Readme"<<endl;
+    cout<<"  2. Additionner deux nombres"<<endl;
+    cout<<"  3. Informations"<<endl;
+    cout<<"  4. Readme"<<endl;
     cout<<"  9. Fin"<<endl;
     cout<<endl;
 }
@@ -76,6 +77,31 @@ void Affichage::encode()
     cout<<"  e = "<<userFloat.get_e()<<endl;
     cout<<"  m = "<<userFloat.get_m()<<endl<<endl;
     cout<<"  Le nombre decode vaut: "<<userFloat.getDouble()<<endl<<endl;
+    system("pause");
+}
+
+void Affichage::addition()
+{
+    double num1 = 0;
+    double num2 = 0;
+
+    header();
+    cout<<"  Saisissez un premier nombre: ";
+    cin>>num1;
+    cout<<"  Saisissez un second nombre: ";
+    cin>>num2;
+
+    // ici faire un test si num est bien un nombre
+    FloatEncode userFloat1(num1);
+    FloatEncode userFloat2(num2);
+    FloatEncode result(0);
+    result = userFloat2.add(userFloat2);
+
+//    cout<<"  Le nombre encode vaut: "<<userFloat.getBitset()<<endl<<endl;
+//    cout<<"  s = "<<userFloat.get_s()<<endl;
+//    cout<<"  e = "<<userFloat.get_e()<<endl;
+//    cout<<"  m = "<<userFloat.get_m()<<endl<<endl;
+//    cout<<"  Le nombre decode vaut: "<<userFloat.getDouble()<<endl<<endl;
     system("pause");
 }
 

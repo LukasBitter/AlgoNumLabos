@@ -29,6 +29,7 @@ class FloatEncode
 
         // Public methods
         bitset<BITS_TOTAL> getBitset();
+        FloatEncode add(FloatEncode value);
 
     protected:
     private:
