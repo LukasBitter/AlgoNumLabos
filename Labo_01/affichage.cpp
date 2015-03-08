@@ -26,7 +26,7 @@ void Affichage::menu()
 {
     cout<<"  1. Encodage d'un nombre"<<endl;
     cout<<"  2. Decodage d'un nombre"<<endl;
-    cout<<"  3. Additionner deux nombres"<<endl;
+    cout<<"  3. Additionner deux nombres positifs"<<endl;
     cout<<"  4. Informations"<<endl;
     cout<<"  5. Readme"<<endl;    cout<<"  9. Fin"<<endl;
     cout<<endl;
@@ -135,7 +135,7 @@ void Affichage::addition()
 
     result = FloatEncode::calculate(userFloat1, userFloat2);
 
-    cout<< "  " << num1 << " + " << num2 << " = " <<result.getDouble()<<endl<<endl;
+    cout<< "  |" << fabs(num1) << "| + |" << fabs(num2) << "| = " <<result.getDouble()<<endl<<endl;
     system("pause");
 }
 

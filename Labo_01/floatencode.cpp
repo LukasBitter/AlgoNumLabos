@@ -238,9 +238,11 @@ FloatEncode FloatEncode::calculate(FloatEncode value1, FloatEncode value2)
     cout<<"  Le nombre 1 : "<< value1.get_s() << "|" << value1.get_e() << "|1" << value1.get_m() <<endl;
     cout<<"  Le nombre 2 : "<< value2.get_s() << "|" << value2.get_e() << "|1" << value2.get_m() <<endl;
 
+    //Bitset with the hidded bit.
     bitset<BITS_M+1> bitset_mcache1;
     bitset<BITS_M+1> bitset_mcache2;
 
+    //Boucle to insert the elements from value1.bitset_m and value2.bitset_m into bitset_mcache1 and bitset_mcache2
     for(int i = 0; i<BITS_M; i++)
     {
         bitset_mcache1[i] = value1.bitset_m[i];
@@ -249,6 +251,15 @@ FloatEncode FloatEncode::calculate(FloatEncode value1, FloatEncode value2)
     bitset_mcache1[BITS_M] = 1;
     bitset_mcache2[BITS_M] = 1;
 
+    //This part is planned to help with the denormalized version
+    //    bitset<BITS_E> bitset_eZero;
+    //    if((value1.bitset_e == value2.bitset_e) && (value1.bitset_e == bitset_eZero))
+    //    {
+    //        bitset_mcache1[BITS_M] = 0;
+    //        bitset_mcache2[BITS_M] = 0;
+    //    }
+
+    //Boucle to get for value1 and value2 the same "e" value.
     while(value1.bitset_e != value2.bitset_e)
     {
         int e1 = (int)(value1.bitset_e.to_ulong());
@@ -271,28 +282,34 @@ FloatEncode FloatEncode::calculate(FloatEncode value1, FloatEncode value2)
     cout<<"  Le nombre 1 : "<< value1.get_s() << "|" << value1.get_e() << "|" << bitset_mcache1 <<endl;
     cout<<"  Le nombre 2 : "<< value2.get_s() << "|" << value2.get_e() << "|" << bitset_mcache2 <<endl;
 
-    if(value1.get_s() == 1 || value1.get_s() == 1)
-    {
-        result.sub(bitset_mcache1, bitset_mcache2);
-    }
-    else
-    {
+//    Right now, the subtraction is not working. But most is already implemented.
+//    if(value1.get_s() == 1 || value2.get_s() == 1)
+//    {
+//        result.sub(bitset_mcache1, bitset_mcache2);
+//    }
+//    else
+//    {
+        //Call the addition function.
         result.add(bitset_mcache1, bitset_mcache2);
-        if(value1.get_s()==1 && value2.get_s()==1)
-        {
-            result.bitset_s = 1;
-        }
-        else
-        {
-            result.bitset_s = 0;
-        }
-    }
+
+        //Set the "s" bit
+//        if(value1.get_s()==1 && value2.get_s()==1)
+//        {
+//            result.bitset_s = 1;
+//        }
+//        else
+//        {
+//            result.bitset_s = 0;
+//        }
+//    }
+
     cout << "  Le resultat : "<< result.get_s() << "|" << result.get_e() << "|1" << result.get_m() <<endl << endl;
     return result;
 }
 
 void FloatEncode::add(bitset<BITS_M+1> bitset_mcache1, bitset<BITS_M+1> bitset_mcache2)
 {
+    //Addition of the two m values.
     int retenue = 0;
     for(int i = 0; i<BITS_M; i++)
     {
@@ -321,6 +338,7 @@ void FloatEncode::add(bitset<BITS_M+1> bitset_mcache1, bitset<BITS_M+1> bitset_m
         }
     }
 
+    //Renormalized the value
     if(bitset_mcache1[BITS_M] == 1 && bitset_mcache2[BITS_M] == 1)
     {
         if(this->bitset_m[0]==1)
@@ -354,6 +372,7 @@ void FloatEncode::add(bitset<BITS_M+1> bitset_mcache1, bitset<BITS_M+1> bitset_m
     }
 }
 
+//This function increment "m"
 void FloatEncode::inc(bitset<BITS_M> m)
 {
     int retenue = 1;
@@ -372,9 +391,9 @@ void FloatEncode::inc(bitset<BITS_M> m)
     }
 }
 
+//Subtraction is not completely implemented.
 void FloatEncode::sub(bitset<BITS_M+1> bitset_mcache1, bitset<BITS_M+1> bitset_mcache2)
 {
-    cout << "Soustraction";
     for(int i = 0; i<BITS_M; i++)
     {
        if(bitset_mcache1[i] == 0 && bitset_mcache2[i] == 0)
@@ -390,7 +409,7 @@ void FloatEncode::sub(bitset<BITS_M+1> bitset_mcache1, bitset<BITS_M+1> bitset_m
             this->bitset_m[i] = 1;
         }
         else if(bitset_mcache1[i] == 0 && bitset_mcache2[i] == 1)
-        {
+         {
             int j = 1;
             while(bitset_mcache1[i-j] != 1 && i-j != BITS_M+1)
             {
