@@ -17,9 +17,9 @@ Participants :
 
 *** Limites du programme:
 
-les valeures maximum et minimum représentable par 
+les valeures maximum et minimum representable par 
 l'encodage float sont 32752 et -32752. 
-Ensuite le programme considérera les valeures
+Ensuite le programme considerera les valeures
 comme infini et moins infini.
 
 on obtient cette limite ainsi :
@@ -33,19 +33,19 @@ on obtient cette limite ainsi :
 *** Précision du programme:
 
 en dessous de 1.49012 *10^-8 ( et en dessus de
--1.49012 *10^-8) le programme considérera la 
-valeure comme égale à 0.
+-1.49012 *10^-8) le programme considerera la 
+valeure comme egale à 0.
 
-on obtient cette précision ainsi :
+on obtient cette precision ainsi :
 
   2^-n * 2^e-d
 
   ou e = 0 
 
 
-*** choix du décalage d
+*** choix du decalage d
 
-d est fixé avec la formule 2^E-1 ou E est égal
+d est fixe avec la formule 2^E-1 ou E est egal
 au nombre de bit de "e"
 
 d est donc = 15

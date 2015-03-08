@@ -193,8 +193,6 @@ bool FloatEncode::checkSpecial(double value)
     //bigger value for "E" = 30 (5bits) : pow(2, BITS_E)-2
     double maxvalue =  (pow(2, BITS_M)-1) / pow(2, BITS_M) * pow(2, (pow(2, BITS_E)-2) - CONST_D);
 
-    cout << "-----"<<maxvalue;
-
     if (value == 0 || (value < minprecision && value > (-1*minprecision)) )
     {
         bitset_s[0] = 0;
