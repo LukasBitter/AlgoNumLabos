@@ -30,7 +30,7 @@ class FloatEncode
 
         // Public methods
         bitset<BITS_TOTAL> getBitset();
-        FloatEncode add(FloatEncode value);
+        static FloatEncode add(FloatEncode value1, FloatEncode value2);
 
     protected:
     private:
@@ -45,7 +45,6 @@ class FloatEncode
         void calcE();
         void calcS();
         bool checkSpecial(double value);
-
 };
 
 #endif // FLOATENCODE_H
