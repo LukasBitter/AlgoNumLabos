@@ -14,6 +14,58 @@ FloatEncode::FloatEncode(double _value) : value(_value)
         //calcDouble();
     }
 }
+FloatEncode::FloatEncode(string value)
+{
+    if(value.length()== BITS_TOTAL)
+    {
+        int j = 0;
+
+        if(value[j]=='1')
+        {
+            bitset_s[0]=1;
+        }
+        else
+        {
+            bitset_s[0]=0;
+        }
+
+        j++;
+
+        for(int i = BITS_E-1; i >= 0; i--)
+        {
+            if(value[j]=='1')
+            {
+                bitset_e[i]=1;
+            }
+            else
+            {
+                bitset_e[i]=0;
+            }
+
+            j++;
+        }
+
+        for(int i = BITS_M-1; i >= 0; i--)
+        {
+            if(value[j]=='1')
+            {
+                bitset_m[i]=1;
+            }
+            else
+            {
+                bitset_m[i]=0;
+            }
+
+            j++;
+        }
+
+
+    }
+
+    this->value=getDouble();
+
+}
+
 
 FloatEncode::~FloatEncode()
 {
@@ -219,6 +271,7 @@ FloatEncode FloatEncode::add(FloatEncode value1, FloatEncode value2)
         }
         cout << result.bitset_m << endl;
         result.bitset_m>>=1;
+
         result.bitset_m[BITS_M-1] = retenue;
         cout << result.bitset_m << endl;
     }
@@ -236,8 +289,10 @@ FloatEncode FloatEncode::add(FloatEncode value1, FloatEncode value2)
             inc(result.bitset_m);
         }
         result.bitset_m>>=1;
+
         result.bitset_m[BITS_M-1]= retenue;
     }
+
 
     cout << "  Le resultat : "<< result.get_s() << "|" << result.get_e() << "|1" << result.get_m() <<endl << endl;
 

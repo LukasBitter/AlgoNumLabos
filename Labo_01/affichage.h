@@ -15,6 +15,7 @@ class Affichage
         static int menuBegin();
         static int menuNotValid();
         static void encode();
+        static void decode();
         static void addition();
         static void info();
         static void readme();
