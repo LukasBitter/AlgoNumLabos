@@ -44,6 +44,7 @@ class FloatEncode
         void calcE();
         void calcS();
         bool checkSpecial(double value);
+        static void inc(bitset<BITS_M> m);
 };
 
 #endif // FLOATENCODE_H

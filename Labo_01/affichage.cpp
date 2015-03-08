@@ -97,11 +97,7 @@ void Affichage::addition()
     FloatEncode result(0);
     result = FloatEncode::add(userFloat1, userFloat2);
 
-    cout<<"  Resultat : "<<result.getBitset()<<endl<<endl;
-    cout<<"  s = "<<result.get_s()<<endl;
-    cout<<"  e = "<<result.get_e()<<endl;
-    cout<<"  m = "<<result.get_m()<<endl<<endl;
-    cout<<"  Le nombre vaut: "<<result.getDouble()<<endl<<endl;
+    cout<< "  " << num1 << " + " << num2 << " = " <<result.getDouble()<<endl<<endl;
     system("pause");
 }
 

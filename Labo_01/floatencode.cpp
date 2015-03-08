@@ -213,8 +213,14 @@ FloatEncode FloatEncode::add(FloatEncode value1, FloatEncode value2)
 
     if(bitset_mcache1[BITS_M] == 1 && bitset_mcache2[BITS_M] == 1)
     {
+        if(result.bitset_m[0]==1)
+        {
+            inc(result.bitset_m);
+        }
+        cout << result.bitset_m << endl;
         result.bitset_m>>=1;
-        result.bitset_m[BITS_M]= retenue;
+        result.bitset_m[BITS_M-1] = retenue;
+        cout << result.bitset_m << endl;
     }
     else if(bitset_mcache1[BITS_M] == 0 && bitset_mcache2[BITS_M] == 0 && retenue == 0)
     {
@@ -225,11 +231,33 @@ FloatEncode FloatEncode::add(FloatEncode value1, FloatEncode value2)
     }
     else if((bitset_mcache1[BITS_M] == 1 || bitset_mcache2[BITS_M] == 1) && retenue == 1)
     {
+        if(result.bitset_m[0]==1)
+        {
+            inc(result.bitset_m);
+        }
         result.bitset_m>>=1;
-        result.bitset_m[BITS_M]= retenue;
+        result.bitset_m[BITS_M-1]= retenue;
     }
 
-    cout<<"  Le resultat : "<< result.get_s() << "|" << result.get_e() << "|1" << result.get_m() <<endl;
+    cout << "  Le resultat : "<< result.get_s() << "|" << result.get_e() << "|1" << result.get_m() <<endl << endl;
 
     return result;
+}
+
+void FloatEncode::inc(bitset<BITS_M> m)
+{
+    int retenue = 1;
+    for(int i = 0; i < BITS_M; i++)
+    {
+        if(m[i] == 1 && retenue==1)
+        {
+            m[i] = 0;
+            retenue = 1;
+        }
+        else if(retenue == 1)
+        {
+            m[i] = retenue;
+            retenue = 0;
+        }
+    }
 }
