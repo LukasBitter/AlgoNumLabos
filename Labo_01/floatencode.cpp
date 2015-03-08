@@ -290,6 +290,7 @@ FloatEncode FloatEncode::add(FloatEncode value1, FloatEncode value2)
         }
         result.bitset_m>>=1;
 
+
         result.bitset_m[BITS_M-1]= retenue;
     }
 

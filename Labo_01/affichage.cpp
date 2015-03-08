@@ -25,12 +25,10 @@ void Affichage::header()
 void Affichage::menu()
 {
     cout<<"  1. Encodage d'un nombre"<<endl;
-
     cout<<"  2. Decodage d'un nombre"<<endl;
     cout<<"  3. Additionner deux nombres"<<endl;
     cout<<"  4. Informations"<<endl;
-    cout<<"  5. Readme"<<endl;
-    cout<<"  9. Fin"<<endl;
+    cout<<"  5. Readme"<<endl;    cout<<"  9. Fin"<<endl;
     cout<<endl;
 }
 
@@ -70,8 +68,6 @@ void Affichage::encode()
     double num = 0;
 
     header();
-
-
     cin>>num;
 
     FloatEncode userFloat(num);
@@ -117,6 +113,7 @@ void Affichage::addition()
     FloatEncode userFloat2(num2);
     FloatEncode result(0);
     result = FloatEncode::add(userFloat1, userFloat2);
+
 
 
     cout<< "  " << num1 << " + " << num2 << " = " <<result.getDouble()<<endl<<endl;
