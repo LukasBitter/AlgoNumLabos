@@ -87,11 +87,11 @@ void Affichage::encode()
     {
         if(userFloat.get_s().all())
         {
-            cout<<"  Le nombre decode vaut moins l'infini car il dÈpasse la limite du codage"<<endl<<endl;
+            cout<<"  Le nombre decode vaut moins l'infini car il depasse la limite du codage"<<endl<<endl;
         }
         else
         {
-            cout<<"  Le nombre decode vaut l'infini car il dÈpasse la limite du codage"<<endl<<endl;
+            cout<<"  Le nombre decode vaut l'infini car il depasse la limite du codage"<<endl<<endl;
         }
 
     }
@@ -129,7 +129,6 @@ void Affichage::addition()
     cout<<"  Saisissez un second nombre: ";
     cin>>num2;
 
-    // ici faire un test si num est bien un nombre
     FloatEncode userFloat1(num1);
     FloatEncode userFloat2(num2);
     FloatEncode result(0);
