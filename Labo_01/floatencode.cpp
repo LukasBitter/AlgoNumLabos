@@ -59,7 +59,6 @@ FloatEncode::FloatEncode(string value)
             j++;
         }
 
-
     }
 
     this->value=getDouble();
@@ -93,39 +92,44 @@ bitset<BITS_M> FloatEncode::get_m()
 
 double FloatEncode::getDouble()
 {
-    //calcul e
-    int e = (int)(bitset_e.to_ulong());
+    if(!checkSpecial(value))
+       {
+        //calcul e
+        int e = (int)(bitset_e.to_ulong());
 
-    //calcul M
-    //take the hidden bit
-    bitset<BITS_M+1> bitset_mcache;
+        //calcul M
+        //take the hidden bit
+        bitset<BITS_M+1> bitset_mcache;
 
-    for(int i = 0; i<BITS_M; i++)
-    {
-        bitset_mcache[i] = bitset_m[i];
-    }
+        for(int i = 0; i<BITS_M; i++)
+        {
+            bitset_mcache[i] = bitset_m[i];
+        }
 
-    if(e==0){
-        bitset_mcache[BITS_M] = 0;
-    }
-    else{
-        bitset_mcache[BITS_M] = 1;
-    }
+        if(e==0){
+            bitset_mcache[BITS_M] = 0;
+        }
+        else{
+            bitset_mcache[BITS_M] = 1;
+        }
 
-    //calcul m
-    int m = (int)(bitset_mcache.to_ulong());
-    double M = m / pow(2, bitset_mcache.size());
+        //calcul m
+        int m = (int)(bitset_mcache.to_ulong());
+        double M = m / pow(2, bitset_mcache.size());
 
-    //determinate x
-    double x;
-    x = M*pow(2, e - CONST_D);
-    //sign of the value (S)
-    if(bitset_s[0]==1)
-    {
-        x = x*(-1);
-    }
+        //determinate x
+        double x;
+        x = M*pow(2, e - CONST_D);
+        //sign of the value (S)
+        if(bitset_s[0]==1)
+        {
+            x = x*(-1);
+        }
 
-    return x;
+        return x;
+       }
+
+       return 0;
 }
 
 /*------------------------------------------------------------------*\
@@ -186,10 +190,41 @@ void FloatEncode::calcS()
 
 bool FloatEncode::checkSpecial(double value)
 {
+    double minvalue = 0/pow(2, BITS_M) * pow(2, 0-CONST_D);
+    //bigger value for "E" = 30 (5bits) : pow(2, BITS_E)-2
+    double maxvalue =  (pow(2, BITS_M)-1) / pow(2, BITS_M) * pow(2, (pow(2, BITS_E)-2) - CONST_D);
+
     if (value == 0)
     {
         bitset_s[0] = 0;
         bitset_e = bitset<BITS_E>(0);
+        bitset_m = bitset<BITS_M>(0);
+        return true;
+    }
+    else if(value>maxvalue)
+    {
+        //infinite, all bits of "e" to 1
+        bitset_s[0] = 0;
+
+        for(int i=0; i<BITS_E; i++)
+        {
+            bitset_e[i]=1;
+        }
+
+        bitset_m = bitset<BITS_M>(0);
+
+        return true;
+    }
+    else if(value<minvalue)
+    {
+        //- infinite
+        bitset_s[0] = 1;
+
+        for(int i=0; i<BITS_E; i++)
+        {
+            bitset_e[i]=1;
+        }
+
         bitset_m = bitset<BITS_M>(0);
         return true;
     }

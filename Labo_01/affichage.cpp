@@ -74,10 +74,28 @@ void Affichage::encode()
     cin>>num;
 
     FloatEncode userFloat(num);
+
     cout<<"  s = "<<userFloat.get_s()<<endl;
     cout<<"  e = "<<userFloat.get_e()<<endl;
     cout<<"  m = "<<userFloat.get_m()<<endl<<endl;
-    cout<<"  Le nombre decode vaut: "<<userFloat.getDouble()<<endl<<endl;
+
+    if(!userFloat.get_e().all())
+    {
+        cout<<"  Le nombre decode vaut: "<<userFloat.getDouble()<<endl<<endl;
+    }
+    else
+    {
+        if(userFloat.get_s().all())
+        {
+            cout<<"  Le nombre decode vaut moins l'infini car il dépasse la limite du codage"<<endl<<endl;
+        }
+        else
+        {
+            cout<<"  Le nombre decode vaut l'infini car il dépasse la limite du codage"<<endl<<endl;
+        }
+
+    }
+
     system("pause");
 }
 
@@ -90,7 +108,6 @@ void Affichage::decode()
     cout<<"  Saisissez un nombre a decoder: ";
     cin>>num;
 
-    // ici faire un test si num est bien un nombre
     FloatEncode userFloat(num);
     cout<<"  Le nombre encode vaut: "<<userFloat.getBitset()<<endl<<endl;
     cout<<"  s = "<<userFloat.get_s()<<endl;
