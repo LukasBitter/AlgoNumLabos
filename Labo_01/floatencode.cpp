@@ -89,6 +89,7 @@ bitset<BITS_TOTAL> FloatEncode::getBitset()
 {
     bitset<BITS_TOTAL> x;
 
+
     // shift and copy bitset_e
     for(int i = BITS_M; i<BITS_E+BITS_M; i++)
     {
@@ -159,6 +160,7 @@ bool FloatEncode::checkSpecial(double value)
 }
 
 
+
 FloatEncode FloatEncode::add(FloatEncode value1, FloatEncode value2)
 {
 
@@ -172,6 +174,7 @@ FloatEncode FloatEncode::add(FloatEncode value1, FloatEncode value2)
 
     for(int i = 0; i<BITS_M; i++)
     {
+
 
         bitset_mcache1[i] = value1.bitset_m[i];
         bitset_mcache2[i] = value2.bitset_m[i];
