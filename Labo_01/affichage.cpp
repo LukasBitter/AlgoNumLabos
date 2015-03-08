@@ -68,13 +68,34 @@ void Affichage::encode()
     double num = 0;
 
     header();
+    cout<<"  Saisissez un nombre a encoder: " << endl;
+
     cin>>num;
 
     FloatEncode userFloat(num);
+
     cout<<"  s = "<<userFloat.get_s()<<endl;
     cout<<"  e = "<<userFloat.get_e()<<endl;
     cout<<"  m = "<<userFloat.get_m()<<endl<<endl;
-    cout<<"  Le nombre decode vaut: "<<userFloat.getDouble()<<endl<<endl;
+
+
+    if(!userFloat.get_e().all())
+    {
+        cout<<"  Le nombre decode vaut: "<<userFloat.getDouble()<<endl<<endl;
+    }
+    else
+    {
+        if(userFloat.get_s().all())
+        {
+            cout<<"  Le nombre decode vaut moins l'infini car il dÈpasse la limite du codage"<<endl<<endl;
+        }
+        else
+        {
+            cout<<"  Le nombre decode vaut l'infini car il dÈpasse la limite du codage"<<endl<<endl;
+        }
+
+    }
+
     system("pause");
 }
 
@@ -112,6 +133,7 @@ void Affichage::addition()
     FloatEncode userFloat1(num1);
     FloatEncode userFloat2(num2);
     FloatEncode result(0);
+
     result = FloatEncode::calculate(userFloat1, userFloat2);
 
     cout<< "  " << num1 << " + " << num2 << " = " <<result.getDouble()<<endl<<endl;

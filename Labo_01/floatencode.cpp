@@ -93,39 +93,28 @@ bitset<BITS_M> FloatEncode::get_m()
 
 double FloatEncode::getDouble()
 {
-    //calcul e
-    int e = (int)(bitset_e.to_ulong());
+    if(!checkSpecial(value))
+       {
+        //calcul e
+        int e = (int)(bitset_e.to_ulong());
 
-    //calcul M
-    //take the hidden bit
-    bitset<BITS_M+1> bitset_mcache;
 
-    for(int i = 0; i<BITS_M; i++)
-    {
-        bitset_mcache[i] = bitset_m[i];
-    }
+        //calcul M
+        //take the hidden bit
+        bitset<BITS_M+1> bitset_mcache;
 
-    if(e==0){
-        bitset_mcache[BITS_M] = 0;
-    }
-    else{
-        bitset_mcache[BITS_M] = 1;
-    }
 
-    //calcul m
-    int m = (int)(bitset_mcache.to_ulong());
-    double M = m / pow(2, bitset_mcache.size());
 
-    //determinate x
-    double x;
-    x = M*pow(2, e - CONST_D);
-    //sign of the value (S)
-    if(bitset_s[0]==1)
-    {
-        x = x*(-1);
-    }
 
-    return x;
+
+
+
+
+
+
+       }
+
+       return 0;
 }
 
 /*------------------------------------------------------------------*\
@@ -186,6 +175,10 @@ void FloatEncode::calcS()
 
 bool FloatEncode::checkSpecial(double value)
 {
+    double minvalue = 0/pow(2, BITS_M) * pow(2, 0-CONST_D);
+    //bigger value for "E" = 30 (5bits) : pow(2, BITS_E)-2
+    double maxvalue =  (pow(2, BITS_M)-1) / pow(2, BITS_M) * pow(2, (pow(2, BITS_E)-2) - CONST_D);
+
     if (value == 0)
     {
         bitset_s[0] = 0;
@@ -193,8 +186,36 @@ bool FloatEncode::checkSpecial(double value)
         bitset_m = bitset<BITS_M>(0);
         return true;
     }
+    else if(value>maxvalue)
+    {
+        //infinite, all bits of "e" to 1
+        bitset_s[0] = 0;
+
+        for(int i=0; i<BITS_E; i++)
+        {
+            bitset_e[i]=1;
+        }
+
+        bitset_m = bitset<BITS_M>(0);
+
+        return true;
+    }
+    else if(value<minvalue)
+    {
+        //- infinite
+        bitset_s[0] = 1;
+
+        for(int i=0; i<BITS_E; i++)
+        {
+            bitset_e[i]=1;
+        }
+
+        bitset_m = bitset<BITS_M>(0);
+        return true;
+    }
     return false;
 }
+
 
 FloatEncode FloatEncode::calculate(FloatEncode value1, FloatEncode value2)
 {
@@ -263,11 +284,13 @@ void FloatEncode::add(bitset<BITS_M+1> bitset_mcache1, bitset<BITS_M+1> bitset_m
     {
         if(bitset_mcache1[i] == 0 && bitset_mcache2[i] == 0)
         {
+
             this->bitset_m[i] = 0 + retenue;
             retenue = 0;
         }
         else if(bitset_mcache1[i] == 1 && bitset_mcache2[i] == 1)
         {
+
             this->bitset_m[i] = 0 + retenue;
             retenue = 1;
         }
@@ -275,11 +298,13 @@ void FloatEncode::add(bitset<BITS_M+1> bitset_mcache1, bitset<BITS_M+1> bitset_m
         {
             if(retenue == 1)
             {
+
                 this->bitset_m[i] = 0;
                 retenue = 1;
             }
             else
             {
+
                 this->bitset_m[i] = 1;
                 retenue = 0;
             }
@@ -288,32 +313,41 @@ void FloatEncode::add(bitset<BITS_M+1> bitset_mcache1, bitset<BITS_M+1> bitset_m
 
     if(bitset_mcache1[BITS_M] == 1 && bitset_mcache2[BITS_M] == 1)
     {
+
         if(this->bitset_m[0]==1)
         {
             inc(this->bitset_m);
         }
+
         this->bitset_m>>=1;
         this->bitset_m[BITS_M-1] = retenue;
         this->bitset_e = bitset<BITS_E>(this->bitset_e.to_ulong() + 1ULL);
     }
     else if(bitset_mcache1[BITS_M] == 0 && bitset_mcache2[BITS_M] == 0 && retenue == 0)
     {
+
         while(this->bitset_m[BITS_M-1]!=1)
         {
+
             this->bitset_m<<=1;
         }
+
         this->bitset_e = bitset<BITS_E>(this->bitset_e.to_ulong() - 1ULL);
     }
     else if((bitset_mcache1[BITS_M] == 1 || bitset_mcache2[BITS_M] == 1) && retenue == 1)
     {
+
         if(this->bitset_m[0]==1)
         {
+
             inc(this->bitset_m);
         }
+
         this->bitset_m>>=1;
         this->bitset_m[BITS_M-1] = 0;
         this->bitset_e = bitset<BITS_E>(this->bitset_e.to_ulong() + 1ULL);
     }
+
 }
 
 void FloatEncode::inc(bitset<BITS_M> m)
