@@ -96,6 +96,10 @@ double FloatEncode::getDouble()
     //calcul e
     int e = (int)(bitset_e.to_ulong());
 
+    //calcul M
+    //take the hidden bit
+    bitset<BITS_M+1> bitset_mcache;
+
     for(int i = 0; i<BITS_M; i++)
     {
         bitset_mcache[i] = bitset_m[i];
