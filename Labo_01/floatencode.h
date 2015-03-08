@@ -35,7 +35,6 @@ class FloatEncode
 
         // Private attributes
         double value;
-        double valueEncode;
         bitset<BITS_E> bitset_e;
         bitset<BITS_S> bitset_s;
         bitset<BITS_M> bitset_m;
@@ -43,7 +42,6 @@ class FloatEncode
         // Private methods
         void calcE();
         void calcS();
-        void calcDouble();
         bool checkSpecial(double value);
 
 };

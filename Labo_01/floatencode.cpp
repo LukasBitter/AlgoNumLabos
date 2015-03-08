@@ -10,7 +10,7 @@ FloatEncode::FloatEncode(double _value) : value(_value)
     {
         calcE();
         calcS();
-        calcDouble();
+        //calcDouble();
     }
 }
 
@@ -40,7 +40,41 @@ bitset<BITS_M> FloatEncode::get_m()
 
 double FloatEncode::getDouble()
 {
-    return valueEncode;
+    //calcul e
+    int e = (int)(bitset_e.to_ulong());
+    
+    //calcul M
+    //take the hidden bit
+    bitset<BITS_M+1> bitset_mcache;
+    
+    for(int i = 0; i<BITS_M; i++)
+    {
+        bitset_mcache[i] = bitset_m[i];
+    }
+    
+    if(e==0){
+        bitset_mcache[BITS_M] = 0;
+    }
+    else{
+        bitset_mcache[BITS_M] = 1;
+    }
+    
+    //calcul m
+    int m = (int)(bitset_mcache.to_ulong());
+    double M = m / pow(2, bitset_mcache.size());
+    
+    //determinate x
+    double x;
+    x = M*pow(2, e - CONST_D);
+    
+    
+    //sign of the value (S)
+    if(bitset_s[0]==1)
+    {
+        x = x*(-1);
+    }
+    
+    return x;
 }
 
 /*------------------------------------------------------------------*\
@@ -95,15 +129,6 @@ void FloatEncode::calcS()
         bitset_s[0] = 1;
     else
         bitset_s[0] = 0;
-}
-
-void FloatEncode::calcDouble()
-{
-    double x = 1;
-
-    if(bitset_s[0]==1) { x = x*(-1); }
-
-    valueEncode = x;
 }
 
 bool FloatEncode::checkSpecial(double value)
