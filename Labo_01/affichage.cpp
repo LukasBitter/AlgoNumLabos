@@ -112,9 +112,7 @@ void Affichage::addition()
     FloatEncode userFloat1(num1);
     FloatEncode userFloat2(num2);
     FloatEncode result(0);
-    result = FloatEncode::add(userFloat1, userFloat2);
-
-
+    result = FloatEncode::calculate(userFloat1, userFloat2);
 
     cout<< "  " << num1 << " + " << num2 << " = " <<result.getDouble()<<endl<<endl;
     system("pause");
