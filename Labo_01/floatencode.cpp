@@ -98,7 +98,6 @@ double FloatEncode::getDouble()
         //calcul e
         int e = (int)(bitset_e.to_ulong());
 
-
         //calcul M
         //take the hidden bit
         bitset<BITS_M+1> bitset_mcache;
@@ -284,13 +283,11 @@ void FloatEncode::add(bitset<BITS_M+1> bitset_mcache1, bitset<BITS_M+1> bitset_m
     {
         if(bitset_mcache1[i] == 0 && bitset_mcache2[i] == 0)
         {
-
             this->bitset_m[i] = 0 + retenue;
             retenue = 0;
         }
         else if(bitset_mcache1[i] == 1 && bitset_mcache2[i] == 1)
         {
-
             this->bitset_m[i] = 0 + retenue;
             retenue = 1;
         }
@@ -298,13 +295,11 @@ void FloatEncode::add(bitset<BITS_M+1> bitset_mcache1, bitset<BITS_M+1> bitset_m
         {
             if(retenue == 1)
             {
-
                 this->bitset_m[i] = 0;
                 retenue = 1;
             }
             else
             {
-
                 this->bitset_m[i] = 1;
                 retenue = 0;
             }
@@ -313,7 +308,6 @@ void FloatEncode::add(bitset<BITS_M+1> bitset_mcache1, bitset<BITS_M+1> bitset_m
 
     if(bitset_mcache1[BITS_M] == 1 && bitset_mcache2[BITS_M] == 1)
     {
-
         if(this->bitset_m[0]==1)
         {
             inc(this->bitset_m);
@@ -325,10 +319,8 @@ void FloatEncode::add(bitset<BITS_M+1> bitset_mcache1, bitset<BITS_M+1> bitset_m
     }
     else if(bitset_mcache1[BITS_M] == 0 && bitset_mcache2[BITS_M] == 0 && retenue == 0)
     {
-
         while(this->bitset_m[BITS_M-1]!=1)
         {
-
             this->bitset_m<<=1;
         }
 
@@ -336,10 +328,8 @@ void FloatEncode::add(bitset<BITS_M+1> bitset_mcache1, bitset<BITS_M+1> bitset_m
     }
     else if((bitset_mcache1[BITS_M] == 1 || bitset_mcache2[BITS_M] == 1) && retenue == 1)
     {
-
         if(this->bitset_m[0]==1)
         {
-
             inc(this->bitset_m);
         }
 
@@ -347,7 +337,6 @@ void FloatEncode::add(bitset<BITS_M+1> bitset_mcache1, bitset<BITS_M+1> bitset_m
         this->bitset_m[BITS_M-1] = 0;
         this->bitset_e = bitset<BITS_E>(this->bitset_e.to_ulong() + 1ULL);
     }
-
 }
 
 void FloatEncode::inc(bitset<BITS_M> m)
@@ -370,5 +359,31 @@ void FloatEncode::inc(bitset<BITS_M> m)
 
 void FloatEncode::sub(bitset<BITS_M+1> bitset_mcache1, bitset<BITS_M+1> bitset_mcache2)
 {
-
+    int retenue = 0;
+    for(int i = 0; i<BITS_M; i++)
+    {
+        if(bitset_mcache1[i] == 0 && bitset_mcache2[i] == 0)
+        {
+            this->bitset_m[i] = 0 + retenue;
+            retenue = 0;
+        }
+        else if(bitset_mcache1[i] == 1 && bitset_mcache2[i] == 1)
+        {
+            this->bitset_m[i] = 0 + retenue;
+            retenue = 1;
+        }
+        else
+        {
+            if(retenue == 1)
+            {
+                this->bitset_m[i] = 0;
+                retenue = 1;
+            }
+            else
+            {
+                this->bitset_m[i] = 1;
+                retenue = 0;
+            }
+        }
+    }
 }
