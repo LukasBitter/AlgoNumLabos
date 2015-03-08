@@ -86,7 +86,7 @@ void FloatEncode::calcE()
     bitset_e = bitset<BITS_E>(exp+CONST_D);
     bitset_m = bitset<BITS_M>(M*pow(2, BITS_M));
     bitset_m<<=1;
-    // test commit
+    // test commit 2
 }
 
 void FloatEncode::calcS()
