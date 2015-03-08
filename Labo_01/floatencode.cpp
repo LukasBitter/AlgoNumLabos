@@ -13,6 +13,58 @@ FloatEncode::FloatEncode(double _value) : value(_value)
         //calcDouble();
     }
 }
+FloatEncode::FloatEncode(string value)
+{
+    if(value.length()== BITS_TOTAL)
+    {
+        int j = 0;
+
+        if(value[j]=='1')
+        {
+            bitset_s[0]=1;
+        }
+        else
+        {
+            bitset_s[0]=0;
+        }
+
+        j++;
+
+        for(int i = BITS_E-1; i >= 0; i--)
+        {
+            if(value[j]=='1')
+            {
+                bitset_e[i]=1;
+            }
+            else
+            {
+                bitset_e[i]=0;
+            }
+
+            j++;
+        }
+
+        for(int i = BITS_M-1; i >= 0; i--)
+        {
+            if(value[j]=='1')
+            {
+                bitset_m[i]=1;
+            }
+            else
+            {
+                bitset_m[i]=0;
+            }
+
+            j++;
+        }
+
+
+    }
+
+    this->value=getDouble();
+
+}
+
 
 FloatEncode::~FloatEncode()
 {

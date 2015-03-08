@@ -19,6 +19,7 @@ class FloatEncode
     public:
         // Constructors/destructors
         FloatEncode(double _value);
+        FloatEncode(string value);
         virtual ~FloatEncode();
 
         // Public Accessors
