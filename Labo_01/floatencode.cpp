@@ -11,7 +11,6 @@ FloatEncode::FloatEncode(double _value) : value(_value)
         calcE();
         calcS();
         //calcDouble();
-        //test
     }
 }
 
@@ -76,7 +75,6 @@ double FloatEncode::getDouble()
     double x;
     x = M*pow(2, e - CONST_D);
 
-
     //sign of the value (S)
     if(bitset_s[0]==1)
     {
@@ -125,7 +123,10 @@ void FloatEncode::calcE()
             exp++;
         M = fabs(value)/pow(2, exp);
     }
-    bitset_e = bitset<BITS_E>(exp+CONST_D);
+    if(exp<0)
+        bitset_e = bitset<BITS_E>(0);
+    else
+        bitset_e = bitset<BITS_E>(exp+CONST_D);
     bitset_m = bitset<BITS_M>(M*pow(2, BITS_M));
     bitset_m<<=1;
 }
