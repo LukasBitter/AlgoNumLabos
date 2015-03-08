@@ -359,31 +359,31 @@ void FloatEncode::inc(bitset<BITS_M> m)
 
 void FloatEncode::sub(bitset<BITS_M+1> bitset_mcache1, bitset<BITS_M+1> bitset_mcache2)
 {
-    int retenue = 0;
+    cout << "Soustraction";
     for(int i = 0; i<BITS_M; i++)
     {
-        if(bitset_mcache1[i] == 0 && bitset_mcache2[i] == 0)
-        {
-            this->bitset_m[i] = 0 + retenue;
-            retenue = 0;
+       if(bitset_mcache1[i] == 0 && bitset_mcache2[i] == 0)
+       {
+            this->bitset_m[i] = 0;
         }
         else if(bitset_mcache1[i] == 1 && bitset_mcache2[i] == 1)
         {
-            this->bitset_m[i] = 0 + retenue;
-            retenue = 1;
+            this->bitset_m[i] = 0;
         }
-        else
+        else if(bitset_mcache1[i] == 1 && bitset_mcache2[i] == 0)
         {
-            if(retenue == 1)
+            this->bitset_m[i] = 1;
+        }
+        else if(bitset_mcache1[i] == 0 && bitset_mcache2[i] == 1)
+        {
+            int j = 1;
+            while(bitset_mcache1[i-j] != 1 && i-j != BITS_M+1)
             {
-                this->bitset_m[i] = 0;
-                retenue = 1;
+                bitset_mcache1[i-j] = 1;
+                j++;
             }
-            else
-            {
-                this->bitset_m[i] = 1;
-                retenue = 0;
-            }
+            bitset_mcache1[i-j] = 0;
+            this->bitset_m[i] = 1;
         }
     }
 }
