@@ -59,6 +59,7 @@ FloatEncode::FloatEncode(string value)
             j++;
         }
 
+
     }
 
     this->value=getDouble();
@@ -265,7 +266,8 @@ FloatEncode FloatEncode::add(FloatEncode value1, FloatEncode value2)
             bitset_mcache2>>=1;
         }
     }
-    result.bitset_e = bitset<BITS_E>(value1.bitset_e.to_ulong() + 1ULL);
+    result.bitset_e = value1.bitset_e;
+
     cout << endl;
     cout<<"  Le nombre 1 : "<< value1.get_s() << "|" << value1.get_e() << "|" << bitset_mcache1 <<endl;
     cout<<"  Le nombre 2 : "<< value2.get_s() << "|" << value2.get_e() << "|" << bitset_mcache2 <<endl;
@@ -300,8 +302,13 @@ FloatEncode FloatEncode::add(FloatEncode value1, FloatEncode value2)
 
     if(bitset_mcache1[BITS_M] == 1 && bitset_mcache2[BITS_M] == 1)
     {
+        if(result.bitset_m[0]==1)
+        {
+            inc(result.bitset_m);
+        }
         result.bitset_m>>=1;
-        result.bitset_m[BITS_M]= retenue;
+        result.bitset_m[BITS_M-1] = retenue;
+        result.bitset_e = bitset<BITS_E>(value1.bitset_e.to_ulong() + 1ULL);
     }
     else if(bitset_mcache1[BITS_M] == 0 && bitset_mcache2[BITS_M] == 0 && retenue == 0)
     {
@@ -309,14 +316,39 @@ FloatEncode FloatEncode::add(FloatEncode value1, FloatEncode value2)
         {
             result.bitset_m<<=1;
         }
+        result.bitset_e = bitset<BITS_E>(value1.bitset_e.to_ulong() - 1ULL);
     }
     else if((bitset_mcache1[BITS_M] == 1 || bitset_mcache2[BITS_M] == 1) && retenue == 1)
     {
+        if(result.bitset_m[0]==1)
+        {
+            inc(result.bitset_m);
+        }
         result.bitset_m>>=1;
-        result.bitset_m[BITS_M]= retenue;
+        result.bitset_m[BITS_M-1] = 0;
+        result.bitset_e = bitset<BITS_E>(value1.bitset_e.to_ulong() + 1ULL);
     }
 
-    cout<<"  Le resultat : "<< result.get_s() << "|" << result.get_e() << "|1" << result.get_m() <<endl;
+
+    cout << "  Le resultat : "<< result.get_s() << "|" << result.get_e() << "|1" << result.get_m() <<endl << endl;
 
     return result;
+}
+
+void FloatEncode::inc(bitset<BITS_M> m)
+{
+    int retenue = 1;
+    for(int i = 0; i < BITS_M; i++)
+    {
+        if(m[i] == 1 && retenue==1)
+        {
+            m[i] = 0;
+            retenue = 1;
+        }
+        else if(retenue == 1)
+        {
+            m[i] = retenue;
+            retenue = 0;
+        }
+    }
 }

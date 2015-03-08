@@ -23,9 +23,11 @@ int main()
         case 2:
             Affichage::decode();
             rep = Affichage::menuBegin();
+            break;
         case 3:
             Affichage::addition();
             rep = Affichage::menuBegin();
+            break;
         case 4:
             Affichage::info();
             rep = Affichage::menuBegin();

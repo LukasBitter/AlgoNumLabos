@@ -28,8 +28,7 @@ void Affichage::menu()
     cout<<"  2. Decodage d'un nombre"<<endl;
     cout<<"  3. Additionner deux nombres"<<endl;
     cout<<"  4. Informations"<<endl;
-    cout<<"  5. Readme"<<endl;
-    cout<<"  9. Fin"<<endl;
+    cout<<"  5. Readme"<<endl;    cout<<"  9. Fin"<<endl;
     cout<<endl;
 }
 
@@ -87,11 +86,11 @@ void Affichage::encode()
     {
         if(userFloat.get_s().all())
         {
-            cout<<"  Le nombre decode vaut moins l'infini car il dépasse la limite du codage"<<endl<<endl;
+            cout<<"  Le nombre decode vaut moins l'infini car il dÃˆpasse la limite du codage"<<endl<<endl;
         }
         else
         {
-            cout<<"  Le nombre decode vaut l'infini car il dépasse la limite du codage"<<endl<<endl;
+            cout<<"  Le nombre decode vaut l'infini car il dÃˆpasse la limite du codage"<<endl<<endl;
         }
 
     }
@@ -108,6 +107,7 @@ void Affichage::decode()
     cout<<"  Saisissez un nombre a decoder: ";
     cin>>num;
 
+    // ici faire un test si num est bien un nombre
     FloatEncode userFloat(num);
     cout<<"  Le nombre encode vaut: "<<userFloat.getBitset()<<endl<<endl;
     cout<<"  s = "<<userFloat.get_s()<<endl;
@@ -134,11 +134,7 @@ void Affichage::addition()
     FloatEncode result(0);
     result = FloatEncode::add(userFloat1, userFloat2);
 
-    cout<<"  Resultat : "<<result.getBitset()<<endl<<endl;
-    cout<<"  s = "<<result.get_s()<<endl;
-    cout<<"  e = "<<result.get_e()<<endl;
-    cout<<"  m = "<<result.get_m()<<endl<<endl;
-    cout<<"  Le nombre vaut: "<<result.getDouble()<<endl<<endl;
+    cout<< "  " << num1 << " + " << num2 << " = " <<result.getDouble()<<endl<<endl;
     system("pause");
 }
 
