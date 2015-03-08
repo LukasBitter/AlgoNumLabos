@@ -148,8 +148,8 @@ FloatEncode FloatEncode::add(FloatEncode value1, FloatEncode value2)
 {
     FloatEncode result(0);
 
-    cout << "value1.bitset_m" << value1.bitset_m << endl;
-    cout << "value2.bitset_m" << value2.bitset_m << endl;
+    cout<<"  Le nombre 1 : "<< value1.get_s() << "|" << value1.get_e() << "|1" << value1.get_m() <<endl;
+    cout<<"  Le nombre 2 : "<< value2.get_s() << "|" << value2.get_e() << "|1" << value2.get_m() <<endl;
 
     bitset<BITS_M+1> bitset_mcache1;
     bitset<BITS_M+1> bitset_mcache2;
@@ -171,17 +171,17 @@ FloatEncode FloatEncode::add(FloatEncode value1, FloatEncode value2)
         {
             value1.bitset_e = bitset<BITS_E>(value1.bitset_e.to_ulong() + 1ULL);
             bitset_mcache1>>=1;
-            cout << "value1.bitset_m" << bitset_mcache1 << endl;
         }
         else if(e1 > e2)
         {
             value2.bitset_e = bitset<BITS_E>(value2.bitset_e.to_ulong() + 1ULL);
             bitset_mcache2>>=1;
-            cout << "value2.bitset_m" << bitset_mcache2 << endl;
         }
     }
     result.bitset_e = bitset<BITS_E>(value1.bitset_e.to_ulong() + 1ULL);
-    cout << "result.bitset_e" << result.bitset_e << endl;
+    cout << endl;
+    cout<<"  Le nombre 1 : "<< value1.get_s() << "|" << value1.get_e() << "|" << bitset_mcache1 <<endl;
+    cout<<"  Le nombre 2 : "<< value2.get_s() << "|" << value2.get_e() << "|" << bitset_mcache2 <<endl;
 
     int retenue = 0;
     for(int i = 0; i<BITS_M; i++)
@@ -229,7 +229,7 @@ FloatEncode FloatEncode::add(FloatEncode value1, FloatEncode value2)
         result.bitset_m[BITS_M]= retenue;
     }
 
-    cout << "result.bitset_m" << result.bitset_m << endl;
+    cout<<"  Le resultat : "<< result.get_s() << "|" << result.get_e() << "|1" << result.get_m() <<endl;
 
     return result;
 }
