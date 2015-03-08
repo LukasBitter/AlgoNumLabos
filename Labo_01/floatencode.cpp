@@ -175,7 +175,8 @@ void FloatEncode::calcE()
         bitset_e = bitset<BITS_E>(0);
     else
         bitset_e = bitset<BITS_E>(exp+CONST_D);
-    bitset_m = bitset<BITS_M>(M*pow(2, BITS_M));
+
+    bitset_m = bitset<BITS_M>(M*pow(2, BITS_M+1));
     bitset_m<<=1;
 }
 
@@ -189,11 +190,15 @@ void FloatEncode::calcS()
 
 bool FloatEncode::checkSpecial(double value)
 {
-    double minvalue = 0/pow(2, BITS_M) * pow(2, 0-CONST_D);
+
+    double minprecision = pow(2, -1*BITS_M) * pow(2, 0-CONST_D);
     //bigger value for "E" = 30 (5bits) : pow(2, BITS_E)-2
     double maxvalue =  (pow(2, BITS_M)-1) / pow(2, BITS_M) * pow(2, (pow(2, BITS_E)-2) - CONST_D);
 
-    if (value == 0)
+
+    cout << "-----"<<maxvalue;
+
+    if (value == 0 || (value < minprecision && value > (-1*minprecision)) )
     {
         bitset_s[0] = 0;
         bitset_e = bitset<BITS_E>(0);
@@ -214,7 +219,8 @@ bool FloatEncode::checkSpecial(double value)
 
         return true;
     }
-    else if(value<minvalue)
+
+    else if(value < (-1*maxvalue))
     {
         //- infinite
         bitset_s[0] = 1;
@@ -282,6 +288,7 @@ FloatEncode FloatEncode::calculate(FloatEncode value1, FloatEncode value2)
     cout<<"  Le nombre 1 : "<< value1.get_s() << "|" << value1.get_e() << "|" << bitset_mcache1 <<endl;
     cout<<"  Le nombre 2 : "<< value2.get_s() << "|" << value2.get_e() << "|" << bitset_mcache2 <<endl;
 
+
 //    Right now, the subtraction is not working. But most is already implemented.
 //    if(value1.get_s() == 1 || value2.get_s() == 1)
 //    {
@@ -291,6 +298,7 @@ FloatEncode FloatEncode::calculate(FloatEncode value1, FloatEncode value2)
 //    {
         //Call the addition function.
         result.add(bitset_mcache1, bitset_mcache2);
+
 
         //Set the "s" bit
 //        if(value1.get_s()==1 && value2.get_s()==1)
@@ -394,6 +402,7 @@ void FloatEncode::inc(bitset<BITS_M> m)
 //Subtraction is not completely implemented.
 void FloatEncode::sub(bitset<BITS_M+1> bitset_mcache1, bitset<BITS_M+1> bitset_mcache2)
 {
+
     for(int i = 0; i<BITS_M; i++)
     {
        if(bitset_mcache1[i] == 0 && bitset_mcache2[i] == 0)
