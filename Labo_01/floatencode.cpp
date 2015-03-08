@@ -1,4 +1,5 @@
 #include "floatencode.h"
+#include <windows.h> //temporaire
 
 /*------------------------------------------------------------------*\
 |*	            Constructors / Destructors							*|
@@ -143,24 +144,92 @@ bool FloatEncode::checkSpecial(double value)
     return false;
 }
 
-FloatEncode FloatEncode::add(FloatEncode value)
+FloatEncode FloatEncode::add(FloatEncode value1, FloatEncode value2)
 {
-    cout << "This.bitset_e : " << this->bitset_e << endl;
-    cout << "value.bitset_e : " << value.bitset_e << endl;
+    FloatEncode result(0);
 
-    while(this->bitset_e != value.bitset_e)
+    cout << "value1.bitset_m" << value1.bitset_m << endl;
+    cout << "value2.bitset_m" << value2.bitset_m << endl;
+
+    bitset<BITS_M+1> bitset_mcache1;
+    bitset<BITS_M+1> bitset_mcache2;
+
+    for(int i = 0; i<BITS_M; i++)
     {
-//        if(this->bitset_e < value.bitset_e)
-//        {
-//            this.>bitset_e++;
-//        }
-//        else
-//        {
-//            value.bitset_e++;
-//        }
+        bitset_mcache1[i] = value1.bitset_m[i];
+        bitset_mcache2[i] = value2.bitset_m[i];
     }
-    cout << "This.bitset_e : " << this->bitset_e << endl;
-    cout << "value.bitset_e : " << value.bitset_e << endl;
+    bitset_mcache1[BITS_M] = 1;
+    bitset_mcache2[BITS_M] = 1;
 
-    return value;
+    while(value1.bitset_e != value2.bitset_e)
+    {
+        int e1 = (int)(value1.bitset_e.to_ulong());
+        int e2 = (int)(value2.bitset_e.to_ulong());
+
+        if(e1 < e2)
+        {
+            value1.bitset_e = bitset<BITS_E>(value1.bitset_e.to_ulong() + 1ULL);
+            bitset_mcache1>>=1;
+            cout << "value1.bitset_m" << bitset_mcache1 << endl;
+        }
+        else if(e1 > e2)
+        {
+            value2.bitset_e = bitset<BITS_E>(value2.bitset_e.to_ulong() + 1ULL);
+            bitset_mcache2>>=1;
+            cout << "value2.bitset_m" << bitset_mcache2 << endl;
+        }
+    }
+    result.bitset_e = bitset<BITS_E>(value1.bitset_e.to_ulong() + 1ULL);
+    cout << "result.bitset_e" << result.bitset_e << endl;
+
+    int retenue = 0;
+    for(int i = 0; i<BITS_M; i++)
+    {
+        if(bitset_mcache1[i] == 0 && bitset_mcache2[i] == 0)
+        {
+            result.bitset_m[i] = 0 + retenue;
+            retenue = 0;
+        }
+        else if(bitset_mcache1[i] == 1 && bitset_mcache2[i] == 1)
+        {
+            result.bitset_m[i] = 0 + retenue;
+            retenue = 1;
+        }
+        else
+        {
+            if(retenue == 1)
+            {
+                result.bitset_m[i] = 0;
+                retenue = 1;
+            }
+            else
+            {
+                result.bitset_m[i] = 1;
+                retenue = 0;
+            }
+        }
+    }
+
+    if(bitset_mcache1[BITS_M] == 1 && bitset_mcache2[BITS_M] == 1)
+    {
+        result.bitset_m>>=1;
+        result.bitset_m[BITS_M]= retenue;
+    }
+    else if(bitset_mcache1[BITS_M] == 0 && bitset_mcache2[BITS_M] == 0 && retenue == 0)
+    {
+        while(result.bitset_m[BITS_M-1]!=1)
+        {
+            result.bitset_m<<=1;
+        }
+    }
+    else if((bitset_mcache1[BITS_M] == 1 || bitset_mcache2[BITS_M] == 1) && retenue == 1)
+    {
+        result.bitset_m>>=1;
+        result.bitset_m[BITS_M]= retenue;
+    }
+
+    cout << "result.bitset_m" << result.bitset_m << endl;
+
+    return result;
 }

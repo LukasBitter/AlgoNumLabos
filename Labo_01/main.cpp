@@ -7,7 +7,6 @@ using namespace std;
 
 int main()
 {
-    double num;
     int rep;
 
     rep = Affichage::menuBegin();
