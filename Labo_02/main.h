@@ -6,7 +6,7 @@
 using namespace std;
 
     int main();
-    double saisieValeur(double valeurMin, double valeurMax, string str);
+    double saisieValeur(const double &valeurMin, const double &valeurMax, const string &str);
     void viderBuffer();
 
 #endif // MAIN_H_INCLUDED

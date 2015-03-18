@@ -1,11 +1,13 @@
 #include "pointfixefct1.h"
+#include "pointfixe.h"
+#include "constantes.h"
 
-pointFixeFct1::pointFixeFct1()
+PointFixeFct1::PointFixeFct1(double ptDepart, double ptFin, double lam) : PointFixe(ptDepart, ptFin, lam)
 {
     //ctor
 }
 
-pointFixeFct1::~pointFixeFct1()
+PointFixeFct1::~PointFixeFct1()
 {
     //dtor
 }

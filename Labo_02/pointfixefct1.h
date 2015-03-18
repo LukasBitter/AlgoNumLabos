@@ -1,16 +1,16 @@
 #ifndef POINTFIXEFCT1_H
 #define POINTFIXEFCT1_H
 
-#include <pointFixe.h>
+#include "pointfixe.h"
 
 
-class pointFixeFct1 : public pointFixe
+class PointFixeFct1 : public PointFixe
 {
     public:
         /** Default constructor */
-        pointFixeFct1();
+        PointFixeFct1(double ptDepart, double ptFin, double lam);
         /** Default destructor */
-        virtual ~pointFixeFct1();
+        virtual ~PointFixeFct1();
     protected:
     private:
 };

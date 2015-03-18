@@ -6,7 +6,7 @@ class PointFixe
 {
     public:
         /** Default constructor */
-        PointFixe(double ptDepart, double lam);
+        PointFixe(double ptDepart, double ptFin, double lam);
         /** Default destructor */
         virtual ~PointFixe();
     protected:
@@ -15,6 +15,7 @@ class PointFixe
 
     private:
         double pointDepart;
+        double pointFin;
         double lambda;
 };
 
