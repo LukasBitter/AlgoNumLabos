@@ -13,6 +13,8 @@ PointFixe::PointFixe(double ptDepart, double ptFin, double lam, double nbIterMax
     pointFin=ptFin;
     lambda= lam;
     nbIterationsMax= nbIterMax;
+    valeurMaxTemporaireTrouve=0;
+    zeroTrouve= false;
     listZeros= vector<double>();
 }
 
@@ -26,22 +28,39 @@ double PointFixe::getPointDepart()
     return pointDepart;
 }
 
-void PointFixe::demarrerRecherche(double ptDepart)
+void PointFixe::demarrerRecherche()
+{
+    bool nouveauZeroTrouve = rechercheZeros(pointDepart);
+//    while()
+//    {
+//        rechercheZeros(valeurMaxTemporaireTrouve +  quelqueChose);
+//    }
+}
+
+bool PointFixe::rechercheZeros(double ptDepart)
 {
     double gDeX = calculGDeX(ptDepart);
+    valeurMaxTemporaireTrouve= gDeX;
     double i=1;
     while(!estUnZero(gDeX,calculGDeX(gDeX)) && i<=nbIterationsMax)
     {
         gDeX= calculGDeX(gDeX);
+        if(gDeX>valeurMaxTemporaireTrouve)
+        {
+            valeurMaxTemporaireTrouve= gDeX;
+        }
         cout<<"Iteration  "<<i<<"\t\tg(x)= "<<gDeX<<endl;
         i++;
         if(estUnZero(gDeX,calculGDeX(gDeX)))
         {
+            zeroTrouve= true;
+            listZeros.push_back(gDeX);
             cout << "ZERO TROUVE" <<"\tg(x)= "<<gDeX<< endl;
         }
     }
-    listZeros.push_back(gDeX);
+    return zeroTrouve;
 }
+
 
 double PointFixe::calculGDeX(double x)
 {

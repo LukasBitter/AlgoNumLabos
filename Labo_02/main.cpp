@@ -21,7 +21,7 @@ int main()
     double nbIterationsMax1 = saisieValeur(ITERATIONS_MIN,ITERATIONS_MAX,STRING_ITERATIONS);
 
     PointFixeFct1 fct1(POINT_MIN,POINT_MAX, lambda1,nbIterationsMax1);
-    fct1.demarrerRecherche(fct1.getPointDepart());
+    fct1.demarrerRecherche();
 
     cout << "\n\nMaintenant place a la fonction 1/(1-x^2)"<<endl;
 

@@ -11,8 +11,9 @@ class PointFixeFct1 : public PointFixe
         /** Default destructor */
         virtual ~PointFixeFct1();
     protected:
-        double calculFDeX(double x);
     private:
+        double calculFDeX(double x);
+
 };
 
 #endif // POINTFIXEFCT1_H
