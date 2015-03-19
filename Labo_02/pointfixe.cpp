@@ -30,14 +30,17 @@ void PointFixe::demarrerRecherche(double ptDepart)
 {
     double gDeX = calculGDeX(ptDepart);
     double i=1;
-    while(!estUnZero(gDeX,calculGDeX(gDeX)) || i<=nbIterationsMax)
+    while(!estUnZero(gDeX,calculGDeX(gDeX)) && i<=nbIterationsMax)
     {
         gDeX= calculGDeX(gDeX);
         cout<<"Iteration  "<<i<<"\t\tg(x)= "<<gDeX<<endl;
         i++;
+        if(estUnZero(gDeX,calculGDeX(gDeX)))
+        {
+            cout << "ZERO TROUVE" <<"\tg(x)= "<<gDeX<< endl;
+        }
     }
     listZeros.push_back(gDeX);
-    cout << "ZERO TROUVE" << endl;
 }
 
 double PointFixe::calculGDeX(double x)
