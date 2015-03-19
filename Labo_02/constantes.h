@@ -6,11 +6,15 @@
 
 using namespace std;
 
-const string STRING_POINT_DEPART = "\tEntrez le point de depart entre -100 et 100";
-const string STRING_LAMBDA = "\tEntrez un lambda >0";
 const double POINT_MIN = -100;
 const double POINT_MAX = 100;
 const double LAMBDA_MIN = 0;
 const double LAMBDA_MAX = 10000;
+const double ITERATIONS_MIN = 100;
+const double ITERATIONS_MAX = 1000000;
 const double EPSILON_MACHINE = numeric_limits<double>::epsilon();
+
+//const string STRING_POINT_DEPART = "\tEntrez le point de depart entre ["/*+std::to_string(POINT_MIN)+", "+std::to_string(POINT_MAX)+"]"*/;
+const string STRING_LAMBDA = "\tEntrez un lambda entre ["/*+LAMBDA_MIN+", "+LAMBDA_MAX+"]"*/;
+const string STRING_ITERATIONS = "\tEntrez un nombre d'iterations maximal pour l'arret de l'algo en cs de divergence";
 #endif // CONSTANTES_H_INCLUDED

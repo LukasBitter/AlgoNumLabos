@@ -3,15 +3,15 @@
 
 #include "pointfixe.h"
 
-
 class PointFixeFct2 : public PointFixe
 {
     public:
         /** Default constructor */
-        PointFixeFct2(double ptDepart, double ptFin, double lam);
+        PointFixeFct2(double ptDepart, double ptFin, double lam, double nbIterMax);
         /** Default destructor */
         virtual ~PointFixeFct2();
     protected:
+        double calculFDeX(double x);
     private:
 };
 
