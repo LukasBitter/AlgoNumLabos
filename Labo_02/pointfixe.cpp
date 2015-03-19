@@ -33,6 +33,8 @@ void PointFixe::demarrerRecherche(double ptDepart)
     while(!estUnZero(gDeX,calculGDeX(gDeX)) || i<=nbIterationsMax)
     {
         gDeX= calculGDeX(gDeX);
+        cout<<"Iteration  "<<i<<"\t\tg(x)= "<<gDeX<<endl;
+        i++;
     }
     listZeros.push_back(gDeX);
     cout << "ZERO TROUVE" << endl;
