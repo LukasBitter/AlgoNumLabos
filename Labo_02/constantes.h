@@ -11,7 +11,7 @@ const double POINT_MAX = 100;
 const double LAMBDA_MIN = 0;
 const double LAMBDA_MAX = 10000;
 const double ITERATIONS_MIN = 100;
-const double ITERATIONS_MAX = 1000000;
+const double ITERATIONS_MAX = 1000000000;
 const double EPSILON_MACHINE = numeric_limits<double>::epsilon();
 
 //const string STRING_POINT_DEPART = "\tEntrez le point de depart entre ["/*+std::to_string(POINT_MIN)+", "+std::to_string(POINT_MAX)+"]"*/;

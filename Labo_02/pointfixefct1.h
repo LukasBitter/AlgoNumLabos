@@ -12,7 +12,7 @@ class PointFixeFct1 : public PointFixe
         virtual ~PointFixeFct1();
     protected:
     private:
-        double calculFDeX(double x);
+        +double calculFDeX(double x);
 
 };
 

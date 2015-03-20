@@ -31,10 +31,17 @@ double PointFixe::getPointDepart()
 void PointFixe::demarrerRecherche()
 {
     bool nouveauZeroTrouve = rechercheZeros(pointDepart);
-//    while()
-//    {
-//        rechercheZeros(valeurMaxTemporaireTrouve +  quelqueChose);
-//    }
+    while(valeurMaxTemporaireTrouve<100)
+    {
+        valeurMaxTemporaireTrouve+=pow(10,16)*EPSILON_MACHINE;
+        rechercheZeros(valeurMaxTemporaireTrouve);
+    }
+    cout<<"\n\tFINI"<<endl;
+
+    for(unsigned int i=0;i<listZeros.size();i++)
+    {
+        cout<<"\n\t\t Zero: "<<listZeros[i]<<endl;
+    }
 }
 
 bool PointFixe::rechercheZeros(double ptDepart)
@@ -55,7 +62,7 @@ bool PointFixe::rechercheZeros(double ptDepart)
         {
             zeroTrouve= true;
             listZeros.push_back(gDeX);
-            cout << "ZERO TROUVE" <<"\tg(x)= "<<gDeX<< endl;
+            cout << "\tZERO TROUVE" <<"\tg(x)= "<<gDeX<< endl;
         }
     }
     return zeroTrouve;
