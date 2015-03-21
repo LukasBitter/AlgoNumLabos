@@ -1,7 +1,7 @@
 #ifndef POINTFIXE_H
 #define POINTFIXE_H
 
-#include <vector>
+#include <set>
 
 using namespace std;
 
@@ -29,7 +29,7 @@ class PointFixe
         double nbIterationsMax;
         double valeurMaxTemporaireTrouve;
         bool zeroTrouve;
-        vector<double> listZeros;
+        set<double> listZeros;
 
 };
 

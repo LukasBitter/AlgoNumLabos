@@ -1,4 +1,4 @@
-#include <vector>
+#include <set>
 #include <cmath>
 #include <iostream>
 
@@ -13,9 +13,9 @@ PointFixe::PointFixe(double ptDepart, double ptFin, double lam, double nbIterMax
     pointFin=ptFin;
     lambda= lam;
     nbIterationsMax= nbIterMax;
-    valeurMaxTemporaireTrouve=0;
+    valeurMaxTemporaireTrouve=ptDepart;
     zeroTrouve= false;
-    listZeros= vector<double>();
+    listZeros= set<double>();
 }
 
 PointFixe::~PointFixe()
@@ -33,21 +33,25 @@ void PointFixe::demarrerRecherche()
     bool nouveauZeroTrouve = rechercheZeros(pointDepart);
     while(valeurMaxTemporaireTrouve<100)
     {
-        valeurMaxTemporaireTrouve+=pow(10,16)*EPSILON_MACHINE;
+    valeurMaxTemporaireTrouve+=pow(10,13)*EPSILON_MACHINE;
         rechercheZeros(valeurMaxTemporaireTrouve);
     }
     cout<<"\n\tFINI"<<endl;
 
-    for(unsigned int i=0;i<listZeros.size();i++)
+    set<double>::iterator it;
+    for(it=listZeros.begin(); it!=listZeros.end(); ++it)
     {
-        cout<<"\n\t\t Zero: "<<listZeros[i]<<endl;
+        cout<<"\n\t\t Zero: "<<*it<<endl;
     }
 }
 
 bool PointFixe::rechercheZeros(double ptDepart)
 {
     double gDeX = calculGDeX(ptDepart);
-    valeurMaxTemporaireTrouve= gDeX;
+    if(gDeX>valeurMaxTemporaireTrouve)
+    {
+        valeurMaxTemporaireTrouve= gDeX;
+    }
     double i=1;
     while(!estUnZero(gDeX,calculGDeX(gDeX)) && i<=nbIterationsMax)
     {
@@ -56,13 +60,15 @@ bool PointFixe::rechercheZeros(double ptDepart)
         {
             valeurMaxTemporaireTrouve= gDeX;
         }
-        cout<<"Iteration  "<<i<<"\t\tg(x)= "<<gDeX<<endl;
+        //cout<<"Iteration  "<<i<<"\t\tg(x)= "<<gDeX<<endl;
         i++;
         if(estUnZero(gDeX,calculGDeX(gDeX)))
         {
             zeroTrouve= true;
-            listZeros.push_back(gDeX);
-            cout << "\tZERO TROUVE" <<"\tg(x)= "<<gDeX<< endl;
+            listZeros.insert(gDeX);
+            //if(valeurMaxTemporaireTrouve>-6.87)
+               // cout << "\tZERO TROUVE" <<"\tg(x)= "<<gDeX<<" / "<<valeurMaxTemporaireTrouve<< endl;
+           // cout << "\tVALEUR MAX" <<"\t = "<<valeurMaxTemporaireTrouve<< endl;
         }
     }
     return zeroTrouve;
