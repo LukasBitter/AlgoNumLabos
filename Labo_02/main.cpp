@@ -16,6 +16,8 @@ int main()
             "\tf(x) = 0 => g(x) = x\n\n"
             "Nous allons commencer par la fonction sin(x)-x/13"<<
             endl;
+
+
 //    double pointDepart1 = saisieValeur(&POINT_MIN,&POINT_MAX, &STRING_POINT_DEPART);
     double lambda1 = saisieValeur(LAMBDA_MIN, LAMBDA_MAX, STRING_LAMBDA);
     double nbIterationsMax1 = saisieValeur(ITERATIONS_MIN,ITERATIONS_MAX,STRING_ITERATIONS);
@@ -24,6 +26,8 @@ int main()
     fct1.demarrerRecherche();
 
     cout << "\n\nMaintenant place a la fonction 1/(1-x^2)"<<endl;
+
+
 
 //    double pointDepart2 = saisieValeur(&POINT_MIN, &POINT_MAX, &STRING_POINT_DEPART);
     double lambda2 = saisieValeur(LAMBDA_MIN, LAMBDA_MAX, STRING_LAMBDA);
