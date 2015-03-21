@@ -70,7 +70,7 @@ bool PointFixe::rechercheZeros(double ptDepart)
         if(estUnZero(gDeX,calculGDeX(gDeX)))
         {
             zeroTrouve= true;
-            listZeros.insert(round(gDeX * pow(10, 5)) / pow(10, 5)); //arrondi à 5 chiffres apres la virgule
+            listZeros.insert(round(gDeX * pow(10, 5)) / pow(10, 5)); //arrondi a 5 chiffres apres la virgule (test temporaire)
 
             //if(valeurMaxTemporaireTrouve>-6.87)
                // cout << "\tZERO TROUVE" <<"\tg(x)= "<<gDeX<<" / "<<valeurMaxTemporaireTrouve<< endl;
