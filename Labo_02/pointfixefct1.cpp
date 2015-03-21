@@ -3,7 +3,7 @@
 #include "pointfixefct1.h"
 #include "pointfixe.h"
 
-PointFixeFct1::PointFixeFct1(double ptDepart, double ptFin, double lam, double nbIterMax) : PointFixe(ptDepart, ptFin, lam, nbIterationsMax)
+PointFixeFct1::PointFixeFct1(double ptDepart, double ptFin, double lam, double nbIterMax) : PointFixe(ptDepart, ptFin, lam, nbIterMax)
 {
     //ctor
 }

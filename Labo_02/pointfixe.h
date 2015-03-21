@@ -13,10 +13,13 @@ class PointFixe
         /** Default destructor */
         virtual ~PointFixe();
 
-        void demarrerRecherche(double ptDepart);
+        void demarrerRecherche();
         double getPointDepart();
     protected:
+
+    private:
         virtual double calculFDeX(double x)=0;
+        bool rechercheZeros(double ptDepar);
         double calculGDeX(double x);
         bool estUnZero(double a, double b);
 
@@ -24,9 +27,10 @@ class PointFixe
         double pointFin;
         double lambda;
         double nbIterationsMax;
+        double valeurMaxTemporaireTrouve;
+        bool zeroTrouve;
         vector<double> listZeros;
 
-    private:
 };
 
 #endif // POINTFIXE_H
