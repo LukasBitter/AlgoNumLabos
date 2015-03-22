@@ -73,6 +73,7 @@ double Affichage::saisieValeur(const double &valeurMin, const double &valeurMax)
     double valeurDeRetour= valeurMin-1;
     while(true)
     {
+
         cout << "   Saisissez une valeur entre " << valeurMin << " et " << valeurMax << ": ";
         cin >> valeurDeRetour;
 
@@ -113,8 +114,7 @@ void Affichage::viderBuffer()
     }
 }
 
-// Read the file readme.txt and print it
-void Affichage::readme()
+// Read the file readme.txt and print itvoid Affichage::readme()
 {
     system("cls");
     ifstream in("./readme.txt");
@@ -136,9 +136,7 @@ void Affichage::readme()
     }
     system("pause");
 }
-
-// Ask the user to press a key to continue
-void Affichage::pressKey()
+// Ask the user to press a key to continuevoid Affichage::pressKey()
 {
     cout << endl << "Pressez une touche pour continuer" << endl;
     getch();
