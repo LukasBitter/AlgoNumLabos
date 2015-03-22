@@ -50,8 +50,8 @@ double PointFixe::getPointDepart()
 // Start to search the Zero values
 void PointFixe::demarrerRecherche()
 {
-    bool nouveauZeroTrouve = rechercheZeros(pointDepart);
-    while(valeurMaxTemporaireTrouve < 100)
+    rechercheZeros(pointDepart);
+    while(valeurMaxTemporaireTrouve < pointFin)
     {
         valeurMaxTemporaireTrouve+=pow(10,13)*EPSILON_MACHINE;
         rechercheZeros(valeurMaxTemporaireTrouve);
@@ -66,7 +66,7 @@ void PointFixe::demarrerRecherche()
 }
 
 // Search the Zero values
-bool PointFixe::rechercheZeros(double ptDepart)
+void PointFixe::rechercheZeros(double ptDepart)
 {
     double gDeX = g(ptDepart);
     if(gDeX > valeurMaxTemporaireTrouve)
@@ -88,7 +88,6 @@ bool PointFixe::rechercheZeros(double ptDepart)
 
         if(estUnZero(gDeX,g(gDeX)))
         {
-            zeroTrouve= true;
             listZeros.insert(round(gDeX * pow(10, 5)) / pow(10, 5)); //arrondi a 5 chiffres apres la virgule (test temporaire)
 
             //if(valeurMaxTemporaireTrouve>-6.87)
@@ -96,8 +95,6 @@ bool PointFixe::rechercheZeros(double ptDepart)
             // cout << "\tVALEUR MAX" <<"\t = "<<valeurMaxTemporaireTrouve<< endl;
         }
     }
-
-    return zeroTrouve;
 }
 
 // Check if the found value is a Zero

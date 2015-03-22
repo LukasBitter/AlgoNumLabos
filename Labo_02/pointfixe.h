@@ -43,7 +43,7 @@ class PointFixe
             @param ptDepart Value where the search if started
             @return Boolean : True if zero where found, false if not
         */
-        bool rechercheZeros(double ptDepart);
+        void rechercheZeros(double ptDepart);
 
         /**
             Check if value a is equal with value b (Counting an error machine)
