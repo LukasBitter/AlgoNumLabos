@@ -10,6 +10,7 @@
 
 #include <set>
 #include "fonction.h"
+#include <fstream>
 
 using namespace std;
 
@@ -17,15 +18,15 @@ class PointFixe
 {
     public:
         /** Default constructor */
-        PointFixe(Fonction* fonction, double ptDepart, double ptFin, double lam, double nbIterMax);
+        PointFixe(Fonction* _currentFunction, double _startPoint, double _endPoint, double _lambda, double _nbIterationsMax);
         /** Default destructor */
         virtual ~PointFixe();
 
         /** Start to solve the equation */
-        void demarrerRecherche();
+        void startAlgo();
 
         // USED TO DEBUG
-        double getPointDepart();
+        double getStartPoint();
 
     private:
 
@@ -38,11 +39,11 @@ class PointFixe
         double g(double x);
 
         /**
-            Search for zeros
+            Search for roots
 
             @param ptDepart Value where the search if started
         */
-        void rechercheZeros(double ptDepart);
+        void findRoots(double ptDepart);
 
         /**
             Check if value a is equal with value b (Counting an error machine)
@@ -50,20 +51,21 @@ class PointFixe
             @param a, b : Two numbers to compare
             @return Boolean : True if equal, false if not equal
         */
-        bool estUnZero(double a, double b);
+        bool isRoot(double a, double b);
 
         /** Attribute */
         //Input
-        Fonction* currentFonction;
-        double pointDepart;
-        double pointFin;
+        Fonction* currentFunction;
+        double startPoint;
+        double endPoint;
         double lambda;
         double nbIterationsMax;
 
         //Tools
-        double valeurMaxTemporaireTrouve;
-        bool zeroTrouve;
-        set<double> listZeros;
+        double maxTempValue;
+        //bool rootFound;
+        set<double> rootsSet;
+        ofstream myfile;
 };
 
 #endif // POINTFIXE_H

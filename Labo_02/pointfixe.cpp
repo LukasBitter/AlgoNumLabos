@@ -15,18 +15,12 @@
 using namespace std;
 
 // Constructor
-PointFixe::PointFixe(Fonction* fonction, double ptDepart, double ptFin, double lam, double nbIterMax)
+PointFixe::PointFixe(Fonction* _currentFunction, double _startPoint, double _endPoint, double _lambda, double _nbIterationsMax):
+    currentFunction(_currentFunction), startPoint(_startPoint), endPoint(_endPoint), lambda(_lambda), nbIterationsMax(_nbIterationsMax),
+    maxTempValue(_startPoint)
 {
-    currentFonction = fonction;
-
-    pointDepart = ptDepart;
-    pointFin = ptFin;
-    lambda = lam;
-    nbIterationsMax = nbIterMax;
-    valeurMaxTemporaireTrouve = ptDepart;
-
-    zeroTrouve = false;
-    listZeros = set<double>();
+    //rootFound = false;
+    rootsSet = set<double>();
 }
 
 // Destructor
@@ -38,67 +32,91 @@ PointFixe::~PointFixe()
 // Return the solved result of g(x) where g(x) = x + lambda * f(x)
 double PointFixe::g(double x)
 {
-    return x+lambda*currentFonction->f(x);
+    return x+lambda*currentFunction->f(x);
 }
 
 // Return the pointDepart attribute value
-double PointFixe::getPointDepart()
+double PointFixe::getStartPoint()
 {
-    return pointDepart;
+    return startPoint;
 }
 
 // Start to search the Zero values
-void PointFixe::demarrerRecherche()
+void PointFixe::startAlgo()
 {
-    rechercheZeros(pointDepart);
-    while(valeurMaxTemporaireTrouve < pointFin)
+    // A ENLEVER AVANT D'ENVOYER
+    /*
+    string filename = "log.txt";
+    myfile.open (filename);
+    */
+
+    // First algo iteration with lanbda positive
+    findRoots(startPoint);
+    while(maxTempValue < endPoint)
     {
-        valeurMaxTemporaireTrouve+=pow(10,13)*EPSILON_MACHINE;
-        rechercheZeros(valeurMaxTemporaireTrouve);
+        maxTempValue+=pow(10,15)*EPSILON_MACHINE;
+        findRoots(maxTempValue);
     }
-    cout<<"\n\tFINI"<<endl;
+
+    // Second algo iteration with lanbda positive
+    lambda = -1*lambda;
+    findRoots(startPoint);
+    while(maxTempValue < endPoint)
+    {
+        maxTempValue+=pow(10,16)*EPSILON_MACHINE;
+        findRoots(maxTempValue);
+    }
+
+    // A ENLEVER AVANT D'ENVOYER
+    //myfile.close();
+    cout<<"\n\tFINISHED"<<endl;
 
     set<double>::iterator it;
-    for(it=listZeros.begin(); it!=listZeros.end(); ++it)
+    for(it=rootsSet.begin(); it!=rootsSet.end(); ++it)
     {
         cout<<"\n\t\t Zero: "<<*it<<endl;
     }
 }
 
 // Search the Zero values
-void PointFixe::rechercheZeros(double ptDepart)
+void PointFixe::findRoots(double ptDepart)
 {
     double gDeX = g(ptDepart);
-    if(gDeX > valeurMaxTemporaireTrouve)
+    if(gDeX > maxTempValue)
     {
-        valeurMaxTemporaireTrouve = gDeX;
+        maxTempValue = gDeX;
     }
 
     double i=1;
-    while(!estUnZero(gDeX,g(gDeX)) && i<=nbIterationsMax)
+    while(!isRoot(gDeX,g(gDeX)) && i<=nbIterationsMax)
     {
         gDeX = g(gDeX);
-        if(gDeX > valeurMaxTemporaireTrouve)
+        if(gDeX > maxTempValue)
         {
-            valeurMaxTemporaireTrouve = gDeX;
+            maxTempValue = gDeX;
         }
 
-        //cout<<"Iteration  "<<i<<"\t\tg(x)= "<<gDeX<<endl;
+
+    // A ENLEVER AVANT D'ENVOYER
+        //myfile <<"Iteration  "<<i<<"\t\tg(x)= "<<gDeX<<"\n";
+        //if(-8<valeurMaxTemporaireTrouve && valeurMaxTemporaireTrouve<-3)
+          //  cout<<"Iteration  "<<i<<"\t\tg(x)= "<<gDeX<<endl;
         i++;
 
-        if(estUnZero(gDeX,g(gDeX)))
+        if(isRoot(gDeX,g(gDeX)))
         {
-            listZeros.insert(round(gDeX * pow(10, 5)) / pow(10, 5)); //arrondi a 5 chiffres apres la virgule (test temporaire)
+            rootsSet.insert(round(gDeX * pow(10, 5)) / pow(10, 5)); //arrondi a 5 chiffres apres la virgule (test temporaire)
 
-            //if(valeurMaxTemporaireTrouve>-6.87)
-               // cout << "\tZERO TROUVE" <<"\tg(x)= "<<gDeX<<" / "<<valeurMaxTemporaireTrouve<< endl;
-            // cout << "\tVALEUR MAX" <<"\t = "<<valeurMaxTemporaireTrouve<< endl;
+    // A ENLEVER AVANT D'ENVOYER
+            //if(-8<valeurMaxTemporaireTrouve && valeurMaxTemporaireTrouve<-3)
+                //myfile << "\tZERO TROUVE" <<"\tg(x)= "<<gDeX<<" / "<<valeurMaxTemporaireTrouve<<"\n";
+             //cout << "\tVALEUR MAX" <<"\t = "<<valeurMaxTemporaireTrouve<< endl;
         }
     }
 }
 
 // Check if the found value is a Zero
-bool PointFixe::estUnZero(double a, double b)
+bool PointFixe::isRoot(double a, double b)
 {
     if (a == 0 || b == 0)
     {

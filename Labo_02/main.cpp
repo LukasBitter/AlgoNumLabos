@@ -39,7 +39,7 @@ int main()
 
             //double pointDepart1 = saisieValeur(&POINT_MIN,&POINT_MAX);
             fonction = new PointFixe(new FonctionA(), POINT_MIN, POINT_MAX, lambda, nbIterationsMax);
-            fonction->demarrerRecherche();
+            fonction->startAlgo();
 
             Affichage::pressKey();
 
@@ -55,7 +55,7 @@ int main()
 
             //double pointDepart2 = saisieValeur(&POINT_MIN, &POINT_MAX);
             fonction = new PointFixe(new FonctionB(), POINT_MIN, POINT_MAX, lambda, nbIterationsMax);
-            fonction->demarrerRecherche();
+            fonction->startAlgo();
 
             Affichage::pressKey();
 
