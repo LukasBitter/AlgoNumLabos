@@ -1,3 +1,10 @@
+/**
+    PointFixe Class - Implementation File
+    Purpose: This class is used to solve an equation using Point Fixed method.
+
+    @author Equipe 6 (Bitter Lukas, Da Mota Marques Fabio Manuel, Divernois Margaux, Visinand Steve)
+*/
+
 #include <set>
 #include <cmath>
 #include <iostream>
@@ -7,17 +14,30 @@
 
 using namespace std;
 
-PointFixe::PointFixe(double ptDepart, double ptFin, double lam, double nbIterMax)
+PointFixe::PointFixe(Fonction* fonction, double ptDepart, double ptFin, double lam, double nbIterMax)
+//PointFixe::PointFixe(double ptDepart, double ptFin, double lam, double nbIterMax)
 {
-    pointDepart=ptDepart;
-    pointFin=ptFin;
-    lambda= lam;
+    currentFonction = fonction;
+
+    pointDepart = ptDepart;
+    pointFin = ptFin;
+    lambda = lam;
     nbIterationsMax = nbIterMax;
-    valeurMaxTemporaireTrouve=ptDepart;
+    valeurMaxTemporaireTrouve = ptDepart;
 
+    zeroTrouve = false;
+    listZeros = set<double>();
+}
 
-    zeroTrouve= false;
-    listZeros= set<double>();
+double PointFixe::g(double x)
+{
+    return x+lambda*f(x);
+}
+
+double PointFixe::f(double x)
+{
+    //return sin(x)-x/13;
+    return currentFonction->f(x);
 }
 
 PointFixe::~PointFixe()
@@ -49,16 +69,16 @@ void PointFixe::demarrerRecherche()
 
 bool PointFixe::rechercheZeros(double ptDepart)
 {
-    double gDeX = calculGDeX(ptDepart);
+    double gDeX = g(ptDepart);
     if(gDeX > valeurMaxTemporaireTrouve)
     {
         valeurMaxTemporaireTrouve = gDeX;
     }
 
     double i=1;
-    while(!estUnZero(gDeX,calculGDeX(gDeX)) && i<=nbIterationsMax)
+    while(!estUnZero(gDeX,g(gDeX)) && i<=nbIterationsMax)
     {
-        gDeX = calculGDeX(gDeX);
+        gDeX = g(gDeX);
         if(gDeX > valeurMaxTemporaireTrouve)
         {
             valeurMaxTemporaireTrouve = gDeX;
@@ -67,7 +87,7 @@ bool PointFixe::rechercheZeros(double ptDepart)
         //cout<<"Iteration  "<<i<<"\t\tg(x)= "<<gDeX<<endl;
         i++;
 
-        if(estUnZero(gDeX,calculGDeX(gDeX)))
+        if(estUnZero(gDeX,g(gDeX)))
         {
             zeroTrouve= true;
             listZeros.insert(round(gDeX * pow(10, 5)) / pow(10, 5)); //arrondi a 5 chiffres apres la virgule (test temporaire)
@@ -79,13 +99,6 @@ bool PointFixe::rechercheZeros(double ptDepart)
     }
 
     return zeroTrouve;
-}
-
-
-double PointFixe::calculGDeX(double x)
-{
-
-    return x+lambda*calculFDeX(x);
 }
 
 bool PointFixe::estUnZero(double a, double b)

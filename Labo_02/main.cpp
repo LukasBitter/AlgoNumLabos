@@ -1,10 +1,21 @@
+/**
+    Main - Implementation File
+    Purpose: The main program is here.
+
+    @author Equipe 6 (Bitter Lukas, Da Mota Marques Fabio Manuel, Divernois Margaux, Visinand Steve)
+*/
+
 #include <iostream>
 #include <limits>
 
 #include "main.h"
 #include "constantes.h"
-#include "pointfixefct1.h"
-#include "pointfixefct2.h"
+#include "pointfixe.h"
+#include "fonction.h"
+#include "fonctiona.h"
+#include "fonctionb.h"
+
+#include <math.h>
 
 using namespace std;
 
@@ -17,24 +28,21 @@ int main()
             "Nous allons commencer par la fonction sin(x)-x/13"<<
             endl;
 
-
 //    double pointDepart1 = saisieValeur(&POINT_MIN,&POINT_MAX, &STRING_POINT_DEPART);
     double lambda1 = saisieValeur(LAMBDA_MIN, LAMBDA_MAX, STRING_LAMBDA);
     double nbIterationsMax1 = saisieValeur(ITERATIONS_MIN,ITERATIONS_MAX,STRING_ITERATIONS);
 
-    PointFixeFct1 fct1(POINT_MIN,POINT_MAX, lambda1,nbIterationsMax1);
-    fct1.demarrerRecherche();
+    PointFixe function1(new FonctionA(), POINT_MIN, POINT_MAX, lambda1, nbIterationsMax1);
+    function1.demarrerRecherche();
 
     cout << "\n\nMaintenant place a la fonction 1/(1-x^2)"<<endl;
-
-
 
 //    double pointDepart2 = saisieValeur(&POINT_MIN, &POINT_MAX, &STRING_POINT_DEPART);
     double lambda2 = saisieValeur(LAMBDA_MIN, LAMBDA_MAX, STRING_LAMBDA);
     double nbIterationsMax2 = saisieValeur(ITERATIONS_MIN,ITERATIONS_MAX,STRING_ITERATIONS);
 
-//    PointFixeFct2 fct2(POINT_MIN, POINT_MAX, lambda2, nbIterationsMax2);
-//    fct2.demarrerRecherche(fct2.getPointDepart());
+    PointFixe function2(new FonctionB(), POINT_MIN, POINT_MAX, lambda2, nbIterationsMax2);
+    function2.demarrerRecherche();
 
     return 0;
 }
