@@ -114,7 +114,8 @@ void Affichage::viderBuffer()
     }
 }
 
-// Read the file readme.txt and print itvoid Affichage::readme()
+// Read the file readme.txt and print it
+void Affichage::readme()
 {
     system("cls");
     ifstream in("./readme.txt");
@@ -136,7 +137,8 @@ void Affichage::viderBuffer()
     }
     system("pause");
 }
-// Ask the user to press a key to continuevoid Affichage::pressKey()
+// Ask the user to press a key to continue
+void Affichage::pressKey()
 {
     cout << endl << "Pressez une touche pour continuer" << endl;
     getch();
