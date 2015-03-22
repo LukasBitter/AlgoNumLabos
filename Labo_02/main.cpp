@@ -23,26 +23,32 @@ using namespace std;
 int main()
 {
 
-//    double pointDepart1 = saisieValeur(&POINT_MIN,&POINT_MAX, &STRING_POINT_DEPART);
-    double lambda1 = saisieValeur(LAMBDA_MIN, LAMBDA_MAX, STRING_LAMBDA);
-    double nbIterationsMax1 = saisieValeur(ITERATIONS_MIN,ITERATIONS_MAX,STRING_ITERATIONS);
+    double lambda;
+    double nbIterationsMax;
+    int rep = Affichage::menuBegin();
 
+    PointFixe* fonction;
+
+    do{
+        switch(rep)
+        {
+
+        case 1:
             cout << "saisiez lambda :" << endl;
             lambda = Affichage::saisieValeur(LAMBDA_MIN, LAMBDA_MAX);
 
             cout << "saisiez le nombre d'iteration maximum :" << endl;
             nbIterationsMax = Affichage::saisieValeur(ITERATIONS_MIN, ITERATIONS_MAX);
 
-
             //    double pointDepart1 = saisieValeur(&POINT_MIN,&POINT_MAX, &STRING_POINT_DEPART);
 
-            fct1 = new PointFixeFct1(POINT_MIN,POINT_MAX, lambda, nbIterationsMax);
-            fct1->demarrerRecherche();
+            fonction = new PointFixe(new FonctionA(), POINT_MIN, POINT_MAX, lambda, nbIterationsMax);
+            fonction->demarrerRecherche();
 
             Affichage::pressKey();
 
             rep = Affichage::menuBegin();
-            delete fct1;
+            delete fonction;
             break;
 
         case 2:
@@ -50,15 +56,19 @@ int main()
             lambda = Affichage::saisieValeur(LAMBDA_MIN, LAMBDA_MAX);
             cout << "saisiez le nombre d'iteration maximum :" << endl;
             nbIterationsMax = Affichage::saisieValeur(ITERATIONS_MIN,ITERATIONS_MAX);
+
             //    double pointDepart2 = saisieValeur(&POINT_MIN, &POINT_MAX, &STRING_POINT_DEPART);
-        cin >> valeurDeRetour;
             //    fct2 = new PointFixeFct2(POINT_MIN, POINT_MAX, lambda, nbIterationsMax);
             //    fct2->demarrerRecherche(fct2.getPointDepart());
-}
+
+            fonction = new PointFixe(new FonctionB(), POINT_MIN, POINT_MAX, lambda, nbIterationsMax);
+            fonction->demarrerRecherche();
+
+
             Affichage::pressKey();
 
             rep = Affichage::menuBegin();
-            delete fct2;
+            delete fonction;
             break;
 
         case 3:
@@ -71,8 +81,12 @@ int main()
             rep = Affichage::menuNotValid();
             break;
         }
-    }while(rep != 4);
+
+    }
+    while(rep != 4);
+
+
     cin.seekg(0, ios::end);
     return 0;
-    }
 }
+
