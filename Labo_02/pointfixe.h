@@ -38,10 +38,9 @@ class PointFixe
         double g(double x);
 
         /**
-            Search for zeros and returns a boolean informing if zeros where found or not.
+            Search for zeros
 
             @param ptDepart Value where the search if started
-            @return Boolean : True if zero where found, false if not
         */
         void rechercheZeros(double ptDepart);
 

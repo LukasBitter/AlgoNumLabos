@@ -26,8 +26,8 @@ void Affichage::header()
 {
     system("cls");
     cout<<"*************************************************"<<endl;
-    cout<<"**         Algorithmes numeriques Labo 2       **"<<endl;
-    cout<<"** Calcul des zeros avec methode du point fixe **"<<endl;
+    cout<<"**        Numerical Algorithms - Labo 2        **"<<endl;
+    cout<<"**  Find the roots with the Fixed Point Method **"<<endl;
     cout<<"*************************************************"<<endl;
     cout<<endl<<endl;
 }
@@ -35,36 +35,36 @@ void Affichage::header()
 // Print the menu
 void Affichage::menu()
 {
-    cout<<"  1. Recherche des zeros pour sin(x)-x/13"<<endl;
-    cout<<"  2. Recherche des zeros pour x/(1-x^2)"<<endl;
-    cout<<"  3. Readme"<<endl;
-    cout<<"  4. Fin"<<endl;
+    cout<<"  1. Find the root(s) of the function : sin(x)-x/13"<<endl;
+    cout<<"  2. Find the root(s) of the function : x/(1-x^2)"<<endl;
+    cout<<"  3. Read me"<<endl;
+    cout<<"  4. End"<<endl;
     cout<<endl;
 }
 
 // First user interaction
 int Affichage::menuBegin()
 {
-    int rep = 0;
+    int answer = 0;
 
     header();
     menu();
-    cout<<"  Saisissez un choix du menu (1 a 4): ";
-    cin>>rep;
-    return rep;
+    cout<<"  Enter your menu choice (1-4): ";
+    cin>>answer;
+    return answer;
 }
 
 // Repeat user interaction in case of wrong entry
 int Affichage::menuNotValid()
 {
-    int rep = 0;
+    int answer = 0;
 
     header();
     menu();
-    cout<<"  Commande non valide. Recommencez. "<<endl;
-    cout<<"  Saisissez un choix du menu (1 a 4): ";
-    cin>>rep;
-    return rep;
+    cout<<"  Invalid command. Try again. "<<endl;
+    cout<<"  Enter your menu choice (1-4): ";
+    cin>>answer;
+    return answer;
 }
 
 // Check the value entered by the user and return it
@@ -74,12 +74,12 @@ double Affichage::saisieValeur(const double &valeurMin, const double &valeurMax)
     while(true)
     {
 
-        cout << "   Saisissez une valeur entre " << valeurMin << " et " << valeurMax << ": ";
+        cout << "   Give a value between " << valeurMin << " and " << valeurMax << ": ";
         cin >> valeurDeRetour;
 
         if(cin.eof() || cin.bad())
         {
-            cerr << "Une erreur interne est survenue." << endl;
+            cerr << "An internal error happened." << endl;
             if(cin.eof() || valeurDeRetour <= valeurMin || valeurDeRetour >=valeurMax)
             {
                 break;
@@ -89,7 +89,7 @@ double Affichage::saisieValeur(const double &valeurMin, const double &valeurMax)
         }
         else if(cin.fail() || valeurDeRetour <= valeurMin ||valeurDeRetour >=valeurMax)
         {
-            cerr << "Erreur, saisie incorrecte." << endl;
+            cerr << "Error, incorrect value." << endl;
             viderBuffer();
             continue;
         }
@@ -122,7 +122,7 @@ void Affichage::readme()
 
     if(!in)
     {
-        cout << "Cannot open input file.\n";
+        cout << "Can not open input file.\n";
     }
     else
     {
@@ -141,6 +141,6 @@ void Affichage::readme()
 // Ask the user to press a key to continue
 void Affichage::pressKey()
 {
-    cout << endl << "Pressez une touche pour continuer" << endl;
+    cout << endl << "Press a touch to continue..." << endl;
     getch();
 }

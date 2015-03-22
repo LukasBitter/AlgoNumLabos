@@ -32,9 +32,9 @@ int main()
         {
 
         case 1:
-            cout << endl << "Saisissez lambda :" << endl;
+            cout << endl << "Enter a value for Lambda :" << endl;
             lambda = Affichage::saisieValeur(LAMBDA_MIN, LAMBDA_MAX);
-            cout << endl << "Saisissez le nombre d'iteration maximum :" << endl;
+            cout << endl << "Enter the maximum number of iteration :" << endl;
             nbIterationsMax = Affichage::saisieValeur(ITERATIONS_MIN, ITERATIONS_MAX);
 
             //double pointDepart1 = saisieValeur(&POINT_MIN,&POINT_MAX);
@@ -48,9 +48,9 @@ int main()
             break;
 
         case 2:
-            cout << endl << "Saisissez lambda :" << endl;
+            cout << endl << "Enter a value for Lambda :" << endl;
             lambda = Affichage::saisieValeur(LAMBDA_MIN, LAMBDA_MAX);
-            cout << endl << "Saisissez le nombre d'iteration maximum :" << endl;
+            cout << endl << "Enter the maximum number of iteration :" << endl;
             nbIterationsMax = Affichage::saisieValeur(ITERATIONS_MIN,ITERATIONS_MAX);
 
             //double pointDepart2 = saisieValeur(&POINT_MIN, &POINT_MAX);
