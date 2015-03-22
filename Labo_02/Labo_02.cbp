@@ -32,19 +32,20 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="affichage.cpp" />
+		<Unit filename="affichage.h" />
 		<Unit filename="constantes.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+		<Unit filename="fonction.h" />
+		<Unit filename="fonctiona.h" />
+		<Unit filename="fonctionb.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="main.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="pointfixe.cpp" />
 		<Unit filename="pointfixe.h" />
-		<Unit filename="pointfixefct1.cpp" />
-		<Unit filename="pointfixefct1.h" />
-		<Unit filename="pointfixefct2.cpp" />
-		<Unit filename="pointfixefct2.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />
