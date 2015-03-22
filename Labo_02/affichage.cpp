@@ -1,27 +1,38 @@
+/**
+    Affichage - Implementation File
+    Purpose: Add printing methods for a better user interaction
+
+    @author Equipe 6 (Bitter Lukas, Da Mota Marques Fabio Manuel, Divernois Margaux, Visinand Steve)
+*/
+
 #include "affichage.h"
 #include <fstream>
 #include <sstream>
 
+// Constructor
 Affichage::Affichage()
 {
     //ctor
 }
 
+// Destructor
 Affichage::~Affichage()
 {
     //dtor
 }
 
+// Print the header
 void Affichage::header()
 {
     system("cls");
     cout<<"*************************************************"<<endl;
     cout<<"**         Algorithmes numeriques Labo 2       **"<<endl;
-    cout<<"** Calcul des zeros avec méthode du point fixe **"<<endl;
+    cout<<"** Calcul des zeros avec methode du point fixe **"<<endl;
     cout<<"*************************************************"<<endl;
     cout<<endl<<endl;
 }
 
+// Print the menu
 void Affichage::menu()
 {
     cout<<"  1. Recherche des zeros pour x/(1-x^2)"<<endl;
@@ -31,6 +42,7 @@ void Affichage::menu()
     cout<<endl;
 }
 
+// First user interaction
 int Affichage::menuBegin()
 {
     int rep = 0;
@@ -42,6 +54,7 @@ int Affichage::menuBegin()
     return rep;
 }
 
+// Repeat user interaction in case of wrong entry
 int Affichage::menuNotValid()
 {
     int rep = 0;
@@ -53,12 +66,14 @@ int Affichage::menuNotValid()
     cin>>rep;
     return rep;
 }
+
+// Check the value entered by the user and return it
 double Affichage::saisieValeur(const double &valeurMin, const double &valeurMax)
 {
     double valeurDeRetour= valeurMin-1;
     while(true)
     {
-        cout << "   Saisissez une valeure entre " << valeurMin << " et " << valeurMax << ": ";
+        cout << "   Saisissez une valeur entre " << valeurMin << " et " << valeurMax << ": ";
         cin >> valeurDeRetour;
 
         if(cin.eof() || cin.bad())
@@ -82,6 +97,7 @@ double Affichage::saisieValeur(const double &valeurMin, const double &valeurMax)
     return valeurDeRetour;
 }
 
+// Empty the buffer
 void Affichage::viderBuffer()
 {
     cin.clear();
@@ -97,7 +113,7 @@ void Affichage::viderBuffer()
     }
 }
 
-
+// Read the file readme.txt and print it
 void Affichage::readme()
 {
     system("cls");
@@ -120,6 +136,8 @@ void Affichage::readme()
     }
     system("pause");
 }
+
+// Ask the user to press a key to continue
 void Affichage::pressKey()
 {
     cout << endl << "Pressez une touche pour continuer" << endl;

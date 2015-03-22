@@ -15,7 +15,9 @@
 class FonctionA : public Fonction
 {
     public:
+        /** Default constructor */
         FonctionA() {}
+        /** Default destructor */
         virtual ~FonctionA() {}
 
         /**

@@ -12,7 +12,9 @@
 class Fonction
 {
     public:
+        /** Default constructor */
         Fonction() {}
+        /** Default destructor */
         virtual ~Fonction() {}
 
         /**
