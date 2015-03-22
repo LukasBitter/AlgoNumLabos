@@ -18,6 +18,12 @@ class FonctionA : public Fonction
         FonctionA() {}
         virtual ~FonctionA() {}
 
+        /**
+            Returns the result of the equation with a specified x
+
+            @param x The value of the "unknown" value of the equation
+            @return The result of the solved equation
+        */
         double f(double x) { return sin(x)-x/13; }
 
     protected:

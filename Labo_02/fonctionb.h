@@ -18,6 +18,12 @@ class FonctionB : public Fonction
         FonctionB() {}
         virtual ~FonctionB() {}
 
+        /**
+            Returns the result of the equation with a specified x
+
+            @param x The value of the "unknown" value of the equation
+            @return The result of the solved equation
+        */
         double f(double x) { return 1 / (1-pow(x,2)); }
 
     protected:

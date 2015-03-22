@@ -15,7 +15,6 @@
 using namespace std;
 
 PointFixe::PointFixe(Fonction* fonction, double ptDepart, double ptFin, double lam, double nbIterMax)
-//PointFixe::PointFixe(double ptDepart, double ptFin, double lam, double nbIterMax)
 {
     currentFonction = fonction;
 
@@ -31,13 +30,7 @@ PointFixe::PointFixe(Fonction* fonction, double ptDepart, double ptFin, double l
 
 double PointFixe::g(double x)
 {
-    return x+lambda*f(x);
-}
-
-double PointFixe::f(double x)
-{
-    //return sin(x)-x/13;
-    return currentFonction->f(x);
+    return x+lambda*currentFonction->f(x);
 }
 
 PointFixe::~PointFixe()
