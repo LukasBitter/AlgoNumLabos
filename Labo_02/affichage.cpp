@@ -137,6 +137,7 @@ void Affichage::readme()
     }
     system("pause");
 }
+
 // Ask the user to press a key to continue
 void Affichage::pressKey()
 {

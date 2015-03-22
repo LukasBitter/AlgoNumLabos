@@ -37,8 +37,20 @@ class PointFixe
         */
         double g(double x);
 
+        /**
+            Search for zeros and returns a boolean informing if zeros where found or not.
 
-        bool rechercheZeros(double ptDepar);
+            @param ptDepart Value where the search if started
+            @return Boolean : True if zero where found, false if not
+        */
+        bool rechercheZeros(double ptDepart);
+
+        /**
+            Check if value a is equal with value b (Counting an error machine)
+
+            @param a, b : Two numbers to compare
+            @return Boolean : True if equal, false if not equal
+        */
         bool estUnZero(double a, double b);
 
         /** Attribute */

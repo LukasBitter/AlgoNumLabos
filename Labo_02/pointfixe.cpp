@@ -14,6 +14,7 @@
 
 using namespace std;
 
+// Constructor
 PointFixe::PointFixe(Fonction* fonction, double ptDepart, double ptFin, double lam, double nbIterMax)
 {
     currentFonction = fonction;
@@ -28,21 +29,25 @@ PointFixe::PointFixe(Fonction* fonction, double ptDepart, double ptFin, double l
     listZeros = set<double>();
 }
 
-double PointFixe::g(double x)
-{
-    return x+lambda*currentFonction->f(x);
-}
-
+// Destructor
 PointFixe::~PointFixe()
 {
     //dtor
 }
 
+// Return the solved result of g(x) where g(x) = x + lambda * f(x)
+double PointFixe::g(double x)
+{
+    return x+lambda*currentFonction->f(x);
+}
+
+// Return the pointDepart attribute value
 double PointFixe::getPointDepart()
 {
     return pointDepart;
 }
 
+// Start to search the Zero values
 void PointFixe::demarrerRecherche()
 {
     bool nouveauZeroTrouve = rechercheZeros(pointDepart);
@@ -60,6 +65,7 @@ void PointFixe::demarrerRecherche()
     }
 }
 
+// Search the Zero values
 bool PointFixe::rechercheZeros(double ptDepart)
 {
     double gDeX = g(ptDepart);
@@ -94,6 +100,7 @@ bool PointFixe::rechercheZeros(double ptDepart)
     return zeroTrouve;
 }
 
+// Check if the found value is a Zero
 bool PointFixe::estUnZero(double a, double b)
 {
     if (a == 0 || b == 0)
