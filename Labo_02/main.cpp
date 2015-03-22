@@ -34,13 +34,12 @@ int main()
         {
 
         case 1:
-            cout << "saisiez lambda :" << endl;
+            cout << endl << " Saisiez lambda :" << endl;
             lambda = Affichage::saisieValeur(LAMBDA_MIN, LAMBDA_MAX);
-
-            cout << "saisiez le nombre d'iteration maximum :" << endl;
+            cout << endl << " Saisiez le nombre d'iteration maximum :" << endl;
             nbIterationsMax = Affichage::saisieValeur(ITERATIONS_MIN, ITERATIONS_MAX);
 
-            //    double pointDepart1 = saisieValeur(&POINT_MIN,&POINT_MAX, &STRING_POINT_DEPART);
+            //    double pointDepart1= saisieValeur(&POINT_MIN,&POINT_MAX);
 
             fonction = new PointFixe(new FonctionA(), POINT_MIN, POINT_MAX, lambda, nbIterationsMax);
             fonction->demarrerRecherche();
@@ -52,18 +51,15 @@ int main()
             break;
 
         case 2:
-            cout << "saisiez lambda :" << endl;
+            cout << endl << " Saisiez lambda :" << endl;
             lambda = Affichage::saisieValeur(LAMBDA_MIN, LAMBDA_MAX);
-            cout << "saisiez le nombre d'iteration maximum :" << endl;
+            cout << endl << " Saisiez le nombre d'iteration maximum :" << endl;
             nbIterationsMax = Affichage::saisieValeur(ITERATIONS_MIN,ITERATIONS_MAX);
 
-            //    double pointDepart2 = saisieValeur(&POINT_MIN, &POINT_MAX, &STRING_POINT_DEPART);
-            //    fct2 = new PointFixeFct2(POINT_MIN, POINT_MAX, lambda, nbIterationsMax);
-            //    fct2->demarrerRecherche(fct2.getPointDepart());
+            //    double pointDepart2= saisieValeur(&POINT_MIN,&POINT_MAX);
 
             fonction = new PointFixe(new FonctionB(), POINT_MIN, POINT_MAX, lambda, nbIterationsMax);
             fonction->demarrerRecherche();
-
 
             Affichage::pressKey();
 

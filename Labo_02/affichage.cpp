@@ -17,7 +17,7 @@ void Affichage::header()
     system("cls");
     cout<<"*************************************************"<<endl;
     cout<<"**         Algorithmes numeriques Labo 2       **"<<endl;
-    cout<<"** Calcul des zeros avec méthode du point fixe **"<<endl;
+    cout<<"** Calcul des zeros avec methode du point fixe **"<<endl;
     cout<<"*************************************************"<<endl;
     cout<<endl<<endl;
 }
@@ -97,7 +97,6 @@ void Affichage::viderBuffer()
     }
 }
 
-
 void Affichage::readme()
 {
     system("cls");
@@ -120,6 +119,7 @@ void Affichage::readme()
     }
     system("pause");
 }
+
 void Affichage::pressKey()
 {
     cout << endl << "Pressez une touche pour continuer" << endl;
