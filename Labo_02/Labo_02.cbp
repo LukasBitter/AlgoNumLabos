@@ -41,9 +41,6 @@
 		<Unit filename="fonctiona.h" />
 		<Unit filename="fonctionb.h" />
 		<Unit filename="main.cpp" />
-		<Unit filename="main.h">
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
 		<Unit filename="pointfixe.cpp" />
 		<Unit filename="pointfixe.h" />
 		<Extensions>
