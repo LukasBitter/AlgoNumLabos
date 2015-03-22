@@ -35,8 +35,8 @@ void Affichage::header()
 // Print the menu
 void Affichage::menu()
 {
-    cout<<"  1. Recherche des zeros pour x/(1-x^2)"<<endl;
-    cout<<"  2. Recherche des zeros pour sin(x)-x / 13"<<endl;
+    cout<<"  1. Recherche des zeros pour sin(x)-x/13"<<endl;
+    cout<<"  2. Recherche des zeros pour x/(1-x^2)"<<endl;
     cout<<"  3. Readme"<<endl;
     cout<<"  4. Fin"<<endl;
     cout<<endl;
