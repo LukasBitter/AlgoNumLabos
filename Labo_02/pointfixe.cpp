@@ -44,37 +44,44 @@ double PointFixe::getStartPoint()
 // Start to search the Zero values
 void PointFixe::startAlgo()
 {
-    // A ENLEVER AVANT D'ENVOYER
+    // DEBUG PURPOSE
     /*
     string filename = "log.txt";
     myfile.open (filename);
     */
 
+
     // First algo iteration with lanbda positive
     findRoots(startPoint);
     while(maxTempValue < endPoint)
     {
-        maxTempValue+=pow(10,15)*EPSILON_MACHINE;
+        maxTempValue+=STEP;
         findRoots(maxTempValue);
     }
+
+    myfile <<"*************SECOND ALGO*************\n";
 
     // Second algo iteration with lanbda positive
     lambda = -1*lambda;
+    maxTempValue = startPoint;
     findRoots(startPoint);
     while(maxTempValue < endPoint)
     {
-        maxTempValue+=pow(10,16)*EPSILON_MACHINE;
+        maxTempValue+=STEP;
         findRoots(maxTempValue);
     }
 
-    // A ENLEVER AVANT D'ENVOYER
-    //myfile.close();
+    // DEBUG PURPOSE
+    /*
+    myfile.close();
+    */
+
     cout<<"\n\tFINISHED"<<endl;
 
     set<double>::iterator it;
     for(it=rootsSet.begin(); it!=rootsSet.end(); ++it)
     {
-        cout<<"\n\t\t Zero: "<<*it<<endl;
+        cout<<"\n\t\t Zero #"<<distance(rootsSet.begin(),it)<<": "<<*it<<endl;
     }
 }
 
@@ -82,13 +89,18 @@ void PointFixe::startAlgo()
 void PointFixe::findRoots(double ptDepart)
 {
     double gDeX = g(ptDepart);
+    bool isARoot = false;
     if(gDeX > maxTempValue)
     {
         maxTempValue = gDeX;
     }
 
     double i=1;
-    while(!isRoot(gDeX,g(gDeX)) && i<=nbIterationsMax)
+
+    // Here we should also check if the absolute value of th derivates is between 0 and 1
+    // else we should stop iterating
+    // as we don't do this control, making useless iterations takes too much time to find the roots
+    while(!isARoot && i<=nbIterationsMax)
     {
         gDeX = g(gDeX);
         if(gDeX > maxTempValue)
@@ -96,21 +108,21 @@ void PointFixe::findRoots(double ptDepart)
             maxTempValue = gDeX;
         }
 
+        // DEBUG PURPOSE
+        /*
+        myfile <<"Iteration  "<<i<<"\t\tg(x)= "<<gDeX<<" / maxTempValue: "<<maxTempValue<<"\n";
+        */
 
-    // A ENLEVER AVANT D'ENVOYER
-        //myfile <<"Iteration  "<<i<<"\t\tg(x)= "<<gDeX<<"\n";
-        //if(-8<valeurMaxTemporaireTrouve && valeurMaxTemporaireTrouve<-3)
-          //  cout<<"Iteration  "<<i<<"\t\tg(x)= "<<gDeX<<endl;
         i++;
 
         if(isRoot(gDeX,g(gDeX)))
         {
-            rootsSet.insert(round(gDeX * pow(10, 5)) / pow(10, 5)); //arrondi a 5 chiffres apres la virgule (test temporaire)
-
-    // A ENLEVER AVANT D'ENVOYER
-            //if(-8<valeurMaxTemporaireTrouve && valeurMaxTemporaireTrouve<-3)
-                //myfile << "\tZERO TROUVE" <<"\tg(x)= "<<gDeX<<" / "<<valeurMaxTemporaireTrouve<<"\n";
-             //cout << "\tVALEUR MAX" <<"\t = "<<valeurMaxTemporaireTrouve<< endl;
+            // DEBUG PURPOSE
+            /*
+            //myfile << "\ROOT FOUND" <<"\tg(x)= "<<gDeX<<" / "<<maxTempValue<<"\n";
+            */
+            isARoot = true;
+            rootsSet.insert(round(gDeX * pow(10, 5)) / pow(10, 5));
         }
     }
 }

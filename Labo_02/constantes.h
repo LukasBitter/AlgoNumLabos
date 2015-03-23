@@ -2,6 +2,7 @@
 #define CONSTANTES_H_INCLUDED
 
 #include <string>
+#include <cmath>
 /**
     Constant used in the program
 
@@ -19,5 +20,7 @@ const double LAMBDA_MAX = 101;
 const double ITERATIONS_MIN = 99;
 const double ITERATIONS_MAX = 1000000000;
 const double EPSILON_MACHINE = numeric_limits<double>::epsilon();
+const double STEP =pow(10,15)*EPSILON_MACHINE;
+const double PRECISION_ISROOT =pow(10,10)*EPSILON_MACHINE;
 
 #endif // CONSTANTES_H_INCLUDED
