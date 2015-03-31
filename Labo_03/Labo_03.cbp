@@ -32,7 +32,10 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="affichage.cpp" />
+		<Unit filename="affichage.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="readme.txt" />
 		<Unit filename="squarematrix.cpp" />
 		<Unit filename="squarematrix.h" />
 		<Extensions>

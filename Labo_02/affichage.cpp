@@ -79,7 +79,7 @@ double Affichage::saisieValeur(const double &valeurMin, const double &valeurMax)
 
         if(cin.eof() || cin.bad())
         {
-            cerr << "An internal error happened." << endl;
+            cerr << "  An internal error happened." << endl;
             if(cin.eof() || valeurDeRetour <= valeurMin || valeurDeRetour >=valeurMax)
             {
                 break;
@@ -89,7 +89,7 @@ double Affichage::saisieValeur(const double &valeurMin, const double &valeurMax)
         }
         else if(cin.fail() || valeurDeRetour <= valeurMin ||valeurDeRetour >=valeurMax)
         {
-            cerr << "Error, incorrect value." << endl;
+            cerr << "  ERROR, incorrect value." << endl;
             viderBuffer();
             continue;
         }
@@ -122,7 +122,7 @@ void Affichage::readme()
 
     if(!in)
     {
-        cout << "Can not open input file.\n";
+        cout << "  Can not open input file.\n";
     }
     else
     {
@@ -141,6 +141,6 @@ void Affichage::readme()
 // Ask the user to press a key to continue
 void Affichage::pressKey()
 {
-    cout << endl << "Press a touch to continue..." << endl;
+    cout << endl << "  -> Press a key to continue..." << endl;
     getch();
 }
