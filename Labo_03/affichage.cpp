@@ -20,14 +20,13 @@ Affichage::~Affichage()
 {
     //dtor
 }
-
 // Print the header
 void Affichage::header()
 {
     system("cls");
     cout<<"*************************************************"<<endl;
-    cout<<"**        Numerical Algorithms - Labo 2        **"<<endl;
-    cout<<"**  Find the roots with the Fixed Point Method **"<<endl;
+    cout<<"**        Numerical Algorithms - Labo 3        **"<<endl;
+    cout<<"**Find all roots of a system of linear equations*"<<endl;
     cout<<"*************************************************"<<endl;
     cout<<endl<<endl;
 }
@@ -35,8 +34,8 @@ void Affichage::header()
 // Print the menu
 void Affichage::menu()
 {
-    cout<<"  1. Find the root(s) of the function : sin(x)-x/13"<<endl;
-    cout<<"  2. Find the root(s) of the function : x/(1-x^2)"<<endl;
+    cout<<"  1. Find the root(s) of a given  system of linear equations"<<endl;
+    cout<<"  2. Find the root(s) of a custom system of linear equations"<<endl;
     cout<<"  3. Read me"<<endl;
     cout<<"  4. End"<<endl;
     cout<<endl;

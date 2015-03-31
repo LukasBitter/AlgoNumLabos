@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include "squarematrix.h"
+#include "affichage.h"
 
 using namespace std;
 
@@ -20,26 +21,31 @@ int main()
         {
 
         case 1:
-            rep = Affichage::menuBegin();
-            SquareMatrix sm(5);
-            sm.showMatrix();
-
-            break;
+            {
+                rep = Affichage::menuBegin();
+                SquareMatrix sm(5);
+                sm.showMatrix();
+                break;
+            }
 
         case 2:
-
+            {
             rep = Affichage::menuBegin();
             break;
-
+            }
         case 3:
+            {
             Affichage::readme();
             rep = Affichage::menuBegin();
             break;
+            }
         case 4:
             break;
         default:
+            {
             rep = Affichage::menuNotValid();
             break;
+            }
         }
 
     }
