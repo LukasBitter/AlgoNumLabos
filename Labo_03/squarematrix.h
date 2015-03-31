@@ -23,6 +23,10 @@ class SquareMatrix
         void add();
         void sub();
         void showMatrix();
+    
+    void diagonaliser();
+    void multLine(int line, double n);
+    void sustractLines(int line1, int line2, double m);
 
     protected:
     private:
