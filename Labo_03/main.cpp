@@ -7,27 +7,34 @@
 //
 
 #include <iostream>
+#include <windows.h>
 #include "squarematrix.h"
+#include "affichage.h"
+
+#include "matriceDeTest.h"
 
 using namespace std;
 
 int main()
 {
     int rep = Affichage::menuBegin();
+    SquareMatrix sm(5);
+    SquareMatrix* test;
 
     do{
         switch(rep)
         {
-
         case 1:
+            test = new SquareMatrix(sizeof(matriceDeTestProf)/sizeof(*matriceDeTestProf),matriceDeTestProf);
+            test->showMatrix();
+            system("pause");
             rep = Affichage::menuBegin();
-            SquareMatrix sm(5);
-            sm.showMatrix();
-
             break;
 
         case 2:
-
+            test = new SquareMatrix(sizeof(matriceDeTestEasy)/sizeof(*matriceDeTestEasy),matriceDeTestEasy);
+            test->showMatrix();
+            system("pause");
             rep = Affichage::menuBegin();
             break;
 
@@ -35,8 +42,10 @@ int main()
             Affichage::readme();
             rep = Affichage::menuBegin();
             break;
+
         case 4:
             break;
+
         default:
             rep = Affichage::menuNotValid();
             break;

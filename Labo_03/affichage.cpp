@@ -35,8 +35,8 @@ void Affichage::header()
 // Print the menu
 void Affichage::menu()
 {
-    cout<<"  1. Find the root(s) of the function : sin(x)-x/13"<<endl;
-    cout<<"  2. Find the root(s) of the function : x/(1-x^2)"<<endl;
+    cout<<"  1. Tester la matrice du prof (200x200)"<<endl;
+    cout<<"  2. Tester la matrice easy (3x3)"<<endl;
     cout<<"  3. Read me"<<endl;
     cout<<"  4. End"<<endl;
     cout<<endl;

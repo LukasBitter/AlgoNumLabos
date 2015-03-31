@@ -11,19 +11,41 @@
 SquareMatrix::SquareMatrix(int n)
 {
     this->cote = n;
-    
-    matrix = new int*[cote];
+
+    matrix = new double*[cote];
     for(int i = 0; i < cote; ++i)
     {
-        matrix[i] = new int[cote];
+        matrix[i] = new double[cote];
     }
-    
-    //construction temporaire
+//
+//    //construction temporaire
+//    for(int i = 0; i<cote; i++)
+//    {
+//        for(int j = 0; j<cote; j++)
+//        {
+//            matrix[i][j] = 1;
+//        }
+//    }
+}
+
+SquareMatrix::SquareMatrix(int n, double table[][200]) : SquareMatrix(n)
+{
     for(int i = 0; i<cote; i++)
     {
         for(int j = 0; j<cote; j++)
         {
-            matrix[i][j] = 1;
+            matrix[i][j] = table[i][j];
+        }
+    }
+}
+
+SquareMatrix::SquareMatrix(int n, double table[][3]) : SquareMatrix(n)
+{
+    for(int i = 0; i<cote; i++)
+    {
+        for(int j = 0; j<cote; j++)
+        {
+            matrix[i][j] = table[i][j];
         }
     }
 }
@@ -50,7 +72,7 @@ void SquareMatrix::showMatrix()
         std::cout << "|";
         for(int j=0; j<cote; j++)
         {
-            std::cout << matrix[i][j];
+            std::cout << matrix[i][j] << " ";
         }
         std::cout << "|\n";
     }

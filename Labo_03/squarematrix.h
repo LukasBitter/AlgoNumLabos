@@ -16,6 +16,8 @@ class SquareMatrix
 {
     public:
         SquareMatrix(int n);
+        SquareMatrix(int n, double table[][200]);
+        SquareMatrix(int n, double table[][3]);
         virtual ~SquareMatrix();
 
         void add();
@@ -24,9 +26,9 @@ class SquareMatrix
 
     protected:
     private:
-        int** matrix;
+        double** matrix;
         int cote;
-    
+
 };
 
 #endif // SQUAREMATRIX_H
