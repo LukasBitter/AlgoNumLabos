@@ -20,14 +20,13 @@ Affichage::~Affichage()
 {
     //dtor
 }
-
 // Print the header
 void Affichage::header()
 {
     system("cls");
     cout<<"*************************************************"<<endl;
-    cout<<"**        Numerical Algorithms - Labo 2        **"<<endl;
-    cout<<"**  Find the roots with the Fixed Point Method **"<<endl;
+    cout<<"**        Numerical Algorithms - Labo 3        **"<<endl;
+    cout<<"**Find all roots of a system of linear equations*"<<endl;
     cout<<"*************************************************"<<endl;
     cout<<endl<<endl;
 }

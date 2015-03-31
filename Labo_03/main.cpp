@@ -38,6 +38,7 @@ int main()
             break;
 
         case 2:
+
             test = new SquareMatrix(sizeof(matriceDeTestEasy)/sizeof(*matriceDeTestEasy),matriceDeTestEasy,resultDeTestEasy);
             test->showMatrix();
             cout << endl;
