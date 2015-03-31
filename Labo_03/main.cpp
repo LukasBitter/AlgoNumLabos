@@ -25,15 +25,29 @@ int main()
         switch(rep)
         {
         case 1:
-            test = new SquareMatrix(sizeof(matriceDeTestProf)/sizeof(*matriceDeTestProf),matriceDeTestProf);
-            test->showMatrix();
+            test = new SquareMatrix(sizeof(matriceDeTestProf)/sizeof(*matriceDeTestProf),matriceDeTestProf,resultDeTestProf);
+            cout << endl;
+            test->diagonaliser();
+            cout << endl;
+            cout << test->determinant() << endl;
+
+            test->solve();
+
             system("pause");
             rep = Affichage::menuBegin();
             break;
 
         case 2:
-            test = new SquareMatrix(sizeof(matriceDeTestEasy)/sizeof(*matriceDeTestEasy),matriceDeTestEasy);
+            test = new SquareMatrix(sizeof(matriceDeTestEasy)/sizeof(*matriceDeTestEasy),matriceDeTestEasy,resultDeTestEasy);
             test->showMatrix();
+            cout << endl;
+            test->diagonaliser();
+            test->showMatrix();
+            cout << endl;
+            cout << test->determinant() << endl;
+
+            test->solve();
+
             system("pause");
             rep = Affichage::menuBegin();
             break;
