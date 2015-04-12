@@ -41,24 +41,20 @@ int main()
             // test if det is null
             det = test->determinant();
             cout << "Determinant = "<< det << endl << endl;
-            if(det==0)
-            {
-                cout<<"Infinite solutions!!!"<<endl<<endl;
-            }
-            else
-            {
-                // find solutions
-                test->solve();
-                stop_s = clock();
-                cout << "Processing time : " << (stop_s - start_s)/double(CLOCKS_PER_SEC)*1000 << "ms" << endl;
-            }
+
+            // find solutions
+            test->solve();
+
+            stop_s = clock();
+            cout << "Processing time : " << (stop_s - start_s)/double(CLOCKS_PER_SEC)*1000 << "ms" << endl;
+
             system("pause");
             rep = Affichage::menuBegin();
             break;
         case 2:
             start_s = clock();
 
-            test = new SquareMatrix(sizeof(matriceDeTestEasy2)/sizeof(*matriceDeTestEasy2),matriceDeTestEasy2,resultDeTestEasy2);
+            test = new SquareMatrix(sizeof(matriceDeTestEasy2)/sizeof(*matriceDeTestEasy2),matriceDeTestEasy,resultDeTestEasy);
             test->showMatrix();
             cout << endl;
             // diagonalisation
@@ -67,17 +63,12 @@ int main()
             // test if det is null
             det = test->determinant();
             cout << "Determinant = "<< det << endl << endl;
-            if(det==0)
-            {
-                cout<<"Infinite solutions!!!"<<endl;
-            }
-            else
-            {
-                // find solutions
-                test->solve();
-                stop_s = clock();
-                cout << "Processing time : " << (stop_s - start_s)/double(CLOCKS_PER_SEC)*1000 << "ms" <<  endl;
-            }
+
+            // find solutions
+            test->solve();
+            stop_s = clock();
+            cout << "Processing time : " << (stop_s - start_s)/double(CLOCKS_PER_SEC)*1000 << "ms" <<  endl;
+
             system("pause");
             rep = Affichage::menuBegin();
             break;

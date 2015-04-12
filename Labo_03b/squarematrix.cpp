@@ -120,30 +120,32 @@ double SquareMatrix::determinant()
 
 double* SquareMatrix::solve()
 {
-    double solvedResult[cote];
-
-    for(int i = 0; i < cote; i++)
+    if(determinant()==0)
     {
-        double value = result[cote - i-1];
-        int m = 1;
-        for(int k = cote - i; k < cote ; k++)
-        {
-            value -= solvedResult[k] * matrix[k-m][k];
-            m++;
-        }
-
-        if(matrix[cote-1-i][cote-1-i]==0)
-        {
-            solvedResult[cote-1-i] = 0;
-        }
-        else
-        {
-            solvedResult[cote-1-i] = value / matrix[cote-1-i][cote-1-i];
-        }
-
-        std::cout << "x" << cote-i << " = " << solvedResult[cote-1-i] << std::endl;
+        std::cout << "Infinite solutions!!!" << std::endl << std::endl;
+        return NULL;
     }
+    else
+    {
+        double solvedResult[cote];
 
-    return solvedResult;
+        for(int i = 0; i < cote; i++)
+        {
+            double value = result[cote - i-1];
+            int m = 1;
+            for(int k = cote - i; k < cote ; k++)
+            {
+                value -= solvedResult[k] * matrix[k-m][k];
+                m++;
+            }
+
+            /** Information: matrix[cote-1-i][cote-1-i] n'est jamais égal à 0 car le déterminant n'est pas null **/
+            solvedResult[cote-1-i] = value / matrix[cote-1-i][cote-1-i];
+
+            std::cout << "x" << cote-i << " = " << solvedResult[cote-1-i] << std::endl;
+        }
+
+        return solvedResult;
+    }
 }
 
