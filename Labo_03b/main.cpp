@@ -43,14 +43,15 @@ int main()
             cout << "Determinant = "<< det << endl << endl;
             if(det==0)
             {
-                cout<<"Infinite solutions!!!"<<endl;
-                break;
+                cout<<"Infinite solutions!!!"<<endl<<endl;
             }
-            // find solutions
-            test->solve();
-            stop_s = clock();
-            cout << "Processing time : " << (stop_s - start_s)/double(CLOCKS_PER_SEC)*1000 << "ms" << endl;
-
+            else
+            {
+                // find solutions
+                test->solve();
+                stop_s = clock();
+                cout << "Processing time : " << (stop_s - start_s)/double(CLOCKS_PER_SEC)*1000 << "ms" << endl;
+            }
             system("pause");
             rep = Affichage::menuBegin();
             break;
@@ -69,14 +70,14 @@ int main()
             if(det==0)
             {
                 cout<<"Infinite solutions!!!"<<endl;
-                break;
             }
-
-            // find solutions
-            test->solve();
-            stop_s = clock();
-            cout << "Processing time : " << (stop_s - start_s)/double(CLOCKS_PER_SEC)*1000 << "ms" <<  endl;
-
+            else
+            {
+                // find solutions
+                test->solve();
+                stop_s = clock();
+                cout << "Processing time : " << (stop_s - start_s)/double(CLOCKS_PER_SEC)*1000 << "ms" <<  endl;
+            }
             system("pause");
             rep = Affichage::menuBegin();
             break;

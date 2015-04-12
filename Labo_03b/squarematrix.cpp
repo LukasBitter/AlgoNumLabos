@@ -109,10 +109,10 @@ void SquareMatrix::sustractLines(int line1, int line2, double m)
 
 double SquareMatrix::determinant()
 {
-    double det = 0;
+    double det = 1;
     for(int i = 0; i < cote; i++)
     {
-        std::cout<<matrix[i][i]<<std::endl;
+        //std::cout<<matrix[i][i]<<std::endl;
         det *= matrix[i][i];
     }
     return det;
