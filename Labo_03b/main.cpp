@@ -57,7 +57,7 @@ int main()
         case 2:
             start_s = clock();
 
-            test = new SquareMatrix(sizeof(matriceDeTestEasy)/sizeof(*matriceDeTestEasy),matriceDeTestEasy,resultDeTestEasy);
+            test = new SquareMatrix(sizeof(matriceDeTestEasy2)/sizeof(*matriceDeTestEasy2),matriceDeTestEasy2,resultDeTestEasy2);
             test->showMatrix();
             cout << endl;
             // diagonalisation

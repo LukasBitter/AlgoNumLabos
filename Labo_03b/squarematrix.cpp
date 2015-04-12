@@ -112,7 +112,8 @@ double SquareMatrix::determinant()
     double det = 0;
     for(int i = 0; i < cote; i++)
     {
-        det += matrix[i][i];
+        std::cout<<matrix[i][i]<<std::endl;
+        det *= matrix[i][i];
     }
     return det;
 }
