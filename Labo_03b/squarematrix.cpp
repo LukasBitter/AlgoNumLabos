@@ -78,7 +78,7 @@ void SquareMatrix::diagonaliser()
     for(int i=1; i<cote; i++)
     {
         double m1 = matrix[i-1][i-1];
-        std::cout << m1 <<  std::endl;
+        //std::cout << m1 <<  std::endl;
         for(int j=i; j<cote; j++)
         {
             double m2 = matrix[j][i-1];
@@ -86,8 +86,8 @@ void SquareMatrix::diagonaliser()
             multLine(j, m1); //multiplier toute la ligne
             sustractLines(j, i-1, m2); //line(j) = line(j) - m*line(i-1)
         }
-        showMatrix();
-        std::cout << std::endl;
+        //showMatrix();
+        //std::cout << std::endl;
     }
 }
 void SquareMatrix::multLine(int line, double n)

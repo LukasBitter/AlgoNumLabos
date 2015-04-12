@@ -1,13 +1,16 @@
 *************************************************
 *** Laboratoire 2, cours algorithme numerique ***
-***                22.03.2015                 ***
+***                12.04.2015                 ***
 *************************************************
 
  But : 
-  Trouver toutes les solutions de -100 a 100 avec
-  la methode du point fixe pour deux fontions 
-  donnees : sin( x ) – x/13 et x / (1-x^2)
+  Développer un programme présentant une des deux 
+  méthodes : Cramer ou Gauss.
 
+  Nous avons choisi de dévelloper la technique de
+  Gauss et des tester la rapiditée du programme 
+  avec la matrice fournie de 200x200.
+ 
  Participants :
   Divernois Margaux  
       <margaux.divernois@he-arc.ch>

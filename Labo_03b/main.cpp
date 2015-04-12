@@ -7,11 +7,14 @@
 //
 
 #include <iostream>
+#include <time.h>
 #include <windows.h>
 #include "squarematrix.h"
 #include "affichage.h"
 
 #include "matriceDeTest.h"
+
+
 
 using namespace std;
 
@@ -21,32 +24,43 @@ int main()
     SquareMatrix sm(5);
     SquareMatrix* test;
 
+    int stop_s;
+    int start_s;
     do{
         switch(rep)
         {
         case 1:
+            start_s = clock();
+
             test = new SquareMatrix(sizeof(matriceDeTestProf)/sizeof(*matriceDeTestProf),matriceDeTestProf,resultDeTestProf);
             cout << endl;
             test->diagonaliser();
             cout << endl;
-            cout << test->determinant() << endl;
+            cout << test->determinant() << endl << endl;
 
             test->solve();
+
+            stop_s = clock();
+            cout << "Processing time : " << (stop_s - start_s)/double(CLOCKS_PER_SEC)*1000 << "ms" << endl;
 
             system("pause");
             rep = Affichage::menuBegin();
             break;
 
         case 2:
+            start_s = clock();
+
             test = new SquareMatrix(sizeof(matriceDeTestEasy)/sizeof(*matriceDeTestEasy),matriceDeTestEasy,resultDeTestEasy);
             test->showMatrix();
             cout << endl;
             test->diagonaliser();
-            //test->showMatrix();
             cout << endl;
-            cout << test->determinant() << endl;
+            cout << test->determinant() << endl << endl;
 
             test->solve();
+
+            stop_s = clock();
+            cout << "Processing time : " << (stop_s - start_s)/double(CLOCKS_PER_SEC)*1000 << "ms" <<  endl;
 
             system("pause");
             rep = Affichage::menuBegin();
