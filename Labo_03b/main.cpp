@@ -26,6 +26,7 @@ int main()
 
     int stop_s;
     int start_s;
+    double det;
     do{
         switch(rep)
         {
@@ -34,31 +35,45 @@ int main()
 
             test = new SquareMatrix(sizeof(matriceDeTestProf)/sizeof(*matriceDeTestProf),matriceDeTestProf,resultDeTestProf);
             cout << endl;
+            // diagonalisation
             test->diagonaliser();
             cout << endl;
-            cout << test->determinant() << endl << endl;
-
+            // test if det is null
+            det = test->determinant();
+            cout << "Determinant = "<< det << endl << endl;
+            if(det==0)
+            {
+                cout<<"Infinite solutions!!!"<<endl;
+                break;
+            }
+            // find solutions
             test->solve();
-
             stop_s = clock();
             cout << "Processing time : " << (stop_s - start_s)/double(CLOCKS_PER_SEC)*1000 << "ms" << endl;
 
             system("pause");
             rep = Affichage::menuBegin();
             break;
-
         case 2:
             start_s = clock();
 
             test = new SquareMatrix(sizeof(matriceDeTestEasy)/sizeof(*matriceDeTestEasy),matriceDeTestEasy,resultDeTestEasy);
             test->showMatrix();
             cout << endl;
+            // diagonalisation
             test->diagonaliser();
             cout << endl;
-            cout << test->determinant() << endl << endl;
+            // test if det is null
+            det = test->determinant();
+            cout << "Determinant = "<< det << endl << endl;
+            if(det==0)
+            {
+                cout<<"Infinite solutions!!!"<<endl;
+                break;
+            }
 
+            // find solutions
             test->solve();
-
             stop_s = clock();
             cout << "Processing time : " << (stop_s - start_s)/double(CLOCKS_PER_SEC)*1000 << "ms" <<  endl;
 

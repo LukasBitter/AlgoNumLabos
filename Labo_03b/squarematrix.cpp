@@ -72,7 +72,6 @@ void SquareMatrix::showMatrix()
     }
 }
 
-
 void SquareMatrix::diagonaliser()
 {
     for(int i=1; i<cote; i++)
