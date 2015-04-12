@@ -34,10 +34,13 @@
 		</Compiler>
 		<Unit filename="affichage.cpp" />
 		<Unit filename="affichage.h" />
+		<Unit filename="gaussjordanelimination.cpp" />
+		<Unit filename="gaussjordanelimination.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="matriceDeTest.h" />
+		<Unit filename="matrix.cpp" />
+		<Unit filename="matrix.h" />
 		<Unit filename="readme.txt" />
-		<Unit filename="squarematrix.cpp" />
-		<Unit filename="squarematrix.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

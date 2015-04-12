@@ -12,6 +12,7 @@ SquareMatrix::SquareMatrix(int n)
 {
     this->cote = n;
     matrix = new double*[cote];
+    result = new double[cote];
     for(int i = 0; i < cote; ++i)
     {
         matrix[i] = new double[cote];
@@ -27,7 +28,7 @@ SquareMatrix::SquareMatrix(int n)
 //    }
 }
 
-SquareMatrix::SquareMatrix(int n, double table[][200]) : SquareMatrix(n)
+SquareMatrix::SquareMatrix(int n, double table[][200], double* new_result) : SquareMatrix(n)
 {
     for(int i = 0; i<cote; i++)
     {
@@ -35,10 +36,11 @@ SquareMatrix::SquareMatrix(int n, double table[][200]) : SquareMatrix(n)
         {
             matrix[i][j] = table[i][j];
         }
+        result[i] = new_result[i];
     }
 }
 
-SquareMatrix::SquareMatrix(int n, double table[][3]) : SquareMatrix(n)
+SquareMatrix::SquareMatrix(int n, double table[][3], double* new_result) : SquareMatrix(n)
 {
     for(int i = 0; i<cote; i++)
     {
@@ -47,6 +49,8 @@ SquareMatrix::SquareMatrix(int n, double table[][3]) : SquareMatrix(n)
 //            matrix[i][j] = 1;
             matrix[i][j] = table[i][j];
         }
+
+        result[i] = new_result[i];
     }
 }
 
@@ -99,6 +103,7 @@ void SquareMatrix::multLine(int line, double n)
     for (int i=0; i<cote; i++) {
         matrix[line][i] = matrix[line][i] * n;
     }
+    result[line] = result[line] * n;
 }
 
 //line1 = line1 - m*line2
@@ -108,5 +113,37 @@ void SquareMatrix::sustractLines(int line1, int line2, double m)
     {
         matrix[line1][i] = matrix[line1][i]-m*matrix[line2][i];
     }
+    result[line1] = result[line1] - m * result[line2];
+}
+
+double SquareMatrix::determinant()
+{
+    double det = 0;
+    for(int i = 0; i < cote; i++)
+    {
+        det += matrix[i][i];
+    }
+    return det;
+}
+
+double* SquareMatrix::solve()
+{
+    double solvedResult[cote];
+
+    for(int i = 0; i < cote; i++)
+    {
+        double value = result[cote - i-1];
+        int m = 1;
+        for(int k = cote - i; k < cote ; k++)
+        {
+            value -= solvedResult[k] * matrix[k-m][k];
+            m++;
+        }
+        solvedResult[cote-1-i] = value / matrix[cote-1-i][cote-1-i];
+
+        std::cout << "x" << cote-i << " = " << solvedResult[cote-1-i] << std::endl;
+    }
+
+    return solvedResult;
 }
 

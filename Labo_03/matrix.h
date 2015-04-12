@@ -1,24 +1,25 @@
 //
-//  squarematrix.h
-//  SquareMatrix
+//  matrix.h
+//  Matrix
 //
 //  Created by Team 6 on 10.03.15.
 //  Copyright (c) 2015 Team 6. All rights reserved.
 //
 
-#ifndef SQUAREMATRIX_H
-#define SQUAREMATRIX_H
+#ifndef MATRIX_H
+#define MATRIX_H
 
 #include <stdio.h>
 #include <iostream>
 
-class SquareMatrix
+class Matrix
 {
     public:
-        SquareMatrix(int n);
-        SquareMatrix(int n, double table[][200], double* result);
-        SquareMatrix(int n, double table[][3], double* result);
-        virtual ~SquareMatrix();
+        Matrix(int N,int M);
+        Matrix(int N, int M, double** mat);
+        Matrix(int N,int M, double table[][200], double* result);
+        Matrix(int N,int M, double table[][3], double* result);
+        virtual ~Matrix();
 
         void add();
         void sub();
@@ -30,11 +31,16 @@ class SquareMatrix
         double determinant();
         double* solve();
 
+        double** getMatrix();
+        double getN();
+        double getM();
+
     protected:
     private:
         double** matrix;
         double* result;
-        int cote;
+        int n;
+        int m;
 
 };
 
