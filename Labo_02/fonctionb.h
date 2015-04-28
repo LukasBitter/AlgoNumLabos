@@ -1,7 +1,7 @@
 /**
     FonctionB - Full Fonction Declaration File
     FunctionB is derived from Fonction.
-    Purpose: Contain the fonction  "1 / (1-pow(x,2))"
+    Purpose: Contains the fonction  "1 / (1-pow(x,2))"
 
     @author Equipe 6 (Bitter Lukas, Da Mota Marques Fabio Manuel, Divernois Margaux, Visinand Steve)
 */

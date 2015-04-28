@@ -19,7 +19,6 @@ PointFixe::PointFixe(Fonction* _currentFunction, double _startPoint, double _end
     currentFunction(_currentFunction), startPoint(_startPoint), endPoint(_endPoint), lambda(_lambda), nbIterationsMax(_nbIterationsMax),
     maxTempValue(_startPoint)
 {
-    //rootFound = false;
     rootsSet = set<double>();
 }
 
@@ -44,13 +43,6 @@ double PointFixe::getStartPoint()
 // Start to search the Zero values
 void PointFixe::startAlgo()
 {
-    // DEBUG PURPOSE
-    /*
-    string filename = "log.txt";
-    myfile.open (filename);
-    */
-
-
     // First algo iteration with lanbda positive
     findRoots(startPoint);
     while(maxTempValue < endPoint)
@@ -70,11 +62,6 @@ void PointFixe::startAlgo()
         maxTempValue+=STEP;
         findRoots(maxTempValue);
     }
-
-    // DEBUG PURPOSE
-    /*
-    myfile.close();
-    */
 
     cout<<"\n\tFINISHED"<<endl;
 
@@ -108,19 +95,10 @@ void PointFixe::findRoots(double ptDepart)
             maxTempValue = gDeX;
         }
 
-        // DEBUG PURPOSE
-        /*
-        myfile <<"Iteration  "<<i<<"\t\tg(x)= "<<gDeX<<" / maxTempValue: "<<maxTempValue<<"\n";
-        */
-
         i++;
 
         if(isRoot(gDeX,g(gDeX)))
         {
-            // DEBUG PURPOSE
-            /*
-            //myfile << "\ROOT FOUND" <<"\tg(x)= "<<gDeX<<" / "<<maxTempValue<<"\n";
-            */
             isARoot = true;
             rootsSet.insert(round(gDeX * pow(10, 5)) / pow(10, 5));
         }

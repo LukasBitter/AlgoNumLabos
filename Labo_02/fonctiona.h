@@ -1,7 +1,7 @@
 /**
     FonctionA - Full Fonction Declaration File
     FunctionA is derived from Fonction.
-    Purpose: Contain the fonction  "sin(x) - x/13"
+    Purpose: Contains the fonction  "sin(x) - x/13"
 
     @author Equipe 6 (Bitter Lukas, Da Mota Marques Fabio Manuel, Divernois Margaux, Visinand Steve)
 */
