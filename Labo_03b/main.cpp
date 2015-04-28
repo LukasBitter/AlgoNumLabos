@@ -1,86 +1,100 @@
-//
-//  main.cpp
-//  SquareMatrix
-//
-//  Created by Team 6 on 10.03.15.
-//  Copyright (c) 2015 Team 6. All rights reserved.
-//
+/**
+    Main Class - Implementation File
+    Purpose: this is the Main of the program
+
+    @author Equipe 6 (Bitter Lukas, Da Mota Marques Fabio Manuel, Divernois Margaux, Visinand Steve)
+*/
 
 #include <iostream>
 #include <time.h>
 #include <windows.h>
 #include "squarematrix.h"
 #include "affichage.h"
-
 #include "matriceDeTest.h"
-
-
 
 using namespace std;
 
+/**  Main program */
 int main()
 {
-    int rep = Affichage::menuBegin();
-    SquareMatrix sm(5);
-    SquareMatrix* test;
+    static int rep = Affichage::menuBegin();
+    SquareMatrix* m;
 
     int stop_s;
     int start_s;
-    double det;
+    int N;
+    double** mArray;
     do{
+        cout<<rep<<endl;
         switch(rep)
         {
         case 1:
             start_s = clock();
+            N=200;
 
-            test = new SquareMatrix(sizeof(matriceDeTestProf)/sizeof(*matriceDeTestProf),matriceDeTestProf,resultDeTestProf);
-            cout << endl;
-            // diagonalisation
-            test->diagonaliser();
-            cout << endl;
-            // test if det is null
-            det = test->determinant();
-            cout << "Determinant = "<< det << endl << endl;
+            // Convert 2d array to table of pointers
+            mArray = new double* [N];
+            for (int i=0; i<N; ++i) {
+                mArray[i] = matriceDeTestProf[i];
+            }
 
-            // find solutions
-            test->solve();
-
+            // Compute matrix
+            m = new SquareMatrix(N,mArray,vecteurDeTestProf);
+            m->diagonaliser();
+            m->findDeterminant();
+            m->solve();
             stop_s = clock();
+
+            // print solutions
             cout << "Processing time : " << (stop_s - start_s)/double(CLOCKS_PER_SEC)*1000 << "ms" << endl;
+            m->printSolutions();
 
             system("pause");
+            delete m;
+            delete mArray;
             rep = Affichage::menuBegin();
             break;
+
         case 2:
             start_s = clock();
+            N=3;
 
-            test = new SquareMatrix(sizeof(matriceDeTestEasy2)/sizeof(*matriceDeTestEasy2),matriceDeTestEasy,resultDeTestEasy);
-            test->showMatrix();
-            cout << endl;
-            // diagonalisation
-            test->diagonaliser();
-            cout << endl;
-            // test if det is null
-            det = test->determinant();
-            cout << "Determinant = "<< det << endl << endl;
+            // Convert 2d array to table of pointers
+            mArray = new double* [N];
 
-            // find solutions
-            test->solve();
+            for (int i=0; i<N; ++i) {
+                mArray[i] = matriceDeTestEasy[i];
+            }
+
+            // Compute matrix
+            m = new SquareMatrix(N,mArray,vecteurDeTestEasy);
+            m->showMatrix();
+            m->diagonaliser();
+            m->findDeterminant();
+            m->solve();
             stop_s = clock();
+
+            // print solutions
             cout << "Processing time : " << (stop_s - start_s)/double(CLOCKS_PER_SEC)*1000 << "ms" <<  endl;
+            m->printSolutions();
 
             system("pause");
+            delete m;
+            delete mArray;
             rep = Affichage::menuBegin();
             break;
 
         case 3:
+            // Print readme
             Affichage::readme();
             rep = Affichage::menuBegin();
             break;
 
+            // Exit
         case 4:
             break;
 
+            // Invalid entry
         default:
             rep = Affichage::menuNotValid();
             break;

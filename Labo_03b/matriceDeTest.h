@@ -1,3 +1,10 @@
+/**
+    Declaration File
+    Purpose: This file is used to list different matrix to test
+
+    @author Equipe 6 (Bitter Lukas, Da Mota Marques Fabio Manuel, Divernois Margaux, Visinand Steve)
+*/
+
 double matriceDeTestProf[200][200] = {{0.532113, 0.207891, 0.918218, 0.657396, 0.46752, 0.293428, 0.724551,
    0.624873, 0.559022, 0.759913, 0.940564, 0.71981, 0.524573,
   0.117088, 0.0217286, 0.657128, 0.256095, 0.359154, 0.312903,
@@ -6395,7 +6402,7 @@ double matriceDeTestProf[200][200] = {{0.532113, 0.207891, 0.918218, 0.657396, 0
   0.718498, 0.0999896, 0.306683, 0.208969, 0.79161, 0.992952,
   0.229445, 0.328962, 0.958323, 0.483417}};
 
-double resultDeTestProf[200] = {0.812188418
+double vecteurDeTestProf[200] = {0.812188418
 , 0.002751772
 , 0.673749489
 , 0.702453553
@@ -6597,7 +6604,9 @@ double resultDeTestProf[200] = {0.812188418
 , 0.636459334};
 
 double matriceDeTestEasy[3][3] = {{3,5,7},{2,10,6},{1,2,3}};
-double resultDeTestEasy[3] = {101,134,40};
+double vecteurDeTestEasy[3] = {101,134,40};
 
 double matriceDeTestEasy2[3][3] = {{3,2,3},{2,4,2},{1,8,1}};
-double resultDeTestEasy2[3] = {20,16,14};
+double vecteurDeTestEasy2[3] = {20,16,14};
+
+

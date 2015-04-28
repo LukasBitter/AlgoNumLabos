@@ -1,35 +1,29 @@
-//
-//  squarematrix.cpp
-//  SquareMatrix
-//
-//  Created by Team 6 on 10.03.15.
-//  Copyright (c) 2015 Team 6. All rights reserved.
-//
+/**
+    SquareMatrix Class - Implementation File
+    Purpose: This class is used to implement different methods on matrix including:
+            creating a matrix, it's destructor, printing a matrix, diagonalizing,
+            determinant and solving of a matrix
+
+    @author Equipe 6 (Bitter Lukas, Da Mota Marques Fabio Manuel, Divernois Margaux, Visinand Steve)
+*/
 
 #include "squarematrix.h"
 
+/**    Matrix constructor   */
 SquareMatrix::SquareMatrix(int n)
 {
     this->cote = n;
-
     matrix = new double*[cote];
-    result = new double[cote];
+    vectB = new double[cote];
+    solvedResult = new double[cote];
     for(int i = 0; i < cote; ++i)
     {
         matrix[i] = new double[cote];
     }
-//
-//    //construction temporaire
-//    for(int i = 0; i<cote; i++)
-//    {
-//        for(int j = 0; j<cote; j++)
-//        {
-//            matrix[i][j] = 1;
-//        }
-//    }
 }
 
-SquareMatrix::SquareMatrix(int n, double table[][200], double* new_result) : SquareMatrix(n)
+/**    Big Matrix constructor   */
+SquareMatrix::SquareMatrix(int n, double** table, double* new_vect) : SquareMatrix(n)
 {
     for(int i = 0; i<cote; i++)
     {
@@ -37,11 +31,12 @@ SquareMatrix::SquareMatrix(int n, double table[][200], double* new_result) : Squ
         {
             matrix[i][j] = table[i][j];
         }
-        result[i] = new_result[i];
+        vectB[i] = new_vect[i];
     }
 }
 
-SquareMatrix::SquareMatrix(int n, double table[][3], double* new_result) : SquareMatrix(n)
+/**    Small Matrix constructor   */
+SquareMatrix::SquareMatrix(int n, double table[][3], double* new_vect) : SquareMatrix(n)
 {
     for(int i = 0; i<cote; i++)
     {
@@ -49,103 +44,106 @@ SquareMatrix::SquareMatrix(int n, double table[][3], double* new_result) : Squar
         {
             matrix[i][j] = table[i][j];
         }
-
-        result[i] = new_result[i];
+        vectB[i] = new_vect[i];
     }
 }
 
+/**    Matrix destructor   */
 SquareMatrix::~SquareMatrix()
 {
     //dtor
 }
 
+/**    Print Matrix     */
 void SquareMatrix::showMatrix()
 {
     for(int i = 0; i<cote; i++)
     {
-        std::cout << "|";
+        cout << "|";
         for(int j=0; j<cote; j++)
         {
-            std::cout << matrix[i][j] << " ";
+            cout << matrix[i][j] << " ";
         }
-        std::cout << "| " << result[i] << "\n";
+        cout << "| . X = " << vectB[i] << "\n";
     }
 }
 
+/**    Matrix diagonalisation   */
 void SquareMatrix::diagonaliser()
 {
     for(int i=1; i<cote; i++)
     {
         double m1 = matrix[i-1][i-1];
-        //std::cout << m1 <<  std::endl;
         for(int j=i; j<cote; j++)
         {
             double m2 = matrix[j][i-1];
 
             multLine(j, m1); //multiplier toute la ligne
-            sustractLines(j, i-1, m2); //line(j) = line(j) - m*line(i-1)
+            substractLines(j, i-1, m2); //line(j) = line(j) - m*line(i-1)
         }
-        //showMatrix();
-        //std::cout << std::endl;
     }
 }
+
+/**    Matrix lines multiplicator   */
 void SquareMatrix::multLine(int line, double n)
 {
     for (int i=0; i<cote; i++) {
         matrix[line][i] = matrix[line][i] * n;
     }
-    result[line] = result[line] * n;
+    vectB[line] = vectB[line] * n;
 }
 
-//line1 = line1 - m*line2
-void SquareMatrix::sustractLines(int line1, int line2, double m)
+/**    Matrix lines substracor   */
+void SquareMatrix::substractLines(int line1, int line2, double m)
 {
     for(int i=0; i<cote; i++)
     {
         matrix[line1][i] = matrix[line1][i]-m*matrix[line2][i];
     }
-    result[line1] = result[line1] - m * result[line2];
+    vectB[line1] = vectB[line1] - m * vectB[line2];
 }
 
-double SquareMatrix::determinant()
+/**    Matrix determinant finder   */
+void SquareMatrix::findDeterminant()
 {
     double det = 1;
     for(int i = 0; i < cote; i++)
     {
-        //std::cout<<matrix[i][i]<<std::endl;
         det *= matrix[i][i];
     }
-    return det;
+    this->determinant = det;
 }
 
-double* SquareMatrix::solve()
+/**    Print Matrix solutions   */
+void SquareMatrix::printSolutions()
 {
-    if(determinant()==0)
+    if(this->determinant==0)
     {
-        std::cout << "Infinite solutions!!!" << std::endl << std::endl;
-        return NULL;
+        cout << "Infinite solutions!!!" << endl << endl;
+        system("pause");
     }
-    else
+
+    for(int i = 0; i < cote; i++)
     {
-        double solvedResult[cote];
+        cout << "x" << cote-i << " = " << solvedResult[cote-1-i] << endl;
+    }
+}
 
-        for(int i = 0; i < cote; i++)
+/**    Find Matrix solutions   */
+void SquareMatrix::solve()
+{
+    for(int i = 0; i < cote; i++)
+    {
+        double value = vectB[cote - i-1];
+        int m = 1;
+        for(int k = cote - i; k < cote ; k++)
         {
-            double value = result[cote - i-1];
-            int m = 1;
-            for(int k = cote - i; k < cote ; k++)
-            {
-                value -= solvedResult[k] * matrix[k-m][k];
-                m++;
-            }
-
-            /** Information: matrix[cote-1-i][cote-1-i] n'est jamais égal à 0 car le déterminant n'est pas null **/
-            solvedResult[cote-1-i] = value / matrix[cote-1-i][cote-1-i];
-
-            std::cout << "x" << cote-i << " = " << solvedResult[cote-1-i] << std::endl;
+            value -= solvedResult[k] * matrix[k-m][k];
+            m++;
         }
 
-        return solvedResult;
+        /** Information: matrix[cote-1-i][cote-1-i] n'est jamais égal à 0 car le déterminant n'est pas null **/
+        solvedResult[cote-1-i] = value / matrix[cote-1-i][cote-1-i];
     }
 }
 
