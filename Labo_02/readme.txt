@@ -6,7 +6,7 @@
  But : 
   Trouver toutes les solutions de -100 a 100 avec
   la methode du point fixe pour deux fontions 
-  donnees : sin( x ) – x/13 et x / (1-x^2)
+  donnees : sin( x ) - x/13 et x / (1-x^2)
 
  Participants :
   Divernois Margaux  

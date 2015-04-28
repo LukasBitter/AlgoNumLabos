@@ -3,6 +3,7 @@
     Purpose: This class is used to solve an equation using Point Fixed method.
 
     @author Equipe 6 (Bitter Lukas, Da Mota Marques Fabio Manuel, Divernois Margaux, Visinand Steve)
+    @date 2015-04-28
 */
 
 #include <set>
@@ -15,17 +16,22 @@
 using namespace std;
 
 // Constructor
-PointFixe::PointFixe(Fonction* _currentFunction, double _startPoint, double _endPoint, double _lambda, double _nbIterationsMax):
-    currentFunction(_currentFunction), startPoint(_startPoint), endPoint(_endPoint), lambda(_lambda), nbIterationsMax(_nbIterationsMax),
-    maxTempValue(_startPoint)
+PointFixe::PointFixe(Fonction* _currentFunction, double _startPoint, double _endPoint, double _lambda, double _nbIterationsMax)
 {
+    this->currentFunction = _currentFunction;
+    this->startPoint = _startPoint;
+    this->endPoint = _endPoint;
+    this->lambda = _lambda;
+    this->nbIterationsMax = _nbIterationsMax;
+    this->maxTempValue = _startPoint;
+
     rootsSet = set<double>();
 }
 
 // Destructor
 PointFixe::~PointFixe()
 {
-    //dtor
+    delete currentFunction;
 }
 
 // Return the solved result of g(x) where g(x) = x + lambda * f(x)
