@@ -57,15 +57,17 @@ SquareMatrix::~SquareMatrix()
 /**    Print Matrix     */
 void SquareMatrix::showMatrix()
 {
+        cout<<endl<<"  Matrix and vector:"<<endl;
     for(int i = 0; i<cote; i++)
     {
-        cout << "|";
+        cout << "  |";
         for(int j=0; j<cote; j++)
         {
-            cout << matrix[i][j] << " ";
+            cout << "  "<< matrix[i][j] << " ";
         }
-        cout << "| . X = " << vectB[i] << "\n";
+        cout << " | . X = " << vectB[i] << "\n";
     }
+    cout<<endl;
 }
 
 /**    Matrix diagonalisation   */
@@ -119,14 +121,18 @@ void SquareMatrix::printSolutions()
 {
     if(this->determinant==0)
     {
-        cout << "Infinite solutions!!!" << endl << endl;
-        system("pause");
+        cout << "  --> The matrix has Infinite solutions!!!" << endl << endl;
     }
 
-    for(int i = 0; i < cote; i++)
+    else
     {
-        cout << "x" << cote-i << " = " << solvedResult[cote-1-i] << endl;
+        cout<<"  Solutions:"<<endl;
+        for(int i = 0; i < cote; i++)
+        {
+            cout << "  x" << cote-i << " = " << solvedResult[cote-1-i] << endl;
+        }
     }
+
 }
 
 /**    Find Matrix solutions   */

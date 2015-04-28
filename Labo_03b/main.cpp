@@ -25,7 +25,6 @@ int main()
     int N;
     double** mArray;
     do{
-        cout<<rep<<endl;
         switch(rep)
         {
         case 1:
@@ -46,7 +45,8 @@ int main()
             stop_s = clock();
 
             // print solutions
-            cout << "Processing time : " << (stop_s - start_s)/double(CLOCKS_PER_SEC)*1000 << "ms" << endl;
+            cout <<endl<< "  --> Processing time : " << (stop_s - start_s)/double(CLOCKS_PER_SEC)*1000 << "ms" << endl;
+            cout <<endl;
             m->printSolutions();
 
             system("pause");
@@ -75,7 +75,8 @@ int main()
             stop_s = clock();
 
             // print solutions
-            cout << "Processing time : " << (stop_s - start_s)/double(CLOCKS_PER_SEC)*1000 << "ms" <<  endl;
+            cout << "  Processing time : " << (stop_s - start_s)/double(CLOCKS_PER_SEC)*1000 << "ms" <<  endl;
+            cout<<endl;
             m->printSolutions();
 
             system("pause");
