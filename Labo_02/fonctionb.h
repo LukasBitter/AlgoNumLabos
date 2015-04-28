@@ -4,6 +4,7 @@
     Purpose: Contains the fonction  "1 / (1-pow(x,2))"
 
     @author Equipe 6 (Bitter Lukas, Da Mota Marques Fabio Manuel, Divernois Margaux, Visinand Steve)
+    @date 2015-04-28
 */
 
 #ifndef FONCTIONB_H

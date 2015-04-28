@@ -3,6 +3,7 @@
     Purpose: This class is used to solve an equation using Point Fixed method.
 
     @author Equipe 6 (Bitter Lukas, Da Mota Marques Fabio Manuel, Divernois Margaux, Visinand Steve)
+    @date 2015-04-28
 */
 
 #ifndef POINTFIXE_H
@@ -17,7 +18,14 @@ using namespace std;
 class PointFixe
 {
     public:
-        /** Default constructor */
+        /** Default constructor
+
+            @param _currentFunction : Function that will be solved
+            @param _startPoint : Starting point
+            @param _endPoint : Ending point
+            @param _lambda : Lambda
+            @param _nbIterationMax : Number of iterations max to do
+        */
         PointFixe(Fonction* _currentFunction, double _startPoint, double _endPoint, double _lambda, double _nbIterationsMax);
         /** Default destructor */
         virtual ~PointFixe();

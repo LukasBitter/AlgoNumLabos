@@ -3,6 +3,7 @@
     Purpose: The main program is here.
 
     @author Equipe 6 (Bitter Lukas, Da Mota Marques Fabio Manuel, Divernois Margaux, Visinand Steve)
+    @date 2015-04-28
 */
 
 #include <iostream>
@@ -48,14 +49,15 @@ int main()
             break;
 
         case 2:
-            cout << endl << "       NOTE: For this function we should  check"<<endl;
-            cout << "       if the absolute value of the derivates is between 0 and 1"<<endl;
-            cout << "       else we should stop iterating."<<endl;
-            cout << "       As we don't do this control, making useless iterations"<<endl;
-            cout << "       takes too much time to find the roots, i.e if you put a lot of iterations"<<endl;
-            cout << "       the program should in the end find the roots, but will take a long long time."<<endl;
-            cout << "       The same happens if we increase precision to compare the two values" << endl;
-            cout << "       in order to find a root" << endl;
+            cout << endl << "   NOTE: For this function we should  check"<<endl;
+            cout << "   if the absolute value of the derivates is between 0 and 1"<<endl;
+            cout << "   else we should stop iterating."<<endl;
+            cout << "   As we don't do this control, making useless iterations"<<endl;
+            cout << "   takes too much time to find the roots, i.e if you put a lot of iterations"<<endl;
+            cout << "   the program should in the end find the roots, but will take a long long time."<<endl;
+            cout << "   The same happens if we increase precision to compare the two values" << endl;
+            cout << "   in order to find a root" << endl << endl;
+
             cout << endl << "   Enter a value for Lambda :" << endl;
             lambda = Affichage::saisieValeur(LAMBDA_MIN, LAMBDA_MAX);
             cout << endl << "   Enter the maximum number of iteration :" << endl;
@@ -84,7 +86,6 @@ int main()
 
     }
     while(rep != 4);
-
 
     cin.seekg(0, ios::end);
     return 0;
