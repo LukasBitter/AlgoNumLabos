@@ -3,6 +3,8 @@
     Purpose: This file is used to list different matrix to test
 
     @author Equipe 6 (Bitter Lukas, Da Mota Marques Fabio Manuel, Divernois Margaux, Visinand Steve)
+
+    last update : 29.04.2015
 */
 
 double matriceDeTestProf[200][200] = {{0.532113, 0.207891, 0.918218, 0.657396, 0.46752, 0.293428, 0.724551,

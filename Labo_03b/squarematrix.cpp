@@ -5,6 +5,8 @@
             determinant and solving of a matrix
 
     @author Equipe 6 (Bitter Lukas, Da Mota Marques Fabio Manuel, Divernois Margaux, Visinand Steve)
+
+    last update : 29.04.2015
 */
 
 #include "squarematrix.h"
@@ -51,7 +53,13 @@ SquareMatrix::SquareMatrix(int n, double table[][3], double* new_vect) : SquareM
 /**    Matrix destructor   */
 SquareMatrix::~SquareMatrix()
 {
-    //dtor
+    for(int i = 0; i < cote; ++i)
+    {
+        delete[] matrix[i];
+    }
+    delete[] matrix;
+    delete[] solvedResult;
+    delete[] vectB;
 }
 
 /**    Print Matrix     */
@@ -123,7 +131,6 @@ void SquareMatrix::printSolutions()
     {
         cout << "  --> The matrix has Infinite solutions!!!" << endl << endl;
     }
-
     else
     {
         cout<<"  Solutions:"<<endl;

@@ -5,6 +5,8 @@
             determinant and solving of a matrix
 
     @author Equipe 6 (Bitter Lukas, Da Mota Marques Fabio Manuel, Divernois Margaux, Visinand Steve)
+
+    last update : 29.04.2015
 */
 
 #ifndef SQUAREMATRIX_H

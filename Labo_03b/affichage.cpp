@@ -3,6 +3,8 @@
     Purpose: Add printing methods for a better user interaction
 
     @author Equipe 6 (Bitter Lukas, Da Mota Marques Fabio Manuel, Divernois Margaux, Visinand Steve)
+
+    last update : 29.04.2015
 */
 
 #include "affichage.h"

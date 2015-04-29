@@ -3,6 +3,8 @@
     Purpose: this is the Main of the program
 
     @author Equipe 6 (Bitter Lukas, Da Mota Marques Fabio Manuel, Divernois Margaux, Visinand Steve)
+
+    last update : 29.04.2015
 */
 
 #include <iostream>
@@ -50,6 +52,7 @@ int main()
             m->printSolutions();
 
             system("pause");
+
             delete m;
             delete mArray;
             rep = Affichage::menuBegin();
@@ -80,6 +83,7 @@ int main()
             m->printSolutions();
 
             system("pause");
+
             delete m;
             delete mArray;
             rep = Affichage::menuBegin();
