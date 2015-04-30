@@ -11,7 +11,7 @@
 
 #include "squarematrix.h"
 
-/**    Matrix constructor   */
+/**    Enmpty Matrix Constructor   */
 SquareMatrix::SquareMatrix(int n)
 {
     this->cote = n;
@@ -24,21 +24,8 @@ SquareMatrix::SquareMatrix(int n)
     }
 }
 
-/**    Big Matrix constructor   */
+/**    Filled Matrix Constructor and it's vector  */
 SquareMatrix::SquareMatrix(int n, double** table, double* new_vect) : SquareMatrix(n)
-{
-    for(int i = 0; i<cote; i++)
-    {
-        for(int j = 0; j<cote; j++)
-        {
-            matrix[i][j] = table[i][j];
-        }
-        vectB[i] = new_vect[i];
-    }
-}
-
-/**    Small Matrix constructor   */
-SquareMatrix::SquareMatrix(int n, double table[][3], double* new_vect) : SquareMatrix(n)
 {
     for(int i = 0; i<cote; i++)
     {

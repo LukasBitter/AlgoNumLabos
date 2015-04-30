@@ -50,7 +50,6 @@ int main()
             cout <<endl<< "  --> Processing time : " << (stop_s - start_s)/double(CLOCKS_PER_SEC)*1000 << "ms" << endl;
             cout <<endl;
             m->printSolutions();
-
             system("pause");
 
             delete m;
@@ -64,7 +63,6 @@ int main()
 
             // Convert 2d array to table of pointers
             mArray = new double* [N];
-
             for (int i=0; i<N; ++i) {
                 mArray[i] = matriceDeTestEasy[i];
             }
