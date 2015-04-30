@@ -116,7 +116,7 @@ void SquareMatrix::printSolutions()
 {
     if(this->determinant==0)
     {
-        cout << "  --> The matrix has Infinite solutions!!!" << endl << endl;
+        cout << "  --> The matrix has an infinite number of solutions or no solutions !" << endl << endl;
     }
     else
     {
