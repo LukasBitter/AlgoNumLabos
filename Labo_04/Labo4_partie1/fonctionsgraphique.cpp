@@ -8,8 +8,8 @@ FonctionsGraphique::FonctionsGraphique(QWidget *parent) :
     QWidget(parent)
 {
     //With "this" they will be destroy ! love Qt forever
-    btnFonction1 = new QPushButton(tr("&Fonction 1"), this);
-    btnFonction2 = new QPushButton(tr("&Fonction 2"), this);
+    btnFonction1 = new QPushButton(tr("Fonction &1"), this);
+    btnFonction2 = new QPushButton(tr("Fonction &2"), this);
 
     labelF = new QLabel(tr("f : fonction"), this);
     labelFDerivate = new QLabel(tr("f' : dérivée première"), this);

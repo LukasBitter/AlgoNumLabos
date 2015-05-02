@@ -15,8 +15,8 @@
 Graph::Graph(Fonction* f, QWidget *parent) : QWidget(parent)
 {
     fonction = f;
-    xmax = 10;
-    ymax = 40;
+    xmax = 20;
+    ymax = 20;
 }
 
 Graph::~Graph()
@@ -28,13 +28,7 @@ void Graph::paintEvent(QPaintEvent *event)
 {
     QPainter painter(this);
 
-    QRect viewport=painter.viewport();
-
-    QRect window;
-    window.setRect(-xmax/2, ymax/2, xmax, -ymax);
-
-    painter.setViewport(viewport);
-    painter.setWindow(window);
+    painter.setWindow(-xmax/2, ymax/2, xmax, -ymax);
 
     draw(painter);
 }
@@ -56,21 +50,16 @@ void Graph::draw(QPainter &painter)
 //    for (int i = -xmax/2+1; i <= xmax/2; i++)
 //    {
 //        painter.drawLine(i, 1, i, -1);
-//        //painter.drawText(i,-1, QString::number(i));
+//        QString s=QString::number(i);
+//        painter.drawText(QPoint(i,-1), s);
 //    }
 
     painter.drawLine(0,ymax/2, 0, -ymax/2);
 //    for (int i = -ymax/2+1; i <= ymax/2; i++)
 //    {
 //        painter.drawLine(-1, i, 1, i);
-//        //painter.drawText(i,-1, QString::number(i));
+//        painter.drawText(i,-1, QString::number(i));
 //    }
-
-
-    pen.setColor(Qt::green);
-    painter.setPen(pen);
-
-    drawSecondDerivateFonction(painter);
 
     pen.setColor(Qt::blue);
     painter.setPen(pen);
@@ -81,6 +70,11 @@ void Graph::draw(QPainter &painter)
     painter.setPen(pen);
 
     drawDerivateFonction(painter);
+
+    pen.setColor(Qt::green);
+    painter.setPen(pen);
+
+    drawSecondDerivateFonction(painter);
 
 }
 
@@ -94,10 +88,15 @@ void Graph::drawFonction(QPainter &painter)
     QPointF start ,dest;
     start = QPointF(-xmax/2, y); // Premier point
 
-    for (double i = -xmax/2+1; i <= xmax/2; i+=0.1)
+    double j;
+    double j2;
+
+    for (double i = -xmax/2*1000; i <= xmax/2*1000; i++)
     {
-        y = fonction->f(i); //draw f
-        dest = QPointF(i, y);
+        j=(double)i/1000;
+        j2=j+0.001;
+        y = fonction->f(j2); //draw f
+        dest = QPointF(j2, y);
         painter.drawLine(start, dest);
         start = dest;
     }
@@ -113,10 +112,15 @@ void Graph::drawDerivateFonction(QPainter &painter)
     QPointF start ,dest;
     start = QPointF(-xmax/2, y);
 
-    for (double i = -xmax/2+1; i <= xmax/2; i+=0.1)
+    double j;
+    double j2;
+
+    for (double i = -xmax/2*1000; i <= xmax/2*1000; i++)
     {
-        y = fonction->f_derivate(i); //draw f'
-        dest = QPointF(i, y);
+        j=(double)i/1000;
+        j2=j+0.001;
+        y = fonction->f_derivate(j2); //draw f'
+        dest = QPointF(j2, y);
         painter.drawLine(start, dest);
         start = dest;
     }
@@ -132,10 +136,15 @@ void Graph::drawSecondDerivateFonction(QPainter &painter)
     QPointF start ,dest;
     start = QPointF(-xmax/2, y); // Premier point
 
-    for (double i = -xmax/2+1; i <= xmax/2; i+=0.1)
+    double j;
+    double j2;
+
+    for (double i = -xmax/2*1000; i <= xmax/2*1000; i++)
     {
-        y = fonction->f_derivateSecond(i); //draw f''
-        dest = QPointF(i, y);
+        j=(double)i/1000;
+        j2=j+0.001;
+        y = fonction->f_derivateSecond(j2); //draw f''
+        dest = QPointF(j2, y);
         painter.drawLine(start, dest);
         start = dest;
     }
