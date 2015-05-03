@@ -3,7 +3,7 @@
 
 Fonction::Fonction()
 {
-    this->h = 1; //Default value
+    this->h = 0.0001; //Default value
 }
 Fonction::~Fonction(){
 

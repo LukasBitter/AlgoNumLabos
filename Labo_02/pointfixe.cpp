@@ -90,7 +90,7 @@ void PointFixe::findRoots(double ptDepart)
 
     double i=1;
 
-    // Here we should also check if the absolute value of th derivates is between 0 and 1
+    // Here we should check if the absolute value of the derivates is between 0 and 1
     // else we should stop iterating
     // as we don't do this control, making useless iterations takes too much time to find the roots
     while(!isARoot && i<=nbIterationsMax)
