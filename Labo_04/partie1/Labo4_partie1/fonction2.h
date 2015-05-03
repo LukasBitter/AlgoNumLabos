@@ -1,3 +1,11 @@
+/**
+    Fonction2 - Header File
+
+    @author Equipe 6 (Bitter Lukas, Da Mota Marques Fabio Manuel, Divernois Margaux, Visinand Steve)
+
+    last update : 03.05.2015
+*/
+
 #ifndef FONCTION2_H
 #define FONCTION2_H
 #include "fonction.h"
