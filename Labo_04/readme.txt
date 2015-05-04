@@ -16,13 +16,9 @@
   rares
 
   NOTE:
-  Piur la partie II, nous n'avons pas trouvé de 
-  données permettant de constituer cette base de 
-  données. Ainsi nous nous sommes basés sur les
-  cours de l'or et de l'argent. Si ces données 
-  éataient connues, il suffirait alors de remplacer 
-  les cours du programme de l'or et de l'argent
-  par les cours des terres rares.
+  Pour la partie II, nous nous sommes basés sur les
+  cours de l'or des 20 dernières années et  des 
+  terres rares sur les 5 dernieres.
 
  Participants :
   Divernois Margaux
