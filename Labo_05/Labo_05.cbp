@@ -32,7 +32,14 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="affichage.cpp" />
+		<Unit filename="affichage.h" />
+		<Unit filename="fonction.h" />
+		<Unit filename="fonctiona.h" />
+		<Unit filename="integral.cpp" />
+		<Unit filename="integral.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="readme.txt" />
 		<Extensions>
 			<code_completion />
 			<envvars />

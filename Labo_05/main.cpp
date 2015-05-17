@@ -17,6 +17,8 @@ using namespace std;
 /**  Main program */
 int main()
 {
+    Integral approximationPI(new FonctionA(), 0, 1);
+
     static int rep = Affichage::menuBegin();
 
     do{
