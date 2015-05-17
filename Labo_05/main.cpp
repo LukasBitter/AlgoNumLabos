@@ -30,15 +30,16 @@ int main()
         switch(rep)
         {
         case 1:
+            // Entrez un chiffre pair pour le nombre d'itérations.
             cout << "  Approximation : \t" << setprecision(18) << 4 * approximationPI.approimateSimpson(400) << endl;
-            cout << "  PI : \t\t\t" << PI << endl;
+            cout << "  PI : \t\t\t" << PI << endl << endl << "  ";
             system("pause");
             rep = Affichage::menuBegin();
             break;
 
         case 2:
-            cout << "  Approximation : \t" << setprecision(18) << 4 * approximationPI.approximateMiddlePoint(100000000) << endl;
-            cout << "  PI : \t\t\t" << PI << endl;
+            cout << "  Approximation : \t" << setprecision(18) << 4 * approximationPI.approximateMiddlePoint(10000000) << endl;
+            cout << "  PI : \t\t\t" << PI << endl << endl << "  ";
             system("pause");
             rep = Affichage::menuBegin();
             break;
