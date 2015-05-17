@@ -22,6 +22,7 @@ using namespace std;
 /**  Main program */
 int main()
 {
+    //Variables
     Integral approximationPI(new FonctionA(), 0, 1);
     long double PI = 3.14159265358979323L;
     static int rep = Affichage::menuBegin();
@@ -30,7 +31,7 @@ int main()
         switch(rep)
         {
         case 1:
-            // Entrez un chiffre pair pour le nombre d'itérations.
+            // Conseil: Entrez un chiffre pair pour le nombre d'itérations.
             cout << "  Approximation : \t" << setprecision(18) << 4 * approximationPI.approimateSimpson(400) << endl;
             cout << "  PI : \t\t\t" << PI << endl << endl << "  ";
             system("pause");

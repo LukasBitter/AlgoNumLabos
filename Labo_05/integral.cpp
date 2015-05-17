@@ -1,5 +1,15 @@
+/**
+    Integral Class - Implementation File
+    Purpose: Calculate the Integral result from a Function according to start, stop et n parameters
+
+    @author Equipe 6 (Bitter Lukas, Da Mota Marques Fabio Manuel, Divernois Margaux, Visinand Steve)
+
+    last update : 17.05.2015
+*/
+
 #include "integral.h"
 
+// Constructor
 Integral::Integral(Fonction* f, long double start, long double stop)
 {
     this->f = f;
@@ -7,11 +17,13 @@ Integral::Integral(Fonction* f, long double start, long double stop)
     this->stop = stop;
 }
 
+// Destructor
 Integral::~Integral()
 {
     delete f;
 }
 
+// Approxiamtion using Middle Point Method
 long double Integral::approximateMiddlePoint(long double n)
 {
     long double x = start;
@@ -27,6 +39,7 @@ long double Integral::approximateMiddlePoint(long double n)
     return aire;
 }
 
+// Approximation using Simpson Method
 long double Integral::approimateSimpson(long double n)
 {
     long double h = (stop - start)/n;
