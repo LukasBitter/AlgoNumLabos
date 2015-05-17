@@ -11,20 +11,30 @@
 #include <time.h>
 #include <windows.h>
 #include "affichage.h"
+#include <iomanip>
+
+#include "integral.h"
+#include "fonction.h"
+#include "fonctiona.h"
 
 using namespace std;
 
 /**  Main program */
 int main()
 {
-    Integral approximationPI(new FonctionA(), 0, 1);
-
+    Integral approximationPI(new FonctionA(), 0, 1, 10000000);
+    long double PI = 3.14159265358979323846264338327950288419716;
     static int rep = Affichage::menuBegin();
 
     do{
         switch(rep)
         {
         case 1:
+            cout << setprecision(18) << 4 * approximationPI.approximateMiddlePoint();
+            cout << endl;
+            cout << PI;
+            cout << endl;
+            system("pause");
             rep = Affichage::menuBegin();
             break;
 
