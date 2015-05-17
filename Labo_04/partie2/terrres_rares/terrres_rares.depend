@@ -1,0 +1,22 @@
+# depslib dependency file v1.0
+1430714846 source:c:\school\14-15\sciences\algorithmesnumériques\labos\trunk\labo_04\partie2\terrres_rares\main.cpp
+	<iostream>
+	<map>
+	<vector>
+	<fstream>
+	<string>
+	<stdlib.h>
+	<windows.h>
+	"affichage.h"
+
+1430711018 source:c:\school\14-15\sciences\algorithmesnumériques\labos\trunk\labo_04\partie2\terrres_rares\affichage.cpp
+	"affichage.h"
+	<fstream>
+	<sstream>
+
+1430704713 c:\school\14-15\sciences\algorithmesnumériques\labos\trunk\labo_04\partie2\terrres_rares\affichage.h
+	<windows.h>
+	<iostream>
+	<limits>
+	<conio.h>
+
