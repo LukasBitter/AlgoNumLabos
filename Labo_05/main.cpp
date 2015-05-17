@@ -22,23 +22,24 @@ using namespace std;
 /**  Main program */
 int main()
 {
-    Integral approximationPI(new FonctionA(), 0, 1, 10000000);
-    long double PI = 3.14159265358979323846264338327950288419716;
+    Integral approximationPI(new FonctionA(), 0, 1);
+    long double PI = 3.14159265358979323L;
     static int rep = Affichage::menuBegin();
 
     do{
         switch(rep)
         {
         case 1:
-            cout << setprecision(18) << 4 * approximationPI.approximateMiddlePoint();
-            cout << endl;
-            cout << PI;
-            cout << endl;
+            cout << "  Approximation : \t" << setprecision(18) << 4 * approximationPI.approimateSimpson(400) << endl;
+            cout << "  PI : \t\t\t" << PI << endl;
             system("pause");
             rep = Affichage::menuBegin();
             break;
 
         case 2:
+            cout << "  Approximation : \t" << setprecision(18) << 4 * approximationPI.approximateMiddlePoint(100000000) << endl;
+            cout << "  PI : \t\t\t" << PI << endl;
+            system("pause");
             rep = Affichage::menuBegin();
             break;
 

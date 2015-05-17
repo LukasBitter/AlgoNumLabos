@@ -27,7 +27,7 @@ class FonctionA : public Fonction
             @param x The value of the "unknown" value of the equation
             @return The result of the solved equation
         */
-        double f(double x) { return 1 / (1 + pow(x,2)); }
+        long double f(long double x) { return 1 / (1 + pow(x,2)); }
 
     protected:
     private:

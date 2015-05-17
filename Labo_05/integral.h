@@ -7,17 +7,16 @@
 class Integral
 {
     public:
-        Integral(Fonction* f, double start, double stop, double n);
+        Integral(Fonction* f, long double start, long double stop);
         virtual ~Integral();
 
-        double somme(int i, int maximum);
-        double approximateMiddlePoint();
+        long double approximateMiddlePoint(long double n);
+        long double approimateSimpson(long double n);
 
     protected:
     private:
-        double start;
-        double stop;
-        double n;
+        long double start;
+        long double stop;
         Fonction* f;
 
 };

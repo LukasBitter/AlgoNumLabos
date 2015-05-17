@@ -24,7 +24,7 @@ class Fonction
             @param x The value of the "unknown" value of the equation
             @return The result of the solved equation
         */
-        virtual double f(double x) = 0;
+        virtual long double f(long double x) = 0;
     protected:
     private:
 };

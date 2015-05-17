@@ -37,8 +37,8 @@ void Affichage::header()
 // Print the menu
 void Affichage::menu()
 {
-    cout<<"  1. Action 1"<<endl;
-    cout<<"  2. Action 2"<<endl;
+    cout<<"  1. Approximation par Simpson (Recommandation)"<<endl;
+    cout<<"  2. Approximation par Point du Milieu"<<endl;
     cout<<"  3. Read me"<<endl;
     cout<<"  4. End"<<endl;
     cout<<endl;
