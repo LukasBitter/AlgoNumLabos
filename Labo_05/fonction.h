@@ -4,7 +4,7 @@
     Purpose: Will be used to create different functions.
 
     @author Equipe 6 (Bitter Lukas, Da Mota Marques Fabio Manuel, Divernois Margaux, Visinand Steve)
-    @date 2015-04-28
+    @date 26.05.2015
 */
 
 #ifndef FONCTION_H

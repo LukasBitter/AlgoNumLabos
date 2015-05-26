@@ -4,7 +4,7 @@
 
     @author Equipe 6 (Bitter Lukas, Da Mota Marques Fabio Manuel, Divernois Margaux, Visinand Steve)
 
-    last update : 17.05.2015
+    @date 26.05.2015
 */
 
 #include "integral.h"
@@ -23,7 +23,7 @@ Integral::~Integral()
     delete f;
 }
 
-// Approxiamtion using Middle Point Method
+// Approximation using Middle Point Method
 long double Integral::approximateMiddlePoint(long double n)
 {
     long double x = start;
@@ -40,7 +40,7 @@ long double Integral::approximateMiddlePoint(long double n)
 }
 
 // Approximation using Simpson Method
-long double Integral::approimateSimpson(long double n)
+long double Integral::approximateSimpson(long double n)
 {
     long double h = (stop - start)/n;
     long double sommePaire = 0;

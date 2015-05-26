@@ -4,7 +4,7 @@
 
     @author Equipe 6 (Bitter Lukas, Da Mota Marques Fabio Manuel, Divernois Margaux, Visinand Steve)
 
-    last update : 17.05.2015
+    @date 26.05.2015
 */
 
 #ifndef INTEGRAL_H
@@ -34,7 +34,7 @@ class Integral
         /** Calculate the approximation using Simpson method
             @param n : Number of iterations
         */
-        long double approimateSimpson(long double n);
+        long double approximateSimpson(long double n);
 
     protected:
     private:
