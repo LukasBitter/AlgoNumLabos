@@ -4,7 +4,7 @@
 
     @author Equipe 6 (Bitter Lukas, Da Mota Marques Fabio Manuel, Divernois Margaux, Visinand Steve)
 
-    last update : 17.05.2015
+    @date 26.05.2015
 */
 
 #include <iostream>
@@ -62,7 +62,7 @@ int main()
             // Conseil: Entrez un chiffre pair pour le nombre d'itérations.
 
             CounterStart = StartCounter();
-            pi =  4 * approximationPI.approimateSimpson(400);
+            pi =  4 * approximationPI.approximateSimpson(400);
             cout << "  Temps de calcul en ms : \t" << GetTime(CounterStart.QuadPart, double(CounterStart.QuadPart)/1000.0) <<"\n";
 
             cout << "  Approximation : \t" << setprecision(18) << pi << endl;

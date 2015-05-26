@@ -4,7 +4,7 @@
 
     @author Equipe 6 (Bitter Lukas, Da Mota Marques Fabio Manuel, Divernois Margaux, Visinand Steve)
 
-    last update : 29.04.2015
+    @date 26.05.2015
 */
 
 #ifndef AFFICHAGE_H
