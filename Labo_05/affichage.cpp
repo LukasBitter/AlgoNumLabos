@@ -38,7 +38,7 @@ void Affichage::header()
 void Affichage::menu()
 {
     cout<<"  1. Approximation par Simpson (Recommandation)"<<endl;
-    cout<<"  2. Approximation par Point du Milieu (Lent et peu precis)"<<endl;
+    cout<<"  2. Approximation par Point du Milieu (Pas optimisé ni peu precis)"<<endl;
     cout<<"  3. Read me"<<endl;
     cout<<"  4. End"<<endl;
     cout<<endl;

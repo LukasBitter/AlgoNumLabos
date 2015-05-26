@@ -46,12 +46,12 @@ long double Integral::approimateSimpson(long double n)
     long double sommePaire = 0;
     long double sommeImpaire = 0;
 
-    for(unsigned int i = 1; i < n; i = i+2)
+    for(unsigned int i = 1; i < n; i+=2)
     {
         sommeImpaire += f->f(start+h*i);
     }
 
-    for(unsigned int i = 2; i < n; i = i+2)
+    for(unsigned int i = 2; i < n; i+=2)
     {
         long double xi = start + h * i;
         sommePaire += f->f(start+h*i);

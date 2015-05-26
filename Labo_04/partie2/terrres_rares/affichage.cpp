@@ -25,7 +25,7 @@ void Affichage::header()
 {
     system("cls");
     cout<<"*************************************************"<<endl;
-    cout<<"**        Numerical Algorithms - Labo 3        **"<<endl;
+    cout<<"**        Numerical Algorithms - Labo 4        **"<<endl;
     cout<<"**            Cost of (rare) metals            **"<<endl;
     cout<<"*************************************************"<<endl;
     cout<<endl<<endl;
