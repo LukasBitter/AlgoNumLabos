@@ -4,7 +4,7 @@
     Purpose: Contains the fonction  "sin(x) - x/13"
 
     @author Equipe 6 (Bitter Lukas, Da Mota Marques Fabio Manuel, Divernois Margaux, Visinand Steve)
-    @date 2015-05-17
+    @date 26.05.2015
 */
 
 #ifndef FONCTIONA_H

@@ -13,8 +13,12 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    integral.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    fonction.h \
+    fonctiona.h \
+    integral.h
 
 FORMS    += mainwindow.ui
