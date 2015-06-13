@@ -26,8 +26,10 @@ private:
     void draw(QPainter &painter);
     void drawArrow(QPainter *p, QPointF from, QPointF to, int size);
 
-    float f(float x, float y);
+    double f(double x, double y);
     void drawVect(QPainter *p, float x, float y, double pas);
+
+    double eulerMethod(double x, double y);
 
 signals:
 

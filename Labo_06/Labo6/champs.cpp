@@ -12,6 +12,7 @@
 #include <QList>
 #include <QPoint>
 #include <QRect>
+#include <QVector>
 
 #include <QPainter>
 
@@ -67,10 +68,10 @@ void Champs::draw(QPainter &painter)
 void Champs::drawVect(QPainter *p, float x, float y, double pas)
 {
     //get the influences
-    float valueTop = f(x, y+pas);
-    float valueBottom = f(x, y-pas);
-    float valueLeft = f(x-pas, y);
-    float valueRight = f(x+pas, y);
+    float valueTop = eulerMethod(x, y+pas);
+    float valueBottom = eulerMethod(x, y-pas);
+    float valueLeft = eulerMethod(x-pas, y);
+    float valueRight = eulerMethod(x+pas, y);
 
     //find the bigger
     QList<float> tri;
@@ -102,18 +103,23 @@ void Champs::drawVect(QPainter *p, float x, float y, double pas)
     drawArrow(p, QPointF(x, y), QPointF(xFinal,yFinal), 1);
 }
 
-float Champs::f(float x, float y)
+double Champs::f(double x, double y)
 {
-    //     TODO
-    //      / \
-    //     / | \
-    //    /  |  \
-    //   /   |   \
-    //  /    o    \
-    // -------------
-    // Calculate the Differential Equa HERE !
-    //
-    return rand() % 10;
+    return x*x+y*y;
+}
+
+double Champs::eulerMethod(double x, double y)
+{
+    double xn;
+    double yn;
+    double h = 0.1;
+    for(int n=0; n<=5; n++)
+    {
+        xn = x + n*h;
+        yn = y + h*f(xn, y);
+    }
+
+    return yn;
 }
 
 /**
