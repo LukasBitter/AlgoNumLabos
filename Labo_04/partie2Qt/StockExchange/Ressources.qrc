@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/terre_rare">
+        <file>data/terre_rare/cours_terres_rares.xlsx</file>
+        <file>data/terre_rare/cours_terres_rares.csv</file>
+        <file>data/terre_rare/inflation.csv</file>
+    </qresource>
+</RCC>
