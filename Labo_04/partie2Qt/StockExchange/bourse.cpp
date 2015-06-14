@@ -17,6 +17,7 @@ Bourse::Bourse(QString coursFileName, QString inflationFileName)
     this->cours = readCSVFile(coursFileName);
     this->inflation = readCSVFile(inflationFileName);
     calculateMaxMin();
+    findSteapestMoment();
 }
 
 Bourse::~Bourse()
@@ -49,26 +50,23 @@ QMap<int,double> Bourse::readCSVFile(QString filename)
 void Bourse::findSteapestMoment()
 {
     double maxInflation = 0;
-    double previousPrice;
-    int nbIt = 0;
-    string smin="";
+    double previousPrice = cours.first();
+    int bestDate = 0;
+
     QMap<int,double>::iterator it;
 
-    for (it=cours.begin(); it!=cours.end();++it)
+    for (it=cours.begin()++; it!=cours.end();++it)
     {
-        if(nbIt > 0)
+        double value = (it.value() - previousPrice) / previousPrice;
+        if(value > maxInflation)
         {
-            if((it->second)-previousPrice > maxInflation)
-            {
-                maxInflation = (it->second-previousPrice)/previousPrice;
-                smin=it->first;
-            }
+            maxInflation = value;
+            bestDate = it.key();
         }
-        perviousPrice = it->second;
-        nbIt++;
+        previousPrice = it.value();
     }
-    cout<< "The best moment was in "<<smin <<" => "<<maxInflation<<endl<<endl;
 
+    qDebug() << "Résutlat : " << QDate::fromJulianDay(bestDate) <<" : " << maxInflation;
 }
 
 void Bourse::findCheapestMoment()
