@@ -66,19 +66,22 @@ QMap<int,double> Bourse::readCSVFile(QString filename)
 /**
  * @brief Bourse::findSteapestMoment
  * Finds the interval with the steapest interval (derivate)
- * Assuming one could get better use of an investment if it is not
+ * Assuming one could get better use of an investment if it is not in the highest derivate
  */
 void Bourse::findSteapestMoment()
 {
-    double maxInflation = 0;
     double previousPrice = cours.first();
-    int bestDate = 0;
+    double previousYearPrice = previousPrice;
+    maxInflation = 0;
+    maxYearInflation = 0;
+    bestDate = 0;
+    bestYear = 0;
 
     QMap<int,double>::iterator it;
 
     for (it=cours.begin()++; it!=cours.end();++it)
     {
-        //map.insert(date.toJulianDay(),splitLine[1].toDouble());
+        // Manage daily quotes
         this->inflation.insert(it.key(), it.value());
         double value = (it.value() - previousPrice) / previousPrice;
         if(value > maxInflation)
@@ -87,17 +90,40 @@ void Bourse::findSteapestMoment()
             bestDate = it.key();
         }
         previousPrice = it.value();
+
+        // Manage yearly quotes assuming the yearly quote is the first years day quote
+        int year = QDate::fromJulianDay(it.key()).year();
+        if(!this->yearlyInflation.contains(year))
+        {
+            this->yearlyInflation.insert(year, it.value());
+            double yearValue = (it.value() - previousYearPrice) / previousYearPrice;
+            if(yearValue > maxYearInflation)
+            {
+                maxYearInflation = yearValue;
+                bestYear = year;
+            }
+            previousYearPrice = it.value();
+        }
     }
 
-    qDebug() << "Résutlat : " << QDate::fromJulianDay(bestDate) <<" : " << maxInflation;
+    qDebug() << "Résutlat : " << QDate::fromJulianDay(bestDate) <<" : " << maxInflation << " / Year: " << QDate::fromJulianDay(bestDate).year();
 }
 
+/**
+ * @brief Bourse::getCours
+ * return quote
+ * @return
+ */
 QMap<int, double> Bourse::getCours()
 {
     return this->cours;
 }
 
-double Bourse::calculateMaxMin()
+/**
+ * @brief Bourse::calculateMaxMin
+ * @return
+ */
+void Bourse::calculateMaxMin()
 {
     this->max = 0;
     this->min = 0;
@@ -116,16 +142,50 @@ double Bourse::calculateMaxMin()
     }
 }
 
+/**
+ * @brief Bourse::getMaxInflation
+ * @return
+ */
+QString Bourse::getMaxInflation()
+{
+    QString text = "Over the whole period, the best time to buy is on ";
+    text.append(QDate::fromJulianDay(bestDate).toString());
+    return text;
+}
+
+/**
+ * @brief Bourse::getMaxYearInflation
+ * @return
+ */
+QString Bourse::getMaxYearInflation()
+{
+    QString text = "With yearly time interval, the best year to buy is on ";
+    text.append(QString::number(bestYear));
+    return text;
+}
+
+/**
+ * @brief Bourse::getMax
+ * @return
+ */
 double Bourse::getMax()
 {
     return this->max;
 }
 
+/**
+ * @brief Bourse::getMin
+ * @return
+ */
 double Bourse::getMin()
 {
     return this->min;
 }
 
+/**
+ * @brief Bourse::getSize
+ * @return
+ */
 double Bourse::getSize()
 {
     return this->size;

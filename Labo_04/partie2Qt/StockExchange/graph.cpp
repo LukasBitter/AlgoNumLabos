@@ -9,6 +9,12 @@
 
 #include "qcustomplot.h"
 
+/**
+ * @brief Graph::Graph
+ * Widget that contains the graphical elements displayed to the user
+ * @param bourse
+ * @param parent
+ */
 Graph::Graph(Bourse* bourse, QWidget *parent) : QWidget(parent)
 {
     this->bourse = bourse;
@@ -49,8 +55,23 @@ Graph::Graph(Bourse* bourse, QWidget *parent) : QWidget(parent)
     customPlot->yAxis->setRange(bourse->getMin(), bourse->getMax());
     customPlot->replot();
 
-    QHBoxLayout *layout = new QHBoxLayout;
-    layout->addWidget(customPlot);
+    labelPeriod = new QLabel(bourse->getMaxInflation());
+    labelYear = new QLabel(bourse->getMaxYearInflation());
+
+    QVBoxLayout *layout = new QVBoxLayout;
+
+    layout->addWidget(customPlot,2);
+    layout->addWidget(labelPeriod, 0);
+    layout->addWidget(labelYear, 0);
 
     setLayout(layout);
 }
+
+
+Graph::~Graph()
+{
+    delete customPlot;
+    delete labelPeriod;
+    delete labelYear;
+}
+

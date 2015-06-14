@@ -13,12 +13,11 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        widget.cpp \
     bourse.cpp \
     graph.cpp \
     qcustomplot.cpp
 
-HEADERS  += widget.h \
+HEADERS  += \
     bourse.h \
     graph.h \
     qcustomplot.h

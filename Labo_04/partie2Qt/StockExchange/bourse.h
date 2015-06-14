@@ -21,19 +21,28 @@ class Bourse
         QString startDate(QMap<int,double> m);
         QMap<int, double> getCours();
 
-        double calculateMaxMin();
-        double getMax();
+        void calculateMaxMin();
         double getMin();
+        double getMax();
         double getSize();
+        QString getMaxInflation();
+        QString getMaxYearInflation();
+
 
     protected:
     private:
         QMap<int,double> cours;
         QMap<int,double> inflation;
+        QMap<int,double> yearlyInflation;
 
-        double min;
+        double maxYearInflation;
+        double maxInflation;
+        int bestDate;
+        int bestYear;
         double max;
+        double min;
         double size;
+
 };
 
 #endif // BOURSE_H
