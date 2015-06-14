@@ -22,10 +22,9 @@
  * @param coursFileName
  * @param inflationFileName
  */
-Bourse::Bourse(QString coursFileName, QString inflationFileName)
+Bourse::Bourse(QString coursFileName)
 {
     this->cours = readCSVFile(coursFileName);
-    this->inflation = readCSVFile(inflationFileName);
     calculateMaxMin();
     findSteapestMoment();
 }
@@ -79,6 +78,8 @@ void Bourse::findSteapestMoment()
 
     for (it=cours.begin()++; it!=cours.end();++it)
     {
+        //map.insert(date.toJulianDay(),splitLine[1].toDouble());
+        this->inflation.insert(it.key(), it.value());
         double value = (it.value() - previousPrice) / previousPrice;
         if(value > maxInflation)
         {
