@@ -1,3 +1,10 @@
+/**
+    Main - Implementation File
+
+    @author Equipe 6 (Bitter Lukas, Da Mota Marques Fabio Manuel, Divernois Margaux, Visinand Steve)
+    @date 14.06.2015
+*/
+
 #include "mainwindow.h"
 #include <QApplication>
 
