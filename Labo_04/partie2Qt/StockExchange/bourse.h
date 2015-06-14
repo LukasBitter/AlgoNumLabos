@@ -9,7 +9,7 @@ using namespace std;
 class Bourse
 {
     public:
-        Bourse(QString cours, QString inflation);
+        Bourse(QString cours);
         virtual ~Bourse();
 
         QMap<int, double> readCSVFile(QString filename);

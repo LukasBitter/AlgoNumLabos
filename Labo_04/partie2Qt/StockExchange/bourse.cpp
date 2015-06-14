@@ -12,10 +12,9 @@
 
 #include <QDate>
 
-Bourse::Bourse(QString coursFileName, QString inflationFileName)
+Bourse::Bourse(QString coursFileName)
 {
     this->cours = readCSVFile(coursFileName);
-    this->inflation = readCSVFile(inflationFileName);
     calculateMaxMin();
     findSteapestMoment();
 }
