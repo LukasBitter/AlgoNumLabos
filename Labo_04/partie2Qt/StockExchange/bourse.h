@@ -16,6 +16,7 @@ class Bourse
 
         void findCheapestMoment();
         void findBestPeriodToBuyAndSale();
+        void findSteapestMoment();
 
         QString startDate(QMap<int,double> m);
         QMap<int, double> getCours();

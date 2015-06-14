@@ -46,6 +46,31 @@ QMap<int,double> Bourse::readCSVFile(QString filename)
     return map;
 }
 
+void Bourse::findSteapestMoment()
+{
+    double maxInflation = 0;
+    double previousPrice;
+    int nbIt = 0;
+    string smin="";
+    QMap<int,double>::iterator it;
+
+    for (it=cours.begin(); it!=cours.end();++it)
+    {
+        if(nbIt > 0)
+        {
+            if((it->second)-previousPrice > maxInflation)
+            {
+                maxInflation = (it->second-previousPrice)/previousPrice;
+                smin=it->first;
+            }
+        }
+        perviousPrice = it->second;
+        nbIt++;
+    }
+    cout<< "The best moment was in "<<smin <<" => "<<maxInflation<<endl<<endl;
+
+}
+
 void Bourse::findCheapestMoment()
 {
     /*double minvalue=10000000;
