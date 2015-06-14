@@ -2,8 +2,7 @@
     Champs - Implementation File
 
     @author Equipe 6 (Bitter Lukas, Da Mota Marques Fabio Manuel, Divernois Margaux, Visinand Steve)
-
-    last update : 03.05.2015
+    @date 14.06.2015
 */
 
 #include "champs.h"
@@ -15,12 +14,9 @@
 #include <QVector>
 
 #include <QPainter>
-
-//#include <QtPrintSupport>
-//#include <QtPrintSupport/QPrinter>
-
 #include <QDebug>
 
+//Constructor
 Champs::Champs(QWidget *parent) : QWidget(parent)
 {
     // set black background
@@ -30,12 +26,14 @@ Champs::Champs(QWidget *parent) : QWidget(parent)
     this->setPalette(Pal);
 }
 
+//Destructor
 Champs::~Champs()
 {
 
 }
 
-void Champs::paintEvent(QPaintEvent *event)
+//PaintEvent
+void Champs::paintEvent(QPaintEvent*)
 {
     QPainter painter(this);
     draw(painter);
@@ -64,7 +62,13 @@ void Champs::draw(QPainter &painter)
 
 }
 
-
+/**
+ * draw one vector
+ * @param painter
+ * @param x
+ * @param y
+ * @param pas
+ */
 void Champs::drawVect(QPainter *p, float x, float y, double pas)
 {
     //get the influences
@@ -103,11 +107,13 @@ void Champs::drawVect(QPainter *p, float x, float y, double pas)
     drawArrow(p, QPointF(x, y), QPointF(xFinal,yFinal), 1);
 }
 
+// Get f(x,y)
 double Champs::f(double x, double y)
 {
     return x*x+y*y;
 }
 
+// Use EulerMethod
 double Champs::eulerMethod(double x, double y)
 {
     double xn;
