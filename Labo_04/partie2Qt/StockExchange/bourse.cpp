@@ -92,16 +92,6 @@ void Bourse::findSteapestMoment()
     qDebug() << "Résutlat : " << QDate::fromJulianDay(bestDate) <<" : " << maxInflation;
 }
 
-void Bourse::displayMapCours()
-{
-    displayMap(this->cours);
-}
-
-void Bourse::displayMapInflation()
-{
-    displayMap(this->inflation);
-}
-
 QMap<int, double> Bourse::getCours()
 {
     return this->cours;
