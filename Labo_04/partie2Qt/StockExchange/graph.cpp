@@ -24,28 +24,26 @@ Graph::Graph(Bourse* bourse, QWidget *parent) : QWidget(parent)
     int j = 0;
     for (i = cours.begin(); i != cours.end(); ++i)
     {
-        x.append(i.key());
+        QDateTime dateTime(QDate::fromJulianDay(i.key()));
+        x.append(dateTime.toTime_t());
         y.append(i.value());
         j++;
     }
 
-    // customPlot->xAxis->setTickLabelType(QCPAxis::ltDateTime);
-//     customPlot->xAxis->setDateTimeFormat("MM'-'dd");
+    customPlot->xAxis->setTickLabelType(QCPAxis::ltDateTime);
+    customPlot->xAxis->setTickLabelRotation(90);
+    customPlot->xAxis->setDateTimeFormat("dd'-'MM'-'yyyy");
 
-      // set a fixed tick-step to one tick per month:
-      customPlot->xAxis->setAutoTickStep(false);
-      customPlot->xAxis->setTickStep(30*6); // one month in seconds
-      //this->xAxis->setTickStep(86400);
-//      customPlot->xAxis->setSubTickCount(30);
+    customPlot->xAxis->setAutoTickStep(false);
+    customPlot->xAxis->setAutoSubTicks(false);
+    customPlot->xAxis->setSubTickCount(7);
+    customPlot->xAxis->setTickStep(3600*24*7*4);
 
-    // create graph and assign data to it:
     customPlot->addGraph();
     customPlot->graph(0)->setData(x, y);
 
-    // give the axes some labels:
-    customPlot->xAxis->setLabel("x");
-    customPlot->yAxis->setLabel("y");
-    // set axes ranges, so we see all data:
+    customPlot->xAxis->setLabel("Date");
+    customPlot->yAxis->setLabel("Price");
 
     customPlot->xAxis->setRange(x.last(), x.first());
     customPlot->yAxis->setRange(bourse->getMin(), bourse->getMax());
