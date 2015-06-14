@@ -22,7 +22,8 @@
  * @param coursFileName
  * @param inflationFileName
  */
-Bourse::Bourse(QString coursFileName){
+Bourse::Bourse(QString coursFileName)
+{
     this->cours = readCSVFile(coursFileName);
     calculateMaxMin();
     findSteapestMoment();
@@ -87,16 +88,6 @@ void Bourse::findSteapestMoment()
     }
 
     qDebug() << "Résutlat : " << QDate::fromJulianDay(bestDate) <<" : " << maxInflation;
-}
-
-void Bourse::displayMapCours()
-{
-    displayMap(this->cours);
-}
-
-void Bourse::displayMapInflation()
-{
-    displayMap(this->inflation);
 }
 
 QMap<int, double> Bourse::getCours()

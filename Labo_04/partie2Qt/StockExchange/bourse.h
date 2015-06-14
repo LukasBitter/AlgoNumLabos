@@ -21,10 +21,6 @@ class Bourse
         QString startDate(QMap<int,double> m);
         QMap<int, double> getCours();
 
-        void displayMap(QMap<int,double> m);
-        void displayMapCours();
-        void displayMapInflation();
-
         double calculateMaxMin();
         double getMax();
         double getMin();
