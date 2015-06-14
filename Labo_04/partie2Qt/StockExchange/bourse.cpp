@@ -1,19 +1,28 @@
-#include "bourse.h"
+/**
+    Bourse - Implementation File
+    Purpose: manage stock quotes
 
+    @author Equipe 6 (Bitter Lukas, Da Mota Marques Fabio Manuel, Divernois Margaux, Visinand Steve)
+
+    last update : 14.06.2015
+*/
+#include "bourse.h"
 #include <iostream>
 #include <fstream>
 #include <stdlib.h>
 #include <windows.h>
-
 #include <QString>
 #include <QVector>
 #include <QDebug>
 #include <QFile>
-
 #include <QDate>
 
-Bourse::Bourse(QString coursFileName)
-{
+/**
+ * @brief Bourse::Bourse
+ * @param coursFileName
+ * @param inflationFileName
+ */
+Bourse::Bourse(QString coursFileName){
     this->cours = readCSVFile(coursFileName);
     calculateMaxMin();
     findSteapestMoment();
@@ -24,6 +33,13 @@ Bourse::~Bourse()
     //dtor
 }
 
+/**
+ * @brief Bourse::readCSVFile
+ * Reads a csv name and returns a map containing the two vlaues in the expected columns
+ * @param filename
+ * The name of the input file
+ * @return
+ */
 QMap<int,double> Bourse::readCSVFile(QString filename)
 {
     QFile file(filename);
@@ -46,6 +62,11 @@ QMap<int,double> Bourse::readCSVFile(QString filename)
     return map;
 }
 
+/**
+ * @brief Bourse::findSteapestMoment
+ * Finds the interval with the steapest interval (derivate)
+ * Assuming one could get better use of an investment if it is not
+ */
 void Bourse::findSteapestMoment()
 {
     double maxInflation = 0;
@@ -66,103 +87,6 @@ void Bourse::findSteapestMoment()
     }
 
     qDebug() << "Résutlat : " << QDate::fromJulianDay(bestDate) <<" : " << maxInflation;
-}
-
-void Bourse::findCheapestMoment()
-{
-    /*double minvalue=10000000;
-    string smin="";
-    QMap<QString,double>::iterator it;
-
-    for (it=cours.begin(); it!=cours.end();++it)
-    {
-        if(it->second<minvalue)
-        {
-            smin=it->first;
-            minvalue=it->second;
-        }
-    }
-    cout<< "The cheapest moment was in "<<smin <<" => "<<minvalue<<endl<<endl;*/
-}
-
-void Bourse::findBestPeriodToBuyAndSale()
-{
-    /*double inflationMax=-2;
-    double inflationMin=2;
-    string start=startDate(inflation);
-    string timeToBuy=start;
-    string timeToSale=start;
-    map<string,double>::iterator it;
-    map<string,double>::iterator it2;
-
-    string timeToBuyTemp="";
-    string timeToSaleTemp="";
-    double inflationMinTemp=0;
-    double inflationMaxTemp=0;
-    double inflationSum=0;
-
-    for (it=inflation.begin(); it!=inflation.end();++it)
-    {
-        timeToBuyTemp=it->first;
-        timeToSaleTemp=it->first;
-        inflationMinTemp=it->second;
-        inflationMaxTemp=it->second;
-        inflationSum=0;
-
-        for (it2=it; it2!=inflation.end();++it2)
-        {
-            inflationSum+=it2->second;
-
-            if(inflationSum>inflationMaxTemp && inflationSum>inflationMax && timeToSaleTemp.compare(timeToBuy)>0)
-            {
-                timeToSale=it2->first;
-                inflationMax=inflationSum;
-            }
-            else if(inflationSum>inflationMaxTemp)
-            {
-                timeToSaleTemp=it2->first;
-                inflationMaxTemp=inflationSum;
-            }
-            else if(inflationSum<inflationMinTemp && inflationSum<inflationMin && timeToBuyTemp.compare(timeToSale)<0)
-            {
-                timeToBuy=it2->first;
-                inflationMin=inflationSum;
-            }
-            else if(inflationSum<inflationMinTemp)
-            {
-                timeToBuyTemp=it2->first;
-                inflationMinTemp=inflationSum;
-            }
-        }
-    }
-    cout<<"Best time to buy = "<<timeToBuy<<endl;
-    cout<<"Inflation min = "<<inflationMin<<endl<<endl;
-    cout<<"Best time to sale = "<<timeToSale<<endl;
-    cout<<"Inflation max = "<<inflationMax<<endl<<endl<<endl;*/
-}
-
-QString Bourse::startDate(QMap<int,double> m)
-{
-    /*QString startDate="2015";
-    QMap<QString,double>::iterator it;
-    for (it=m.begin(); it!=m.end();++it)
-    {
-        if(it->first.compare(startDate)<0)
-        {
-            startDate=it->first;
-        }
-    }
-    return startDate;*/
-}
-
-void Bourse::displayMap(QMap<int,double> m)
-{
-    /*QMap<QString,double>::iterator it;
-
-    for (it=m.begin(); it!=m.end();++it)
-    {
-    qDebug() << it->first << " => " << it->second << endl;
-    }*/
 }
 
 void Bourse::displayMapCours()
